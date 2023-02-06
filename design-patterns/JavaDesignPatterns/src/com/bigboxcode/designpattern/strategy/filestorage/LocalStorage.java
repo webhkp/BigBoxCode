@@ -2,8 +2,6 @@
 
 package com.bigboxcode.designpattern.strategy.filestorage;
 
-import com.bigboxcode.Storage;
-
 import java.util.Random;
 
 public class LocalStorage implements Storage {

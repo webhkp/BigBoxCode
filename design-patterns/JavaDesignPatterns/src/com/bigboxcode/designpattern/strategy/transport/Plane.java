@@ -1,7 +1,5 @@
 package com.bigboxcode.designpattern.strategy.transport;
 
-import com.bigboxcode.Transport;
-
 public class Plane implements Transport {
 
     @Override

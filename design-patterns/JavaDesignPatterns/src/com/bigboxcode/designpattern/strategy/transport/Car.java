@@ -1,8 +1,6 @@
 
 package com.bigboxcode.designpattern.strategy.transport;
 
-import com.bigboxcode.Transport;
-
 public class Car implements Transport {
     @Override
     public void start() {
