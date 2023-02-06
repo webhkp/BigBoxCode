@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>Go SSE test</title>
+  </head>
+
+  <body>
+    Check console for the result
+  </body>
+
+  <script>
+    const events = new EventSource('http://localhost:3000/events');
+
+    events.onmessage = (event) => {
+      console.log(event.data);
+    };
+  </script>
+</html>

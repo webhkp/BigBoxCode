@@ -1,0 +1,6 @@
+{
+    "name": "bigboxcode/php-sse",
+    "require": {
+        "predis/predis": "^2.0"
+    }
+}

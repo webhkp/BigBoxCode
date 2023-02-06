@@ -1,0 +1,33 @@
+@startuml
+class com.bigboxcode.designpattern.bridge.transport.BusinessClassSeat {
++ void selectSeat()
+}
+interface com.bigboxcode.designpattern.bridge.transport.Seat {
+~ void selectSeat()
+}
+class com.bigboxcode.designpattern.bridge.transport.Demo {
++ {static} void main(String[])
+}
+class com.bigboxcode.designpattern.bridge.transport.Plane {
++ <<Create>> Plane(Seat)
++ void selectTransport()
+}
+class com.bigboxcode.designpattern.bridge.transport.Train {
++ <<Create>> Train(Seat)
++ void selectTransport()
+}
+abstract class com.bigboxcode.designpattern.bridge.transport.Transport {
+# Seat seat
++ <<Create>> Transport(Seat)
++ {abstract}void selectTransport()
+}
+class com.bigboxcode.designpattern.bridge.transport.EconomyClassSeat {
++ void selectSeat()
+}
+
+
+com.bigboxcode.designpattern.bridge.transport.Seat <|.. com.bigboxcode.designpattern.bridge.transport.BusinessClassSeat
+com.bigboxcode.designpattern.bridge.transport.Transport <|-- com.bigboxcode.designpattern.bridge.transport.Plane
+com.bigboxcode.designpattern.bridge.transport.Transport <|-- com.bigboxcode.designpattern.bridge.transport.Train
+com.bigboxcode.designpattern.bridge.transport.Seat <|.. com.bigboxcode.designpattern.bridge.transport.EconomyClassSeat
+@enduml

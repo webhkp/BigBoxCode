@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>PHP SSE Demo</title>
+  </head>
+
+  <body>
+    <h2>Messages</h2>
+    <ul id="message-list">
+      <!-- new messages appears here -->
+    </ul>
+  </body>
+
+  <script>
+    const eventSource   = new EventSource('http://localhost:8888/event1.php');
+    const listElement = document.getElementById('message-list');
+
+    eventSource.onmessage = function (currentEvent) {
+      const newElement = document.createElement('li');
+      newElement.innerText = currentEvent.data;
+
+      listElement.appendChild(newElement)
+    };
+  </script>
+</html>
