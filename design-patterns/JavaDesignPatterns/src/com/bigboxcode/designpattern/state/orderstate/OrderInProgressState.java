@@ -12,6 +12,6 @@ public class OrderInProgressState extends OrderState {
         // Write code to process the order
         System.out.println("Processing the order");
 
-        context.setState(context.getOrderDeliveredState());
+        context.setState(context.getOrderDeliverState());
     }
 }

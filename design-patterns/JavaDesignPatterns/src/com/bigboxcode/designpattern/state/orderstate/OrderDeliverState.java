@@ -12,6 +12,6 @@ public class OrderDeliverState extends OrderState {
         // Write code to process the order
         System.out.println("Delivering the order");
 
-        context.setState(context.getOrderReceivedState());
+        context.setState(context.getOrderReceiveState());
     }
 }

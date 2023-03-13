@@ -4,19 +4,19 @@ package com.bigboxcode.designpattern.state.orderstate;
 
 public class OrderContext {
     private OrderState state;
-    private OrderState orderPlacedState;
+    private OrderState orderCheckState;
     private OrderState orderInProgressState;
-    private OrderState orderDeliveredState;
-    private OrderState orderReceivedState;
+    private OrderState orderDeliverState;
+    private OrderState orderReceiveState;
 
     public OrderContext() {
-        orderPlacedState = new OrderCheckState(this);
+        orderCheckState = new OrderCheckState(this);
         orderInProgressState = new OrderInProgressState(this);
-        orderDeliveredState = new OrderDeliverState(this);
-        orderReceivedState = new OrderReceiveState(this);
+        orderDeliverState = new OrderDeliverState(this);
+        orderReceiveState = new OrderReceiveState(this);
 
         // Set the placed state as default
-        state = orderPlacedState;
+        state = orderCheckState;
     }
 
     public void setState(OrderState state) {
@@ -27,20 +27,20 @@ public class OrderContext {
         return state;
     }
 
-    public OrderState getOrderPlacedState() {
-        return orderPlacedState;
+    public OrderState getOrderCheckState() {
+        return orderCheckState;
     }
 
     public OrderState getOrderInProgressState() {
         return orderInProgressState;
     }
 
-    public OrderState getOrderDeliveredState() {
-        return orderDeliveredState;
+    public OrderState getOrderDeliverState() {
+        return orderDeliverState;
     }
 
-    public OrderState getOrderReceivedState() {
-        return orderReceivedState;
+    public OrderState getOrderReceiveState() {
+        return orderReceiveState;
     }
 
     public void runNextProcess() {
