@@ -1,6 +1,6 @@
 # flask_sse.py
 
-from flask import Flask, Response, jsonify
+from flask import Flask, Response, jsonify, json, request
 from flask_cors import CORS
 import time
 import redis
@@ -12,6 +12,19 @@ r = redis.Redis(
     port=6379,
 )
 
+@app.route('/publish', methods=["POST"])
+def publish():
+    try:
+        # Get data from request and parse it
+        data = json.loads(request.data)
+
+        # Send to Redis publisher
+        r.publish("bigboxcode", json.dumps(data))
+        
+        return jsonify(status="success", message="published", data=data)
+    except:
+        return jsonify(status="fail", message="not published")
+    
 @app.route('/sse', methods=["GET"])
 def sse():
     def sse_events():
