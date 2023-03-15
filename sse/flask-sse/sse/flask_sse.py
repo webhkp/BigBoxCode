@@ -2,7 +2,6 @@
 
 from flask import Flask, Response, jsonify, json, request
 from flask_cors import CORS
-import time
 import redis
 
 app = Flask(__name__)
