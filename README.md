@@ -54,8 +54,6 @@ Here is the list of design pattern articles and related source code implementati
 
 ### Java Design Pattern Implementations
 
-List of creatinoal pattern articles and implementation in Java.
-
 <table vertical-align="middle">
     <tr>
         <th>Article</th>        
