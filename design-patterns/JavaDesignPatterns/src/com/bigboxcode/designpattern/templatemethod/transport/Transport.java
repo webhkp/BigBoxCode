@@ -12,13 +12,16 @@ public abstract class Transport {
     // Required only for Plane
     abstract void addWing();
 
-
     private void addSeat() {
         // Add seats to the vehicle
 
         // Adding seats are same for all transports so same functions for all
 
         System.out.println("Adding seats");
+    }
+
+    private void paint() {
+        System.out.println("Painting");
     }
 
     public void build() {
@@ -31,5 +34,7 @@ public abstract class Transport {
         addWing();
 
         addSeat();
+
+        paint();
     }
 }
