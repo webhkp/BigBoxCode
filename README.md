@@ -61,7 +61,7 @@ Here is the list of design pattern articles and related source code implementati
     </tr>
     <tr>
         <td><a href="https://bigboxcode.com/design-pattern-singleton-pattern-java">Singleton Pattern in Java</a></td>
-        <td></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/JavaDesignPatterns/src/com/bigboxcode/designpattern/singleton">Source Code</a></td>
     </tr>
     <tr>
         <td><a href="https://bigboxcode.com/design-pattern-factory-pattern-java">Factory Pattern in Java</a></td>
