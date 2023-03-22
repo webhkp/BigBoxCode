@@ -1,3 +1,5 @@
+// HostingCalculatorVisitor.java
+
 package com.bigboxcode.designpattern.visitor.hosting;
 
 public interface HostingCalculatorVisitor {
