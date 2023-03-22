@@ -148,7 +148,7 @@ Here is the list of design pattern articles and related source code implementati
         <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/JavaDesignPatterns/src/com/bigboxcode/designpattern/templatemethod">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Visitor Pattern in Java</a></td>
-        <td></td>
+        <td><a href="https://bigboxcode.com/design-pattern-visitor-pattern-java">Visitor Pattern in Java</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/JavaDesignPatterns/src/com/bigboxcode/designpattern/visitor">Source Code</a></td>
     </tr>    
 </table>
