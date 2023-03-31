@@ -1,6 +1,6 @@
 // Request.java
 
-package com.bigboxcode.designpattern.prototype.prototype.request;
+package com.bigboxcode.designpattern.prototype.request;
 
 public abstract class Request implements Cloneable {
 

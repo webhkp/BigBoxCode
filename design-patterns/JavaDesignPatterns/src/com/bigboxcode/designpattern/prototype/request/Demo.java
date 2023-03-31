@@ -1,6 +1,6 @@
 // Demo.java
 
-package com.bigboxcode.designpattern.prototype.prototype.request;
+package com.bigboxcode.designpattern.prototype.request;
 
 public class Demo {
     public static void main(String[] args) {

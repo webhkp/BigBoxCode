@@ -1,6 +1,6 @@
 // HttpRequest.java
 
-package com.bigboxcode.designpattern.prototype.prototype.request;
+package com.bigboxcode.designpattern.prototype.request;
 
 import java.util.HashMap;
 
