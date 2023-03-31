@@ -14,6 +14,8 @@ public class Demo {
 
         System.out.println("\n----------------------------------------------\n");
 
+        // Clone existing request
+        // Cast the request as HttpRequest as the clone method returns Object
         HttpRequest secondRequest = (HttpRequest) httpRequest.clone();
         secondRequest.setType(RequestType.GET);
         secondRequest.setUrl("https://bigboxcode.com/some-other-endpoint");
