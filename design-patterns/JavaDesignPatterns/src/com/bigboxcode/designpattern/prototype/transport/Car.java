@@ -1,3 +1,5 @@
+// Car.java
+
 package com.bigboxcode.designpattern.prototype.transport;
 
 public class Car implements Prototype {
@@ -9,6 +11,7 @@ public class Car implements Prototype {
 
     }
 
+    // This constructor is important for cloning implementation
     public Car(Car car) {
         this.make = car.make;
         this.model = car.model;

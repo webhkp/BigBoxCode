@@ -1,3 +1,5 @@
+// Prototype.java
+
 package com.bigboxcode.designpattern.prototype.transport;
 
 public interface Prototype {

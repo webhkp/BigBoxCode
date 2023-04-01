@@ -1,3 +1,5 @@
+// Demo.java
+
 package com.bigboxcode.designpattern.prototype.transport;
 
 public class Demo {
@@ -11,6 +13,8 @@ public class Demo {
 
         System.out.println("---------------------------------------");
 
+        // Clone existing object
+        // and cast to Car
         Car carClone = (Car) car1.clone();
         carClone.model = "Some Different Model";
         carClone.color = "White";
