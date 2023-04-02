@@ -12,11 +12,17 @@ public class FileAdapter implements Api {
 
     @Override
     public String fetchData() {
+        // May perform additional operation or processing
+        // before or after data is fetched
+
         return file.readFile();
     }
 
     @Override
     public void sendData(String data) {
+        // May perform additional operation or processing
+        // before or after data is written to file
+
         file.writeFile(data);
     }
 }
