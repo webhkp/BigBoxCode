@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransportGroup implements Transport {
-    private List<Transport> transportList = new ArrayList<Transport>();
+    private List<Transport> transportList = new ArrayList<>();
 
     @Override
     public void start() {
