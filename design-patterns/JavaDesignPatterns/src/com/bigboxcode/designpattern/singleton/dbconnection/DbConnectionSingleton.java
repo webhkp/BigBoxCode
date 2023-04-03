@@ -25,10 +25,10 @@ public final class DbConnectionSingleton {
     }
 
     public void printConnectionDetails() {
-        System.out.println("URL:" + url);
-        System.out.println("Port:" + port);
-        System.out.println("User name:" + username);
-        System.out.println("Password:" + password);
+        System.out.println("URL: " + url);
+        System.out.println("Port: " + port);
+        System.out.println("User name: " + username);
+        System.out.println("Password: " + password);
     }
 
     public void executeQuery(String query) {
