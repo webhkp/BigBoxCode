@@ -1,4 +1,4 @@
-// TableCell.java
+// Table.java
 package com.bigboxcode.designpattern.flyweight.table;
 
 public class TableCell {
