@@ -104,8 +104,8 @@ Here is the list of design pattern articles and related source code implementati
         <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/JavaDesignPatterns/src/com/bigboxcode/designpattern/flyweight">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Proxy Pattern in Java</a></td>
-        <td></td>
+        <td><a href="https://bigboxcode.com/design-pattern-proxy-pattern-java">Proxy Pattern in Java</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/JavaDesignPatterns/src/com/bigboxcode/designpattern/proxy">Source Code</a></td>
     </tr>
     <tr>
         <td><a href="https://bigboxcode.com/design-pattern-chain-of-responsibility-pattern-java">Chain of Responsibility Pattern in Java</a></td>
