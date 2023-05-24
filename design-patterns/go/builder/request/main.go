@@ -3,8 +3,7 @@
 package main
 
 func main() {
-	var request Request
-	builder := request.Builder.
+	builder := (&Request{}).Builder.
 		SetUrl("https://bigboxcode.com/request-test").
 		SetRequestType(POST).
 		AddHeader("X-AUTH-TOKEN", "someTokeHere").
