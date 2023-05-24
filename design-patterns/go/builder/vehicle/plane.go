@@ -13,41 +13,41 @@ type Plane struct {
 	interior bool
 }
 
-func NewPlane(noOfWheel int, noOfEngine int, noOfSeat int, noOfDoor int, wing int, interior bool) (rcvr *Plane) {
-	rcvr = &Plane{}
-	rcvr.wheel = noOfWheel
-	rcvr.engine = noOfEngine
-	rcvr.seat = noOfSeat
-	rcvr.door = noOfDoor
-	rcvr.wing = wing
-	rcvr.interior = interior
+func NewPlane(noOfWheel int, noOfEngine int, noOfSeat int, noOfDoor int, wing int, interior bool) (plane *Plane) {
+	plane = &Plane{}
+	plane.wheel = noOfWheel
+	plane.engine = noOfEngine
+	plane.seat = noOfSeat
+	plane.door = noOfDoor
+	plane.wing = wing
+	plane.interior = interior
 	return
 }
 
-func (rcvr *Plane) GetDoor() int {
-	return rcvr.door
+func (plane *Plane) GetDoor() int {
+	return plane.door
 }
 
-func (rcvr *Plane) GetEngine() int {
-	return rcvr.engine
+func (plane *Plane) GetEngine() int {
+	return plane.engine
 }
 
-func (rcvr *Plane) GetSeat() int {
-	return rcvr.seat
+func (plane *Plane) GetSeat() int {
+	return plane.seat
 }
 
-func (rcvr *Plane) GetWheel() int {
-	return rcvr.wheel
+func (plane *Plane) GetWheel() int {
+	return plane.wheel
 }
 
-func (rcvr *Plane) GetWing() int {
-	return rcvr.wing
+func (plane *Plane) GetWing() int {
+	return plane.wing
 }
 
-func (rcvr *Plane) IsInterior() bool {
-	return rcvr.interior
+func (plane *Plane) IsInterior() bool {
+	return plane.interior
 }
 
-func (rcvr *Plane) ToString() string {
-	return fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v%v", "Plane: Wheel -> ", rcvr.wheel, " | Engine -> ", rcvr.engine, " | Seat -> ", rcvr.seat, " | Door -> ", rcvr.door, " | Wing: ", rcvr.wing, " | Interior -> ", rcvr.interior)
+func (plane *Plane) ToString() string {
+	return fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v%v", "Plane: Wheel -> ", plane.wheel, " | Engine -> ", plane.engine, " | Seat -> ", plane.seat, " | Door -> ", plane.door, " | Wing: ", plane.wing, " | Interior -> ", plane.interior)
 }

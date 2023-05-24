@@ -12,36 +12,36 @@ type Car struct {
 	interior bool
 }
 
-func NewCar(noOfWheel int, noOfEngine int, noOfSeat int, noOfDoor int, interior bool) (rcvr *Car) {
-	rcvr = &Car{}
-	rcvr.wheel = noOfWheel
-	rcvr.engine = noOfEngine
-	rcvr.seat = noOfSeat
-	rcvr.door = noOfDoor
-	rcvr.interior = interior
+func NewCar(noOfWheel int, noOfEngine int, noOfSeat int, noOfDoor int, interior bool) (car *Car) {
+	car = &Car{}
+	car.wheel = noOfWheel
+	car.engine = noOfEngine
+	car.seat = noOfSeat
+	car.door = noOfDoor
+	car.interior = interior
 	return
 }
 
-func (rcvr *Car) GetDoor() int {
-	return rcvr.door
+func (car *Car) GetDoor() int {
+	return car.door
 }
 
-func (rcvr *Car) GetEngine() int {
-	return rcvr.engine
+func (car *Car) GetEngine() int {
+	return car.engine
 }
 
-func (rcvr *Car) GetSeat() int {
-	return rcvr.seat
+func (car *Car) GetSeat() int {
+	return car.seat
 }
 
-func (rcvr *Car) GetWheel() int {
-	return rcvr.wheel
+func (car *Car) GetWheel() int {
+	return car.wheel
 }
 
-func (rcvr *Car) IsInterior() bool {
-	return rcvr.interior
+func (car *Car) IsInterior() bool {
+	return car.interior
 }
 
-func (rcvr *Car) ToString() string {
-	return fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v", "Car: Wheel -> ", rcvr.wheel, " | Engine -> ", rcvr.engine, " | Seat -> ", rcvr.seat, " | Door -> ", rcvr.door, " | Interior -> ", rcvr.interior)
+func (car *Car) ToString() string {
+	return fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v", "Car: Wheel -> ", car.wheel, " | Engine -> ", car.engine, " | Seat -> ", car.seat, " | Door -> ", car.door, " | Interior -> ", car.interior)
 }
