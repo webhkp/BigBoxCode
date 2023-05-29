@@ -28,5 +28,5 @@ func (transportFactory *TransportFactory) GetTransport(identifier string) (Trans
 		return NewPlane(), nil
 	}
 
-	return nil, errors.New("Unknown Transport Identifier")
+	return nil, errors.New("unknown transport identifier")
 }

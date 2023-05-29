@@ -2,7 +2,10 @@
 
 package main
 
-import "strings"
+import (
+	"errors"
+	"strings"
+)
 
 type AirTransportFactory struct {
 	TransportFactory
@@ -14,14 +17,14 @@ func NewAirTransportFactory() (airTransportFactory *AirTransportFactory) {
 	return
 }
 
-func (airTransportFactory *AirTransportFactory) GetTransport(name string) Transport {
+func (airTransportFactory *AirTransportFactory) GetTransport(name string) (Transport, error) {
 	if strings.ToLower(name) == "plane" {
-		return NewPlane()
+		return NewPlane(), nil
 	}
 
 	if strings.ToLower(name) == "helicopter" {
-		return NewHelicopter()
+		return NewHelicopter(), nil
 	}
 
-	return nil
+	return nil, errors.New("unknown identifier for AirTransportFactory")
 }

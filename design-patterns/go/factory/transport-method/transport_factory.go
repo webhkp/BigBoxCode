@@ -3,7 +3,7 @@
 package main
 
 type TransportFactoryInterface interface {
-	GetTransport(name string) Transport
+	GetTransport(name string) (Transport, error)
 	OperateTransport(name string)
 	RepairTransport(name string)
 }
@@ -18,12 +18,18 @@ func NewTransportFactory() (transportFactory *TransportFactory) {
 }
 
 func (transportFactory *TransportFactory) OperateTransport(name string) {
-	transport := transportFactory.GetTransport(name)
-	transport.Start()
-	transport.Stop()
+	transport, err := transportFactory.GetTransport(name)
+
+	if err == nil {
+		transport.Start()
+		transport.Stop()
+	}
 }
 
 func (transportFactory *TransportFactory) RepairTransport(name string) {
-	transport := transportFactory.GetTransport(name)
-	transport.Repair()
+	transport, err := transportFactory.GetTransport(name)
+
+	if err == nil {
+		transport.Repair()
+	}
 }
