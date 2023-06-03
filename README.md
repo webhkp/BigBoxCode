@@ -152,3 +152,208 @@ Here is the list of design pattern articles and related source code implementati
         <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/JavaDesignPatterns/src/com/bigboxcode/designpattern/visitor">Source Code</a></td>
     </tr>    
 </table>
+
+
+### Go Design Pattern Implementations
+
+<table vertical-align="middle">
+    <tr>
+        <th>Article</th>        
+        <th>Code Implementations</th>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-singleton-pattern-go">Singleton Pattern in Go</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/singleton">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-factory-pattern-go">Factory Pattern in Go</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/factory">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-abstract-factor-pattern-go">Abstract Factory Pattern in Go</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/abstract_factory">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-builder-pattern-go">Builder Pattern in Go</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/builder">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Prototype Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Adapter Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Bridge Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Composite Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Decorator Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Facade Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Flyweight Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Proxy Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Chain of Responsibility Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Command Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Interpreter Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Iterator Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Mediator Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Memento Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Observer Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">State Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Strategy Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Template Method Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Visitor Pattern in Go</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>    
+</table>
+
+
+
+### TypeScript Design Pattern Implementations
+
+<table vertical-align="middle">
+    <tr>
+        <th>Article</th>        
+        <th>Code Implementations</th>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-singleton-pattern-typescript">Singleton Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/singleton">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-factory-pattern-typescript">Factory Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/factory">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-abstract-factory-pattern-typescript">Abstract Factory Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/abstract-factory">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-builder-pattern-typescript">Builder Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/builder">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Prototype Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Adapter Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Bridge Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Composite Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Decorator Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Facade Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Flyweight Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Proxy Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Chain of Responsibility Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Command Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Interpreter Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Iterator Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Mediator Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Memento Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Observer Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">State Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Strategy Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Template Method Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>
+    <tr>
+        <td><a href="#">Visitor Pattern in TypeScript</a></td>
+        <td><a href="#">Source Code</a></td>
+    </tr>    
+</table>
