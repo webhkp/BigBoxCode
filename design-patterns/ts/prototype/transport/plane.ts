@@ -13,7 +13,7 @@ class Plane implements Prototype {
     }
 
     clone(): Prototype {
-        return Object.assign({}, this)
+        return new Plane(this.model, this.color);
     }
 
     toString(): string {
