@@ -178,12 +178,12 @@ Here is the list of design pattern articles and related source code implementati
         <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/builder">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Prototype Pattern in Go</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-prototype-pattern-go">Prototype Pattern in Go</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/prototype">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Adapter Pattern in Go</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-adapter-pattern-go">Adapter Pattern in Go</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/adapter">Source Code</a></td>
     </tr>
     <tr>
         <td><a href="#">Bridge Pattern in Go</a></td>
@@ -281,8 +281,8 @@ Here is the list of design pattern articles and related source code implementati
         <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/builder">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Prototype Pattern in TypeScript</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-prototype-pattern-typescript">Prototype Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/prototype">Source Code</a></td>
     </tr>
     <tr>
         <td><a href="#">Adapter Pattern in TypeScript</a></td>
