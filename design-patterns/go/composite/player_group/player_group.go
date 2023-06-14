@@ -15,12 +15,6 @@ func (playerGroup *PlayerGroup) AddElement(player Player) {
 	playerGroup.playerList = append(playerGroup.playerList, player)
 }
 
-func (playerGroup *PlayerGroup) PrintDetails() {
-	for _, player := range playerGroup.playerList {
-		player.PrintDetails()
-	}
-}
-
 func (playerGroup *PlayerGroup) RemoveElement(player Player) {
 	newPlayerList := []Player{}
 
@@ -33,4 +27,10 @@ func (playerGroup *PlayerGroup) RemoveElement(player Player) {
 	}
 
 	playerGroup.playerList = newPlayerList
+}
+
+func (playerGroup *PlayerGroup) PrintDetails() {
+	for _, player := range playerGroup.playerList {
+		player.PrintDetails()
+	}
 }

@@ -8,18 +8,11 @@ type TransportGroup struct {
 
 func NewTransportGroup() (transportGroup *TransportGroup) {
 	transportGroup = &TransportGroup{}
-	// transportGroup.transportList = NewArrayList()
 	return
 }
 
 func (transportGroup *TransportGroup) AddTransport(transport Transport) {
 	transportGroup.transportList = append(transportGroup.transportList, transport)
-}
-
-func (transportGroup *TransportGroup) Operate() {
-	for _, transport := range transportGroup.transportList {
-		transport.Operate()
-	}
 }
 
 func (transportGroup *TransportGroup) RemoveTransport(transport Transport) {
@@ -45,5 +38,11 @@ func (transportGroup *TransportGroup) Start() {
 func (transportGroup *TransportGroup) Stop() {
 	for _, transport := range transportGroup.transportList {
 		transport.Stop()
+	}
+}
+
+func (transportGroup *TransportGroup) Operate() {
+	for _, transport := range transportGroup.transportList {
+		transport.Operate()
 	}
 }
