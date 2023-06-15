@@ -1,3 +1,5 @@
+// vehicle_producer.go
+
 package main
 
 type VehicleProducer struct {
@@ -24,6 +26,6 @@ func (vehicleProducer *VehicleProducer) BuildPlane(planeBuilder *PlaneBuilder) *
 	planeBuilder.AddSeat(120)
 	planeBuilder.AddInterior()
 	planeBuilder.AddWing(2)
-	
+
 	return planeBuilder
 }
