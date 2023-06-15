@@ -1,4 +1,4 @@
-// file.ts
+// file-op.ts
 
 interface FileOp {
     readFile(): string;

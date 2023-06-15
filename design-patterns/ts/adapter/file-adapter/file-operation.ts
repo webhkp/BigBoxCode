@@ -1,4 +1,4 @@
-// file-op.ts
+// file-operation.ts
 
 import FileOp from './file-op';
 
