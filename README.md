@@ -293,8 +293,8 @@ Here is the list of design pattern articles and related source code implementati
         <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/bridge">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Composite Pattern in TypeScript</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-composite-pattern-typescript">Composite Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/composite">Source Code</a></td>
     </tr>
     <tr>
         <td><a href="#">Decorator Pattern in TypeScript</a></td>
