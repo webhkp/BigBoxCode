@@ -186,16 +186,16 @@ Here is the list of design pattern articles and related source code implementati
         <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/adapter">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Bridge Pattern in Go</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-bridge-pattern-go">Bridge Pattern in Go</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/bridge">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Composite Pattern in Go</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-composite-pattern-go">Composite Pattern in Go</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/composite">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Decorator Pattern in Go</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-decorator-pattern-go">Decorator Pattern in Go</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/decorator">Source Code</a></td>
     </tr>
     <tr>
         <td><a href="#">Facade Pattern in Go</a></td>
@@ -285,12 +285,12 @@ Here is the list of design pattern articles and related source code implementati
         <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/prototype">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Adapter Pattern in TypeScript</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-adapter-pattern-typescript">Adapter Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/adapter">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Bridge Pattern in TypeScript</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-bridge-pattern-typescript">Bridge Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/bridge">Source Code</a></td>
     </tr>
     <tr>
         <td><a href="#">Composite Pattern in TypeScript</a></td>
