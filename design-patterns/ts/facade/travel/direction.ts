@@ -1,4 +1,4 @@
-// location.ts
+// direction.ts
 
 import Point from "./point";
 
@@ -14,7 +14,8 @@ class Direction {
         this.endLat = endLat;
         this.endLng = endLng;
     }
-    public getLocationDetails(lat: number, lng: number) {
+
+    getLocationDetails(lat: number, lng: number) {
         console.log("Country: ABC");
         console.log("City: DEF");
         console.log("State: GHI");
