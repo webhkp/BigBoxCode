@@ -198,8 +198,8 @@ Here is the list of design pattern articles and related source code implementati
         <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/decorator">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Facade Pattern in Go</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-facade-pattern-go">Facade Pattern in Go</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/facade">Source Code</a></td>
     </tr>
     <tr>
         <td><a href="#">Flyweight Pattern in Go</a></td>
@@ -297,16 +297,16 @@ Here is the list of design pattern articles and related source code implementati
         <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/composite">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Decorator Pattern in TypeScript</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-decorator-pattern-typescript">Decorator Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/decorator">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Facade Pattern in TypeScript</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-facade-pattern-typescript">Facade Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/facade">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Flyweight Pattern in TypeScript</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-flyweight-pattern-typescript">Flyweight Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/flyweight">Source Code</a></td>
     </tr>
     <tr>
         <td><a href="#">Proxy Pattern in TypeScript</a></td>
