@@ -12,7 +12,7 @@ func NewTableCellFactory() (tableCellFactory *TableCellFactory) {
 	return
 }
 
-func(tableCellFactory *TableCellFactory) GetTableCell(column int, width int) (tableCell TableCell) {
+func (tableCellFactory *TableCellFactory) GetTableCell(column int, width int) (tableCell TableCell) {
 	tableCell, ok := tableCellFactory.tableCells[column]
 
 	if ok {
@@ -22,16 +22,10 @@ func(tableCellFactory *TableCellFactory) GetTableCell(column int, width int) (ta
 	tableCell = *NewTableCell(width)
 	tableCellFactory.tableCells[column] = tableCell
 
-	return tableCell;
+	return tableCell
 }
 
 // For demo purpose only, not required in actual implementation
 func (tableCellFactory *TableCellFactory) GetCellObjectCount() int {
 	return len(tableCellFactory.tableCells)
 }
-
-// public class TableCellFactory {
-//     private static Map<Integer, TableCell> tableCells = new HashMap<>();
-
-    
-// }
