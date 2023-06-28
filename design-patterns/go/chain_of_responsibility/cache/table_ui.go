@@ -7,15 +7,15 @@ import "fmt"
 type TableUi struct {
 }
 
-func NewTableUi() (rcvr *TableUi) {
-	rcvr = &TableUi{}
+func NewTableUi() (tableUi *TableUi) {
+	tableUi = &TableUi{}
 	return
 }
 
-func (rcvr *TableUi) Print() {
+func (tableUi *TableUi) Print() {
 	fmt.Println("Printing Table")
 }
 
-func (rcvr *TableUi) Remove() {
+func (tableUi *TableUi) Remove() {
 	fmt.Println("Removing Table")
 }

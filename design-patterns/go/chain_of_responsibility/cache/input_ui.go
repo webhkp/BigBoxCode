@@ -7,13 +7,15 @@ import "fmt"
 type InputUi struct {
 }
 
-func NewInputUi() (rcvr *InputUi) {
-	rcvr = &InputUi{}
+func NewInputUi() (inputUi *InputUi) {
+	inputUi = &InputUi{}
 	return
 }
-func (rcvr *InputUi) Print() {
+
+func (inputUi *InputUi) Print() {
 	fmt.Println("Printing Input")
 }
-func (rcvr *InputUi) Remove() {
+
+func (inputUi *InputUi) Remove() {
 	fmt.Println("Removing Input")
 }
