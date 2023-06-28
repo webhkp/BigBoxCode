@@ -12,7 +12,7 @@ func NewUiControl() (uiControl *UiControl) {
 	return
 }
 
-func (uiControl *UiControl) addElement(uiCommand UiCommand) {
+func (uiControl *UiControl) AddElement(uiCommand UiCommand) {
 	// Execute command
 	uiCommand.Print()
 
@@ -20,13 +20,13 @@ func (uiControl *UiControl) addElement(uiCommand UiCommand) {
 	uiControl.commandList = append(uiControl.commandList, uiCommand)
 }
 
-func (uiControl *UiControl) removeElement(uiCommand UiCommand) {
+func (uiControl *UiControl) RemoveElement(uiCommand UiCommand) {
 	// Remove element
 	uiCommand.Remove()
 
 	// Remove from list
 	newList := []UiCommand{}
-	
+
 	for _, elem := range uiControl.commandList {
 		if elem != uiCommand {
 			newList = append(newList, elem)
@@ -36,7 +36,7 @@ func (uiControl *UiControl) removeElement(uiCommand UiCommand) {
 	uiControl.commandList = newList
 }
 
-func (uiControl *UiControl) undo() {
+func (uiControl *UiControl) Undo() {
 	uiCommand := uiControl.commandList[len(uiControl.commandList) - 1]
-	uiControl.removeElement(uiCommand)
+	uiControl.RemoveElement(uiCommand)
 }

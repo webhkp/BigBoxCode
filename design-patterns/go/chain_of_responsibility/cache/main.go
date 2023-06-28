@@ -8,17 +8,17 @@ func main() {
 	tableUi := NewTableUi()
 	buttonUi := NewButtonUi("Submit")
 
-	uiControl.addElement(inputUi)
-	uiControl.addElement(tableUi)
-	uiControl.addElement(buttonUi)
+	uiControl.AddElement(inputUi)
+	uiControl.AddElement(tableUi)
+	uiControl.AddElement(buttonUi)
 
-	uiControl.removeElement(tableUi)
+	uiControl.RemoveElement(tableUi)
 
-	uiControl.addElement(NewButtonUi("Cancel"))
-	uiControl.addElement(NewTableUi())
-	uiControl.addElement(NewInputUi())
-	uiControl.addElement(NewButtonUi("Wrong button"))
-	
-	uiControl.undo()
-	uiControl.undo()
+	uiControl.AddElement(NewButtonUi("Cancel"))
+	uiControl.AddElement(NewTableUi())
+	uiControl.AddElement(NewInputUi())
+	uiControl.AddElement(NewButtonUi("Wrong button"))
+
+	uiControl.Undo()
+	uiControl.Undo()
 }
