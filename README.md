@@ -52,80 +52,6 @@ List of articles related to Server-Sent Events(SSE) implementation and related s
 
 Here is the list of design pattern articles and related source code implementation.
 
-## Main Design Pattern Articles
-
-<table vertical-align="middle">
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-singleton-pattern">Singleton Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-factory-pattern">Factory Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-builder-pattern">Abstract Factory Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-builder-pattern">Builder Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-prototype-pattern">Prototype Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-adapter-pattern">Adapter Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-bridge-pattern">Bridge Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-composite-pattern">Composite Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-decorator-pattern">Decorator Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-facade-pattern">Facade Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-flyweight-pattern">Flyweight Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-proxy-pattern">Proxy Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-chain-of-responsibility-pattern">Chain of Responsibility Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-command-pattern">Command Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-interpreter-pattern">Interpreter Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-iterator-pattern">Iterator Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-mediator-pattern">Mediator Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-memento-pattern">Memento Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-observer-pattern">Observer Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-state-pattern">State Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-strategy-pattern">Strategy Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-template-method-pattern">Template Method Pattern</a></td>
-    </tr>
-    <tr>
-        <td><a href="https://bigboxcode.com/design-pattern-visitor-pattern">Visitor Pattern</a></td>
-    </tr>    
-</table>
-
 
 ### Java Design Pattern Implementations
 
@@ -430,5 +356,80 @@ Here is the list of design pattern articles and related source code implementati
     <tr>
         <td><a href="#">Visitor Pattern in TypeScript</a></td>
         <td><a href="#">Source Code</a></td>
+    </tr>    
+</table>
+
+
+## Main Design Pattern Articles
+
+<table vertical-align="middle">
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-singleton-pattern">Singleton Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-factory-pattern">Factory Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-builder-pattern">Abstract Factory Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-builder-pattern">Builder Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-prototype-pattern">Prototype Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-adapter-pattern">Adapter Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-bridge-pattern">Bridge Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-composite-pattern">Composite Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-decorator-pattern">Decorator Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-facade-pattern">Facade Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-flyweight-pattern">Flyweight Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-proxy-pattern">Proxy Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-chain-of-responsibility-pattern">Chain of Responsibility Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-command-pattern">Command Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-interpreter-pattern">Interpreter Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-iterator-pattern">Iterator Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-mediator-pattern">Mediator Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-memento-pattern">Memento Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-observer-pattern">Observer Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-state-pattern">State Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-strategy-pattern">Strategy Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-template-method-pattern">Template Method Pattern</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://bigboxcode.com/design-pattern-visitor-pattern">Visitor Pattern</a></td>
     </tr>    
 </table>
