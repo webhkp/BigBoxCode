@@ -364,6 +364,7 @@ Here is the list of design pattern articles and related source code implementati
 
 <table vertical-align="middle">
     <tr>
+        <td rowspan="5">Creational Patterns</td>
         <td><a href="https://bigboxcode.com/design-pattern-singleton-pattern">Singleton Pattern</a></td>
     </tr>
     <tr>
@@ -379,6 +380,7 @@ Here is the list of design pattern articles and related source code implementati
         <td><a href="https://bigboxcode.com/design-pattern-prototype-pattern">Prototype Pattern</a></td>
     </tr>
     <tr>
+        <td rowspan="7">Structural Patterns</td>
         <td><a href="https://bigboxcode.com/design-pattern-adapter-pattern">Adapter Pattern</a></td>
     </tr>
     <tr>
@@ -400,6 +402,7 @@ Here is the list of design pattern articles and related source code implementati
         <td><a href="https://bigboxcode.com/design-pattern-proxy-pattern">Proxy Pattern</a></td>
     </tr>
     <tr>
+        <td rowspan="11">Behavioral Patterns</td>
         <td><a href="https://bigboxcode.com/design-pattern-chain-of-responsibility-pattern">Chain of Responsibility Pattern</a></td>
     </tr>
     <tr>
