@@ -8,17 +8,6 @@ import ServerlessService from "./serverless-service";
 import Service from "./service";
 
 interface HostingCalculatorVisitor {
-
-    // visit(computeService: ComputeService): number;
-
-    // visit(containerService: ContainerService): number;
-
-    // visit(databaseService: DatabaseService): number;
-
-    // visit(fileStorageService: FileStorageService): number;
-
-    // visit(serverlessService: ServerlessService): number;
-
     visit(service: Service): number;
 }
 
