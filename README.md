@@ -223,20 +223,20 @@ Here is the list of design pattern articles and related source code implementati
         <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/interpreter">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Iterator Pattern in Go</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-iterator-pattern-go">Iterator Pattern in Go</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/iterator">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Mediator Pattern in Go</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-mediator-pattern-go">Mediator Pattern in Go</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/mediator">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Memento Pattern in Go</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-memento-pattern-go">Memento Pattern in Go</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/memento">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Observer Pattern in Go</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-observer-pattern-go">Observer Pattern in Go</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/go/observer">Source Code</a></td>
     </tr>
     <tr>
         <td><a href="#">State Pattern in Go</a></td>
@@ -326,36 +326,36 @@ Here is the list of design pattern articles and related source code implementati
         <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/interpreter">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Iterator Pattern in TypeScript</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-iterator-pattern-typescript">Iterator Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/iterator">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Mediator Pattern in TypeScript</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-mediator-pattern-typescript">Mediator Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/mediator">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Memento Pattern in TypeScript</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-memento-pattern-typescript">Memento Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/memento">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Observer Pattern in TypeScript</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-observer-pattern-typescript">Observer Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/observer">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">State Pattern in TypeScript</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-state-pattern-typescript">State Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/state">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Strategy Pattern in TypeScript</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-strategy-pattern-typescript">Strategy Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/strategy">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Template Method Pattern in TypeScript</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-template-method-pattern-typescript">Template Method Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/template-method">Source Code</a></td>
     </tr>
     <tr>
-        <td><a href="#">Visitor Pattern in TypeScript</a></td>
-        <td><a href="#">Source Code</a></td>
+        <td><a href="https://bigboxcode.com/design-pattern-visitor-pattern-typescript">Visitor Pattern in TypeScript</a></td>
+        <td><a href="https://github.com/webhkp/BigBoxCode/tree/main/design-patterns/ts/visitor/hosting-cost">Source Code</a></td>
     </tr>    
 </table>
 
