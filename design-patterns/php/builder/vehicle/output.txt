@@ -1,0 +1,22 @@
+Building Car:
+
+Add 4 wheels
+Add 1 engine
+Add 4 door
+Add 4 Seat
+Add interior
+
+Final result:
+Car: Wheel -> 4 | Engine -> 1 | Seat -> 4 | Door -> 4 | Interior -> true
+
+Building Plane:
+
+Add 3 wheels
+Add 2 engine
+Add 4 door
+Add 120 Seat
+Add interior
+Add 2 wing
+
+Final result:
+Plane: Wheel -> 3 | Engine -> 2 | Seat -> 120 | Door -> 4 | Wing: 2 | Interior -> true

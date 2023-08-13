@@ -1,0 +1,22 @@
+Sending Request...
+
+URL: https://bigboxcode.com/request-test
+
+Type: Builder\Request\RequestType Enum
+(
+    [name] => POST
+)
+
+
+Headers: Array
+(
+    [X-AUTH-TOKEN] => someTokenHere
+    [X-SOME-HEADER] => someRandomHeaderValueHere
+)
+
+
+Body: Array
+(
+    [unit_id] => 99
+    [code] => 88C3ABK
+)
