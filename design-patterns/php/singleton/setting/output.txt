@@ -1,0 +1,13 @@
+array(2) {
+  ["file_base_path"]=>
+  string(11) "/var/log/dd"
+  ["app_port"]=>
+  int(3000)
+}
+
+array(2) {
+  ["file_base_path"]=>
+  string(11) "/var/log/dd"
+  ["app_port"]=>
+  int(3000)
+}

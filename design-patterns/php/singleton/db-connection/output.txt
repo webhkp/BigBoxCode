@@ -1,0 +1,18 @@
+Creating new db connection instance
+
+DB connection details for dbConnOne:
+
+host:loclahost
+port:1234
+username:root
+password:secret!pass
+
+
+Using existing db connection instance
+
+DB connection details for dbConnTwo:
+
+host:loclahost
+port:1234
+username:root
+password:secret!pass
