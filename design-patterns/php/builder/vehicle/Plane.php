@@ -5,20 +5,13 @@ namespace Builder\Vehicle;
 
 
 class Plane {
-    private int $wheel;
-    private int $engine;
-    private int $seat;
-    private int $door;
-    private int $wing;
-    private bool $interior;
-
-    public function __construct(int $noOfWheel, int $noOfEngine, int $noOfSeat, int $noOfDoor, int $wing, bool $interior) {
-        $this->wheel = $noOfWheel;
-        $this->engine = $noOfEngine;
-        $this->seat = $noOfSeat;
-        $this->door = $noOfDoor;
-        $this->wing = $wing;
-        $this->interior = $interior;
+    public function __construct(
+        private int $wheel,
+        private int $engine,
+        private int $seat,
+        private int $door,
+        private int $wing,
+        private bool $interior) {
     }
 
     public function getWheel(): int {

@@ -4,18 +4,12 @@
 namespace Builder\Vehicle;
 
 class Car {
-    private int $wheel;
-    private int $engine;
-    private int $seat;
-    private int $door;
-    private bool $interior;
-
-    public function __construct(int $noOfWheel, int $noOfEngine, int $noOfSeat, int $noOfDoor, bool $interior) {
-        $this->wheel = $noOfWheel;
-        $this->engine = $noOfEngine;
-        $this->seat = $noOfSeat;
-        $this->door = $noOfDoor;
-        $this->interior = $interior;
+    public function __construct(
+        private int $wheel,
+        private int $engine,
+        private int $seat,
+        private int $door,
+        private bool $interior) {
     }
 
     public function getWheel(): int {
