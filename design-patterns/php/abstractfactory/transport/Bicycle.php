@@ -1,7 +1,7 @@
 <?php
 // Bicycle.php
 
-namespace AbstractFactory\Transport;
+namespace BigBoxCode\DesignPattern\AbstractFactory\Transport;
 
 
 class Bicycle implements Transport {

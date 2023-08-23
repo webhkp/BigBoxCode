@@ -1,9 +1,9 @@
 <?php
 // Request.php
 
-namespace Builder\Request;
+namespace BigBoxCode\DesignPattern\Builder\Request;
 
-use Builder\Request\Builder;
+use BigBoxCode\DesignPattern\Builder\Request\Builder;
 
 enum RequestType {
     case GET;

@@ -1,7 +1,7 @@
 <?php
 // DbConnSingleton.php
 
-namespace Singleton\DbConnection;
+namespace BigBoxCode\DesignPattern\Singleton\DbConnection;
 
 class DbConnSingleton {
     private static ?DbConnSingleton $singletonInstance = null;

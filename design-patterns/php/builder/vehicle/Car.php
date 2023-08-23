@@ -1,7 +1,7 @@
 <?php
 // Car.php
 
-namespace Builder\Vehicle;
+namespace BigBoxCode\DesignPattern\Builder\Vehicle;
 
 class Car {
     public function __construct(

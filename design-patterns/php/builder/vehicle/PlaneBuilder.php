@@ -1,7 +1,7 @@
 <?php
 // PlaneBuilder.php
 
-namespace Builder\Vehicle;
+namespace BigBoxCode\DesignPattern\Builder\Vehicle;
 
 class PlaneBuilder implements VehicleBuilder {
     private int $wheel = 0;

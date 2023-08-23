@@ -1,7 +1,7 @@
 <?php
 // AbstractTransportFactory.php
 
-namespace AbstractFactory\Transport;
+namespace BigBoxCode\DesignPattern\AbstractFactory\Transport;
 
 
 interface AbstractTransportFactory {

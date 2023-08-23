@@ -1,7 +1,7 @@
 <?php
 // RoadTransportFactory.php
 
-namespace Factory\TransportMethod;
+namespace BigBoxCode\DesignPattern\Factory\TransportMethod;
 
 class RoadTransportFactory extends TransportFactory {
     public function getTransport(string $name): ?Transport {

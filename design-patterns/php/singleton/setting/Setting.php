@@ -1,7 +1,7 @@
 <?php
 // setting.php
 
-namespace Singleton\Setting;
+namespace BigBoxCode\DesignPattern\Singleton\Setting;
 
 class Setting {
     private static ?Setting $settingInstance = null;

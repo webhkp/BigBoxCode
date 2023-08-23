@@ -1,7 +1,7 @@
 <?php
 // VehicleBuilder.php
 
-namespace Builder\Vehicle;
+namespace BigBoxCode\DesignPattern\Builder\Vehicle;
 
 interface VehicleBuilder {
     public function addWheel(int $noOfWheel): void;

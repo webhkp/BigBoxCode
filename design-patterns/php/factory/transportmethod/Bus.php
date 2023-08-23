@@ -1,7 +1,7 @@
 <?php
 // Bus.php
 
-namespace Factory\TransportMethod;
+namespace BigBoxCode\DesignPattern\Factory\TransportMethod;
 
 class Bus implements Transport {
     public function start() {

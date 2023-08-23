@@ -1,7 +1,7 @@
 <?php
 // TransportFactory.php
 
-namespace Factory\Transport;
+namespace BigBoxCode\DesignPattern\Factory\Transport;
 
 class TransportFactory {
 

@@ -1,7 +1,7 @@
 <?php
 // Helicopter.php
 
-namespace Factory\TransportMethod;
+namespace BigBoxCode\DesignPattern\Factory\TransportMethod;
 
 class Helicopter implements Transport {
     public function start() {

@@ -1,7 +1,7 @@
 <?php
 // Plane.php
 
-namespace Factory\Transport;
+namespace BigBoxCode\DesignPattern\Factory\Transport;
 
 class Plane implements Transport {
     public function start() {

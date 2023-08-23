@@ -1,9 +1,9 @@
 <?php
 // Builder.php
 
-namespace Builder\Request;
+namespace BigBoxCode\DesignPattern\Builder\Request;
 
-use Builder\Request\Request;
+use BigBoxCode\DesignPattern\Builder\Request\Request;
 
 
 class Builder {

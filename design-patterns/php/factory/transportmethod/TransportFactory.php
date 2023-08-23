@@ -1,7 +1,7 @@
 <?php
 // TransportFactory.php
 
-namespace Factory\TransportMethod;
+namespace BigBoxCode\DesignPattern\Factory\TransportMethod;
 
 abstract class TransportFactory {
     public function operateTransport(string $name) {

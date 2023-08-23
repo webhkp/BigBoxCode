@@ -1,7 +1,7 @@
 <?php
 // Plane.php
 
-namespace Builder\Vehicle;
+namespace BigBoxCode\DesignPattern\Builder\Vehicle;
 
 
 class Plane {

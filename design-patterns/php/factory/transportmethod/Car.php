@@ -1,7 +1,7 @@
 <?php
 // Car.php
 
-namespace Factory\TransportMethod;
+namespace BigBoxCode\DesignPattern\Factory\TransportMethod;
 
 class Car implements Transport {
     public function start() {

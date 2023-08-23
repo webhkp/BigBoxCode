@@ -1,7 +1,7 @@
 <?php
 // VehicleProducer.php
 
-namespace Builder\Vehicle;
+namespace BigBoxCode\DesignPattern\Builder\Vehicle;
 
 class VehicleProducer {
     public function buildCar(CarBuilder $carBuilder): CarBuilder {

@@ -1,9 +1,9 @@
 <?php
 // demo.php
 
-namespace Singleton\DbConnection;
+require __DIR__ . '/../../vendor/autoload.php';
 
-require_once "DbConnSingleton.php";
+use BigBoxCode\DesignPattern\Singleton\DbConnection\DbConnSingleton;
 
 // Create database instance
 $dbConnOne = DbConnSingleton::getInstance('loclahost', 1234, 'root', 'secret!pass');

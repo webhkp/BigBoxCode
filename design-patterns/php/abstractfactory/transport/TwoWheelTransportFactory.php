@@ -1,7 +1,7 @@
 <?php
 // TwoWheelTransportFactory.php
 
-namespace AbstractFactory\Transport;
+namespace BigBoxCode\DesignPattern\AbstractFactory\Transport;
 
 class TwoWheelTransportFactory implements AbstractTransportFactory {
     public function getTransport(string $type): ?Transport {

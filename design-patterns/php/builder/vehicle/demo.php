@@ -1,16 +1,11 @@
 <?php
 // demo.php
 
-require_once "VehicleBuilder.php";
-require_once "VehicleProducer.php";
-require_once "CarBuilder.php";
-require_once "PlaneBuilder.php";
-require_once "Car.php";
-require_once "Plane.php";
+require __DIR__ . '/../../vendor/autoload.php';
 
-use Builder\Vehicle\CarBuilder;
-use Builder\Vehicle\PlaneBuilder;
-use Builder\Vehicle\VehicleProducer;
+use BigBoxCode\DesignPattern\Builder\Vehicle\CarBuilder;
+use BigBoxCode\DesignPattern\Builder\Vehicle\PlaneBuilder;
+use BigBoxCode\DesignPattern\Builder\Vehicle\VehicleProducer;
 
 $vehicleProducer = new VehicleProducer();
 

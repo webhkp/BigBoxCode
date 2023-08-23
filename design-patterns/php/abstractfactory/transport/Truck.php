@@ -1,7 +1,7 @@
 <?php
 // Truck.php
 
-namespace AbstractFactory\Transport;
+namespace BigBoxCode\DesignPattern\AbstractFactory\Transport;
 
 class Truck implements Transport {
     public function start(): void {

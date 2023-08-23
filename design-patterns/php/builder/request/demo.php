@@ -1,11 +1,11 @@
 <?php
 // demo.php
 
-require_once "Request.php";
-require_once "Builder.php";
+require __DIR__ . '/../../vendor/autoload.php';
 
-use Builder\Request\Request;
-use Builder\Request\RequestType;
+use BigBoxCode\DesignPattern\Builder\Request\Request;
+use BigBoxCode\DesignPattern\Builder\Request\RequestType;
+
 
 $request = Request::newBuilder()
     ->url("https://bigboxcode.com/request-test")

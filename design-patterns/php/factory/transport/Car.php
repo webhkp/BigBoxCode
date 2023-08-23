@@ -1,9 +1,9 @@
 <?php
 // Car.php
 
-namespace Factory\Transport;
+namespace BigBoxCode\DesignPattern\Factory\Transport;
 
-use Factory\Transport\Transport;
+use BigBoxCode\DesignPattern\Factory\Transport\Transport;
 
 class Car implements Transport {
     public function start() {

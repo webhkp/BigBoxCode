@@ -1,7 +1,7 @@
 <?php
 // Transport.php
 
-namespace Factory\TransportMethod;
+namespace BigBoxCode\DesignPattern\Factory\TransportMethod;
 
 interface Transport {
     function start();

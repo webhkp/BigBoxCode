@@ -1,7 +1,7 @@
 <?php
 // CarBuilder.php
 
-namespace Builder\Vehicle;
+namespace BigBoxCode\DesignPattern\Builder\Vehicle;
 
 
 class CarBuilder implements VehicleBuilder {

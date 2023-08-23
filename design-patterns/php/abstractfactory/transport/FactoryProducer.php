@@ -1,7 +1,7 @@
 <?php
 // FactoryProducer.php
 
-namespace AbstractFactory\Transport;
+namespace BigBoxCode\DesignPattern\AbstractFactory\Transport;
 
 class FactoryProducer {
     public static function getFactory(int $numberOfWheels): ?AbstractTransportFactory {

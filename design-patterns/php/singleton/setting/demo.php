@@ -1,9 +1,9 @@
 <?php
 // demo.php
 
-namespace Singleton\Setting;
+require __DIR__ . '/../../vendor/autoload.php';
 
-require_once "Setting.php";
+use BigBoxCode\DesignPattern\Singleton\Setting\Setting;
 
 // Create setting instance
 $setting = Setting::getInstance();
