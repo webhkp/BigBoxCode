@@ -1,0 +1,86 @@
+Original Plane object:
+Plane Object
+(
+    [name:Plane:private] => Boing 777
+    [manufacturer:Plane:private] => Boing
+    [model:Plane:private] => 777-200LR
+    [length:Plane:private] => 63.7
+    [height:Plane:private] => 18.6
+    [wingspan:Plane:private] => 64.8
+    [seat:Plane:private] => 317
+    [engine:Plane:private] => PlaneEngine Object
+        (
+            [name:PlaneEngine:private] => GE9X
+            [length:PlaneEngine:private] => 220
+            [weight:PlaneEngine:private] => 22000
+            [noOfBlade:PlaneEngine:private] => 16
+            [rpm:PlaneEngine:private] => 2510
+        )
+
+)
+
+
+Clone Plane object:
+Plane Object
+(
+    [name:Plane:private] => Clone of Boing 777
+    [manufacturer:Plane:private] => Boing
+    [model:Plane:private] => 777-200LR
+    [length:Plane:private] => 63.7
+    [height:Plane:private] => 18.6
+    [wingspan:Plane:private] => 64.8
+    [seat:Plane:private] => 317
+    [engine:Plane:private] => PlaneEngine Object
+        (
+            [name:PlaneEngine:private] => GE9X
+            [length:PlaneEngine:private] => 220
+            [weight:PlaneEngine:private] => 22000
+            [noOfBlade:PlaneEngine:private] => 16
+            [rpm:PlaneEngine:private] => 2510
+        )
+
+)
+
+
+Clone Plane object after change:
+Plane Object
+(
+    [name:Plane:private] => Clone of Boing 777
+    [manufacturer:Plane:private] => Boing
+    [model:Plane:private] => 777-300ER
+    [length:Plane:private] => 63.7
+    [height:Plane:private] => 18.6
+    [wingspan:Plane:private] => 64.8
+    [seat:Plane:private] => 317
+    [engine:Plane:private] => PlaneEngine Object
+        (
+            [name:PlaneEngine:private] => GE10YYYY
+            [length:PlaneEngine:private] => 220
+            [weight:PlaneEngine:private] => 22000
+            [noOfBlade:PlaneEngine:private] => 16
+            [rpm:PlaneEngine:private] => 2510
+        )
+
+)
+
+
+Original Plane object after changes in the clone:
+Plane Object
+(
+    [name:Plane:private] => Boing 777
+    [manufacturer:Plane:private] => Boing
+    [model:Plane:private] => 777-200LR
+    [length:Plane:private] => 63.7
+    [height:Plane:private] => 18.6
+    [wingspan:Plane:private] => 64.8
+    [seat:Plane:private] => 317
+    [engine:Plane:private] => PlaneEngine Object
+        (
+            [name:PlaneEngine:private] => GE9X
+            [length:PlaneEngine:private] => 220
+            [weight:PlaneEngine:private] => 22000
+            [noOfBlade:PlaneEngine:private] => 16
+            [rpm:PlaneEngine:private] => 2510
+        )
+
+)

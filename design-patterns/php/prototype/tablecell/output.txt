@@ -1,0 +1,50 @@
+Cell object:
+Cell Object
+(
+    [row:Cell:private] => 1
+    [column:Cell:private] => 1
+    [height:Cell:private] => 10
+    [weight:Cell:private] => 100
+    [content:Cell:private] => Original cell content
+    [background:Cell:private] => 808080
+    [textColor:Cell:private] => 000000
+)
+
+
+Cell Clone:
+Cell Object
+(
+    [row:Cell:private] => 0
+    [column:Cell:private] => 0
+    [height:Cell:private] => 10
+    [weight:Cell:private] => 100
+    [content:Cell:private] =>
+    [background:Cell:private] => FFFFFF
+    [textColor:Cell:private] => 000000
+)
+
+
+Clone object after changing:
+Cell Object
+(
+    [row:Cell:private] => 0
+    [column:Cell:private] => 0
+    [height:Cell:private] => 10
+    [weight:Cell:private] => 100
+    [content:Cell:private] => Clone cell
+    [background:Cell:private] => 008000
+    [textColor:Cell:private] => FFFFFF
+)
+
+
+Original cell object:
+Cell Object
+(
+    [row:Cell:private] => 1
+    [column:Cell:private] => 1
+    [height:Cell:private] => 10
+    [weight:Cell:private] => 100
+    [content:Cell:private] => Original cell content
+    [background:Cell:private] => 808080
+    [textColor:Cell:private] => 000000
+)
