@@ -7,7 +7,7 @@ class Cell {
     private int $row;
     private int $column;
     private int $height = 10;
-    private int $weight = 100;
+    private int $width = 100;
     private ?string $content;
     private string $background = "FFFFFF";
     private string $textColor = "000000";
@@ -41,12 +41,12 @@ class Cell {
         $this->height = $height;
     }
 
-    public function getWeight(): int {
-        return $this->weight;
+    public function getWidth(): int {
+        return $this->width;
     }
 
-    public function setWeight(int $weight) {
-        $this->weight = $weight;
+    public function setWidth(int $width) {
+        $this->width = $width;
     }
 
 	public function getContent(): string {
@@ -77,7 +77,7 @@ class Cell {
         $this->row = 0;
         $this->column = 0;
         $this->height = 10;
-        $this->weight = 100;
+        $this->width = 100;
         $this->content = null;
         $this->background = "FFFFFF";
         $this->textColor = "000000";
