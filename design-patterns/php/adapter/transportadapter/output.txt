@@ -1,0 +1,11 @@
+Get information of Bus travel...
+Number of wheels: 4
+Weight(kg): 10000
+Distance(miles): 1000
+Cost per mile: 5
+
+Get information of Plane travel...
+Number of wheels: 3
+Weight(kg): 127000
+Distance(miles): 575.5
+Cost per mile: 5.2128583840139
