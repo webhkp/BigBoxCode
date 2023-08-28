@@ -1,0 +1,11 @@
+Setting proper color for Red color schema
+Printing Table
+
+Setting proper color for Green color schema
+Printing Input
+
+Setting proper color for Blue color schema
+Printing Button
+
+Setting proper color for Red color schema
+Printing Button
