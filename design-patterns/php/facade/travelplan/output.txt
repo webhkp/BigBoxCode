@@ -1,0 +1,29 @@
+Current Latitude: 37
+Current Longitude: 129
+
+
+Country: ABC
+City: DEF
+State: GHI
+Zip: 101010
+Temperature: 20.7
+Precipitation: 1%
+Humidity: 73%
+Wind: 8 km/h
+
+
+Total Toll Amount: 56
+
+
+Start Engine
+Go Left: ←
+Go Right: →
+Go Right: →
+Go Left: ←
+Go Straight: ↑
+Go Right: →
+Go Right: →
+Go Straight: ↑
+Go Straight: ↑
+Go Right: →
+Stop Engine
