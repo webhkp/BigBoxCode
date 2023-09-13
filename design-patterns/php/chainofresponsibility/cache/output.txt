@@ -1,0 +1,2 @@
+Caching file 'key1' in Redis
+Caching file 'key2' in CDN
