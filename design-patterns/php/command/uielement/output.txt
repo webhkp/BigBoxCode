@@ -1,0 +1,13 @@
+Printing Input
+Printing Table
+Printing Submit Button
+
+Removing Table
+
+Printing Cancel Button
+Printing Table
+Printing Input
+Printing Wrong button Button
+
+Removing Wrong button  Button
+Removing Input
