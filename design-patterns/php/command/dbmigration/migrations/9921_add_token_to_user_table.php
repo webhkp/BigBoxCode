@@ -1,5 +1,5 @@
 <?php
-// 9921_add_token_to_user_table.php
+// migrations/9921_add_token_to_user_table.php
 
 use BigBoxCode\DesignPattern\Command\DbMigration\Migration;
 

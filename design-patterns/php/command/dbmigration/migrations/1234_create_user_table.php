@@ -1,5 +1,5 @@
 <?php
-// 1234_create_user_table.php
+// migrations/1234_create_user_table.php
 
 use BigBoxCode\DesignPattern\Command\DbMigration\Migration;
 

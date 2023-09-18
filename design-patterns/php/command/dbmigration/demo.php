@@ -1,10 +1,10 @@
 <?php
-use BigBoxCode\DesignPattern\Command\DbMigration\FileLoadUtil;
-use BigBoxCode\DesignPattern\Command\DbMigration\MigrationControl;
-
 // demo.php
 
 require __DIR__ . '/../../vendor/autoload.php';
+
+use BigBoxCode\DesignPattern\Command\DbMigration\FileLoadUtil;
+use BigBoxCode\DesignPattern\Command\DbMigration\MigrationControl;
 
 // Load migration classes
 // These are general operation, not related to the Command pattern implementation

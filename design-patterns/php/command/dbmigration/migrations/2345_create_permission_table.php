@@ -1,5 +1,5 @@
 <?php
-// 2345_create_permission_table.php
+// migrations/2345_create_permission_table.php
 
 use BigBoxCode\DesignPattern\Command\DbMigration\Migration;
 
