@@ -1,0 +1,16 @@
+Data: Big Box Code; AND Result: true
+Data: Only Big Code; AND Result: false
+Data: Only Box Code; AND Result: false
+Data: No Code; AND Result: false
+
+
+Data: Big Box Code; OR Result: true
+Data: Only Big Code; OR Result: true
+Data: Only Box Code; OR Result: true
+Data: No Code; OR Result: false
+
+
+Data: Big Box Code; XOR Result: false
+Data: Only Big Code; XOR Result: true
+Data: Only Box Code; XOR Result: true
+Data: No Code; XOR Result: false
