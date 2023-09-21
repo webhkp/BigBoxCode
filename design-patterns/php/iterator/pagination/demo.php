@@ -24,8 +24,25 @@ function populatePageList(): \IteratorAggregate {
 
 // Demo start
 $pageList = populatePageList();
+$pageIterator = $pageList->getIterator();
 
-foreach ($pageList->getIterator() as $page) {
+echo "Page list:\n\n";
+
+foreach ($pageIterator as $page) {
     echo "Page Number: " . $page->getNumber() . "\n";
     echo "Page Path: " . $page->getPath() . "\n";
+}
+
+
+// Rewind and print pag data again
+$pageIterator->rewind();
+
+echo "\n\nPage list after rewinding:\n\n";
+
+while ($pageIterator->valid()) {
+    echo "Pagination key: " . $pageIterator->key() . "\n";
+    echo "Page Number: " . $pageIterator->current()->getNumber() . "\n";
+    echo "Page Path: " . $pageIterator->current()->getPath() . "\n";
+
+    $pageIterator->next();
 }
