@@ -1,0 +1,21 @@
+# Set a key/value
+127.0.0.1:6379> set firstkey "some value"
+OK
+
+# Check the key/value
+127.0.0.1:6379> get firstkey
+"some value"
+
+# Try getting a key that does not exist
+127.0.0.1:6379> get somewrongkey
+(nil)
+
+
+# Let's check the get command for data other that string
+# Create a list and push item
+127.0.0.1:6379> lpush mylist "first item of list"
+(integer) 1
+
+# Try to get the value of "mylist" with "get" command. Should return an error
+127.0.0.1:6379> get mylist
+(error) WRONGTYPE Operation against a key holding the wrong kind of value

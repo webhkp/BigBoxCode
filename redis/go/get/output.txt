@@ -1,0 +1,6 @@
+Set value of 'firstkey' to 'some value'
+
+Value of 'firstkey' is: some value
+
+Can not read 'wrongkey'
+Value of 'wrongkey' is:
