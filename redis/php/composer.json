@@ -1,0 +1,7 @@
+{
+    "name": "webhkp/redis",
+    "description": "Redis examples",
+    "require": {
+        "predis/predis": "^2.2"
+    }
+}
