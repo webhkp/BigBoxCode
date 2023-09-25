@@ -9,17 +9,17 @@ use BigBoxCode\DesignPattern\Memento\General\Originator;
 $caretaker = new Caretaker();
 $originator = new Originator();
 
-$originator->setState("Time - 1 : " . time());
+$originator->setState("Time - 1 : " . microtime(true));
 $caretaker->add($originator->setMemento());
 
 // Add some delay if required for testing
 
-$originator->setState("Time - 2 : " . time());
+$originator->setState("Time - 2 : " . microtime(true));
 $caretaker->add($originator->setMemento());
 
 // Add delay if required for testing
 
-$originator->setState("Time - 3 : " . time());
+$originator->setState("Time - 3 : " . microtime(true));
 $caretaker->add($originator->setMemento());
 
 echo "Check state at index 1 (index starts at 0):\n";
