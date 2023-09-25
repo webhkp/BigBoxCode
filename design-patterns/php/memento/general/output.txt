@@ -1,14 +1,10 @@
-Memento Saved with timestamp => Time - 1 : 1695570821
-Memento Saved with timestamp => Time - 2 : 1695570821
-Memento Saved with timestamp => Time - 3 : 1695570821
-
-
+Memento Saved with timestamp => Time - 1 : 1695661648.9259
+Memento Saved with timestamp => Time - 2 : 1695661648.9339
+Memento Saved with timestamp => Time - 3 : 1695661648.934
 Check state at index 1 (index starts at 0):
-Time - 2 : 1695570821
-
+Time - 2 : 1695661648.9339
 Check last state:
-Time - 3 : 1695570821
-
+Time - 3 : 1695661648.934
 Undoing last state
 Check last state after undo:
-Time - 2 : 1695570821
+Time - 2 : 1695661648.9339
