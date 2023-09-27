@@ -1,10 +1,10 @@
 <?php
-// ConcreteSubject.php
+// Player.php
 
 namespace BigBoxCode\DesignPattern\Observer\Player;
 
 class Player implements \SplSubject {
-    public string $namme;
+    public string $name;
     public int $score;
 
     private \SplObjectStorage $observers;

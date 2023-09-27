@@ -1,5 +1,5 @@
 <?php
-// ObserverTwo.php
+// Commentator.php
 
 namespace BigBoxCode\DesignPattern\Observer\Player;
 

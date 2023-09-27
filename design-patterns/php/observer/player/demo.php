@@ -27,7 +27,7 @@ $playerA->attach($commentator1);
 $playerA->attach($scoreBoard);
 
 // Create another player and attach observers
-$playerB = new Player("Player A");
+$playerB = new Player("Player B");
 
 $playerB->attach($referee1);
 // Do not attach Referee #2 for demo purpose

@@ -1,5 +1,5 @@
 <?php
-// ObserverTwo.php
+// ScoreBoard.php
 
 namespace BigBoxCode\DesignPattern\Observer\Player;
 

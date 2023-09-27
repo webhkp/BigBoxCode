@@ -16,8 +16,6 @@ Player update received in Score Board -
 Player name: Player A
 score: 1
 
-
-
 Set/Change 'Player A' score to - 5
 
 Player update received in Referee : REF #1
@@ -36,23 +34,19 @@ Player update received in Score Board -
 Player name: Player A
 score: 5
 
-
-
 Set/Change 'Player B' score to - 3
 
 Player update received in Referee : REF #1
-Player name: Player A
+Player name: Player B
 score: 3
 
 Player update received in Commentator : John Doe
-Player name: Player A
+Player name: Player B
 score: 3
 
 Player update received in Score Board -
-Player name: Player A
+Player name: Player B
 score: 3
-
-
 
 Set/Change 'Player A' score to - 9
 
