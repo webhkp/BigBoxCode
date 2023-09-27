@@ -1,0 +1,19 @@
+Value of 'firstkey' is set to 'abcdef'
+Value of 'firstkey' is: abcdef
+Setting value of 'firstkey' to: 'defghi'
+Value of 'firstkey': defghi
+Can not set 'secondkey' with 'XX' as the key does not exist yet
+Can not read 'secondkey'
+Value of 'secondkey':
+'secondkey' value set to: 000000000000 with 'NX'
+Value of 'secondkey': 000000000000
+Can not set 'firstkey' with 'NX' as the key does not exist yet
+Value of 'firstkey': defghi
+Can not set 'thirdkey' with 'GET' as the key does not exist yet
+Value of 'thirdkey' after using GET is:
+'thirdkey' value set to: '99999999' with 'GET'
+Value of 'thirdkey' after using GET is: 1111111111
+Waiting for 10 seconds...
+Value of fourthkey after expire time is up: 
+Waiting for 10 seconds...
+TTL of 'user:10': 20s

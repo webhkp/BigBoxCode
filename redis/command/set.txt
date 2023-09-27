@@ -1,0 +1,82 @@
+# Set value for a key
+127.0.0.1:6379> set firstkey "abcdef"
+OK
+
+127.0.0.1:6379> get firstkey
+"abcdef"
+
+# Set value for the same key again. The new value is set for the key
+127.0.0.1:6379> set firstkey defghi
+OK
+127.0.0.1:6379> get firstkey
+"defghi"
+
+# Use "XX" option to set value only if the key already exists
+127.0.0.1:6379> set secondkey "000000000000" XX
+(nil)
+
+# second key is not set in this case as it was not preexisting
+127.0.0.1:6379> get secondkey
+(nil)
+
+# Use "NX" option to set value if the key does not exist
+127.0.0.1:6379> set secondkey "000000000000" NX
+OK
+
+# secondkey is set as it was not pre-existing
+127.0.0.1:6379> get secondkey
+"000000000000"
+
+# Use "NX" for an existing key, that returns nil
+127.0.0.1:6379> set firstkey "work idea" NX
+(nil)
+
+127.0.0.1:6379> get firstkey
+"defghi"
+
+# Pass the "GET" option to get the previous value.
+# If the value was not set previously then we get nil
+127.0.0.1:6379> set thirdkey 1111111111 GET
+(nil)
+
+# Pass "GET" to fetch the previous value before setting new value
+127.0.0.1:6379> set thirdkey 99999999 GET
+"1111111111"
+
+# Set expire time in seconds using "EX" option (other expire duration related options work the same way)
+127.0.0.1:6379> set fourthkey "some value for expire" EX 120
+OK
+
+127.0.0.1:6379> ttl fourthkey
+(integer) 115
+
+# Set expire time
+127.0.0.1:6379> set mykey "some val" ex 360
+OK
+
+127.0.0.1:6379> ttl mykey
+(integer) 357
+
+# setting already existing key will remove the TTL if there is any
+127.0.0.1:6379> set mykey "changed value"
+OK
+
+# TTL was removed as the value was set the second time without any expire time
+127.0.0.1:6379> ttl mykey
+(integer) -1
+
+
+# Set value with expire time - the following commands are for checking "KEEPTTL" option
+127.0.0.1:6379> set user:10 "John Doe" ex 360
+OK
+
+127.0.0.1:6379> ttl user:10
+(integer) 354
+
+# Set value for the same key, and pass "KEEPTTL" option. This will keep the TTL that was associated with the key
+127.0.0.1:6379> set user:10 "Some user" keepttl
+OK
+
+# Lets check the TTL. The TTL still exists because of usign the "KEEPTTL" option
+127.0.0.1:6379> ttl user:10
+(integer) 326
