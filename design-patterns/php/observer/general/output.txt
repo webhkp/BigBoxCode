@@ -1,8 +1,0 @@
-Setting subject value to 10
-Received in ObserverOne: 10
-Received in ObserverTwo: 10
-
-
-Setting subject value to 999
-Received in ObserverOne: 999
-Received in ObserverTwo: 999
