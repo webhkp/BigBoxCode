@@ -6,6 +6,18 @@ OK
 127.0.0.1:6379> get firstkey
 "some value"
 
+# Use same string as key name, but with different case
+127.0.0.1:6379> set FirstKey "value changed"
+OK
+
+127.0.0.1:6379> get FirstKey
+"value changed"
+
+# Value of 'firstkey' stays the same
+# as 'firstkey' and 'FirstKey' are 2 different keys
+127.0.0.1:6379> get firstkey
+"some value"
+
 # Try getting a key that does not exist
 127.0.0.1:6379> get somewrongkey
 (nil)

@@ -25,6 +25,9 @@ console.log("Value of 'firstkey': " + firstKey);
 // Try to get value of a key that does not exist
 // Command: get wrongkey
 // Result: nil
-const wrongKey = await redisClient.get('wrongkey')
+const wrongKey = await redisClient.GET('wrongkey')
 
 console.log("Value of 'wrongkey': " + wrongKey);
+
+// Exit node process
+process.exit(0);
