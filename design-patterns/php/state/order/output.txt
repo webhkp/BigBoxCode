@@ -1,0 +1,6 @@
+Checking the order validity and other information
+Processing the order
+Delivering the order
+Order received
+
+Order processing complete
