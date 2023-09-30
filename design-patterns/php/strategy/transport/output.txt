@@ -1,0 +1,29 @@
+Operating Bike:
+
+Bike started
+Transport type: Bike
+Number of wheels: 2
+Average Weight: 700 Pounds
+Riding Bike ............
+Bike stopped
+
+
+Operating Car:
+
+Car started
+Transport type: Car
+Number of wheels: 4
+Average Weight: 4,000 Pounds
+Driving car ............
+Car stopped
+Car repair
+
+
+Operating plane:
+
+Plane started
+Transport type: Plane
+Number of wheels: 3
+Average Weight: 50,000 Pounds
+Flying plane ............
+Plane stopped

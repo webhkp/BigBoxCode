@@ -1,0 +1,14 @@
+Performing operation: ADD
+10 + 5 = 15
+
+
+Performing operation: SUBTRACT
+10 - 5 = 5
+
+
+Performing operation: MULTIPLY
+10 * 5 = 50
+
+
+Performing operation: DIVIDE
+10 / 5 = 2

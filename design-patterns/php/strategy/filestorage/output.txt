@@ -1,0 +1,16 @@
+Using local storage-
+Storage type: Local Storage
+File ID: 841
+File URL: https://bigboxcode.com/files/local/841
+
+
+Using AWS S3-
+Storage type: AWS S3
+File ID: 11351
+File URL: https://bigboxcode.s3.amazonaws.com/pdf/11351/UC-0e7654338-5697-4f99-b33-d89h87g5gf4gwfg.pdf
+
+
+Using Google Drive-
+Storage type: Google Drive
+File ID: 9773
+File URL: https://drive.google.com/file/d/1234_9K7654hu6RT_9j7JKY3fK/view/bigboxcode/9773
