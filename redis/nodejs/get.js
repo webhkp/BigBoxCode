@@ -1,3 +1,5 @@
+// Redis GET command example in JavaScript(NodeJS)
+
 import { createClient } from 'redis';
 
 // Create redis client

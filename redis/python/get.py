@@ -1,3 +1,5 @@
+# Redis GET command example in Python
+
 import redis
 
 # Create Redis client

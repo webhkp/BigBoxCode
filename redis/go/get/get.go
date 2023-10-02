@@ -1,3 +1,5 @@
+// Redis GET command example in Golang
+
 package main
 
 import (

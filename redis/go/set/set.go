@@ -1,3 +1,5 @@
+// Redis SET command example in Golang
+
 package main
 
 import (
