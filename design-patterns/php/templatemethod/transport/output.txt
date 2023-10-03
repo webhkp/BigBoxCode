@@ -1,0 +1,13 @@
+Creating Car Body
+Adding Engine to Car
+Adding 4 Wheels to Car
+Adding seats - Common process
+Painting - Common process
+
+
+Creating Plane Body
+Adding Engine to Plane
+Adding 3 Wheels to Plane
+Adding Wings Plane
+Adding seats - Common process
+Painting - Common process
