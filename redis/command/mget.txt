@@ -1,0 +1,32 @@
+# Redis MGET command examples
+
+# Set some values
+127.0.0.1:6379> set firstkey "my first value"
+OK
+
+127.0.0.1:6379> set secondkey "bigboxcode"
+OK
+
+127.0.0.1:6379> set user:100 "john"
+OK
+
+# Try to get values for 3 keys
+127.0.0.1:6379> mget firstkey secondkey user:100
+1) "my first value"
+2) "bigboxcode"
+3) "john"
+
+# We get "nil" if the key deos not exist. Here the "wrongkey" does not exist
+127.0.0.1:6379> mget firstkey secondkey wrongkey
+1) "my first value"
+2) "bigboxcode"
+3) (nil)
+
+# Here we are provideing "firstkey" multiple times
+127.0.0.1:6379> mget firstkey firstkey secondkey wrongkey user:100 firstkey
+1) "my first value"
+2) "my first value"
+3) "bigboxcode"
+4) (nil)
+5) "john"
+6) "my first value"

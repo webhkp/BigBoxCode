@@ -1,0 +1,20 @@
+Set value of 'firstkey' to 'some value' - Result: OK
+Set value of 'secondkey' to 'bigboxcode' - Result: OK
+Set value of 'user:100' to 'john' - Result: OK
+
+Command: mget firstkey secondkey user:100 - Result:
+my first value
+bigboxcode
+john
+
+Command: mget firstkey secondkey wrongkey - Result:
+my first value
+bigboxcode
+<nil>
+
+Command: mget firstkey firstkey secondkey wrongkey user:100 firstkey - Result:
+my first value
+my first value
+<nil>
+john
+my first value
