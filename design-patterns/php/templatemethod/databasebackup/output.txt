@@ -1,0 +1,22 @@
+Perform initial check
+Performing steps for MySQL database dump
+Validate dabase dump
+Compress database dump file
+Set the version of the new dump
+Save database dump to specific location: /home/backup/mysql/
+
+
+Perform initial check
+Perform steps for MongoDB database dump
+Validate dabase dump
+Compress database dump file
+Set the version of the new dump
+Save database dump to specific location: /home/backup/mongo/
+
+
+Perform initial check
+Performing steps for SQL Server dump
+Validate dabase dump
+Compress database dump file
+Set the version of the new dump
+Save database dump to specific location: /home/backup/mssql/
