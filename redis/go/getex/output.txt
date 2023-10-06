@@ -1,0 +1,22 @@
+Set value of 'sitename' to 'some value' | Result: OK
+Read 'sitename' using GETEX | Result: my first value
+Check TTL of sitename | Result: -1ns
+
+Read 'sitename' using GETEX and set 10sec expire | Result: my first value
+Check TTL of sitename after setting 10s expire | Result: 10s
+Sleep for 10 seconds
+Can not read sitename | Error: redis: nil
+Read 'sitename' using GETEX after seting 10sec expire and 10s sleep  | Result:
+
+Set value of 'sitename' to 'bigboxcode' | Result: OK
+Read 'sitename' using GETEX and set 120sec expire | Result: bigboxcode
+Check TTL of sitename after setting 120s expire | Result: 2m0s
+
+Read 'sitename' using GETEX and set 100ms expire | Result: bigboxcode
+Check TTL of sitename after setting 100ms expire | Result: 10s
+
+Read 'sitename' using GETEX with PERSIST | Result: bigboxcode
+Check TTL of sitename after using PERSIST | Result: -1ns
+
+Can not read wrongkeyredis: nil
+Read 'wrongkey' using GETEX with 360s  | Result:

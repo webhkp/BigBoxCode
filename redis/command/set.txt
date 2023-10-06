@@ -1,3 +1,5 @@
+# Redis SET command examples
+
 # Set value for a key
 127.0.0.1:6379> set firstkey "abcdef"
 OK
