@@ -2,11 +2,6 @@ require 'redis'
 
 redis = Redis.new(host: "localhost", port: 6379)
 
-# redis.set("mykey", "hello world")
-# mykey = redis.get("mykey")
-# print("Command: set firstkey \"some value\" | Result: ",mykey, "\n")
-
-
 # Set a key/value
 # Command: set firstkey "some value"
 # Result: OK
