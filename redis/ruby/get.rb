@@ -1,3 +1,5 @@
+# Redis SET command example in Ruby
+
 require 'redis'
 
 redis = Redis.new(host: "localhost", port: 6379)
