@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Set", "..\Set\Set.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mget", "..\Mget\Mget.csproj", "{3DC2DC40-832A-4C6E-AFA2-228E1DAFB46F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Getex", "..\Getex\Getex.csproj", "{5658E6B2-716E-4A61-86CD-7C6C7E8CB885}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{3DC2DC40-832A-4C6E-AFA2-228E1DAFB46F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DC2DC40-832A-4C6E-AFA2-228E1DAFB46F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DC2DC40-832A-4C6E-AFA2-228E1DAFB46F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5658E6B2-716E-4A61-86CD-7C6C7E8CB885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5658E6B2-716E-4A61-86CD-7C6C7E8CB885}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5658E6B2-716E-4A61-86CD-7C6C7E8CB885}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5658E6B2-716E-4A61-86CD-7C6C7E8CB885}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
