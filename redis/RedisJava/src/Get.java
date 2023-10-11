@@ -1,3 +1,6 @@
+// Redis GET command example in Java
+
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 

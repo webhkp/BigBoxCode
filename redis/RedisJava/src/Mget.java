@@ -1,6 +1,7 @@
+// Redis MGET command example in Java
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.params.SetParams;
 
 import java.util.List;
 

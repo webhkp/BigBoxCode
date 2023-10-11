@@ -1,0 +1,33 @@
+# Redis GETDEL command examples
+
+# Set value for "sitename"
+127.0.0.1:6379> set sitename bigboxcode
+OK
+
+# Get and delete key (and value) of "sitename"
+127.0.0.1:6379> getdel sitename
+"bigboxcode"
+
+# Check if "sitename" still exists
+# It will not exist as already deleted in the last step
+127.0.0.1:6379> exists sitename
+(integer) 0
+
+# Try to apply GETDEL  for a key that does not exist
+127.0.0.1:6379> getdel wrongkey
+(nil)
+
+# Create a list and add items
+127.0.0.1:6379> rpush users "John Done" "Second User" "Last User"
+(integer) 3
+
+# Check list
+127.0.0.1:6379> lrange users 0 -1
+1) "John Done"
+2) "Second User"
+3) "Last User"
+
+# Try to apply GETDEL to data that is not of type string (list in this case)
+# Will return an error, as GETDEL can be applied for string data type only
+127.0.0.1:6379> getdel users
+(error) WRONGTYPE Operation against a key holding the wrong kind of value

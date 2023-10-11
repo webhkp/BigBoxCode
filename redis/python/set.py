@@ -1,4 +1,4 @@
-# Redis GET command example in Python
+# Redis SET command example in Python
 
 import redis
 

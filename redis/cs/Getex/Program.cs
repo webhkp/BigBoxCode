@@ -1,4 +1,6 @@
-﻿using StackExchange.Redis;
+﻿// Redis GETEX command examples in C#
+
+using StackExchange.Redis;
 
 namespace Getex
 {
