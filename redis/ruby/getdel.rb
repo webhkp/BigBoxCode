@@ -41,7 +41,7 @@ print("Command: getdel wrongkey | Result: ", commandResult, "\n")
 # Create a list and add items
 # Command: rpush users "John Done" "Second User" "Last User"
 # Result: (integer) 3
-commandResult = redis.rpush("users", ["John Done", "Second User", "Last User"]);
+commandResult = redis.rpush("users", ["John Done", "Second User", "Last User"])
 
 print("Command: rpush users \"John Done\" \"Second User\" \"Last User\" | Result: ", commandResult, "\n")
 
@@ -51,7 +51,7 @@ print("Command: rpush users \"John Done\" \"Second User\" \"Last User\" | Result
 # Command: getdel users
 # Result: (error) WRONGTYPE Operation against a key holding the wrong kind of value
 begin
-    commandResult = redis.getdel("users");
+    commandResult = redis.getdel("users")
 
     print("Command: getdel users | Result: ", commandResult, "\n")
 rescue => e

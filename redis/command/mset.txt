@@ -1,0 +1,36 @@
+# Redis MSET command examples
+
+# Use MSET to set multiple values
+127.0.0.1:6379> mset firstkey "first val" secondkey "second val" lastkey "last val"
+OK
+
+# Check value, and it is set properly
+127.0.0.1:6379> get firstkey
+"first val"
+
+# Get multiple values with MGET to check the values
+127.0.0.1:6379> mget firstkey secondkey lastkey
+1) "first val"
+2) "second val"
+3) "last val"
+
+# Set some new and existing keys
+127.0.0.1:6379> mset newkey "some new value" firstkey "first value changed"
+OK
+
+# New key is set
+127.0.0.1:6379> get newkey
+"some new value"
+
+# Existing key value is replaced
+127.0.0.1:6379> get firstkey
+"first value changed"
+
+# Set the same key multiple times in the same MSET command
+127.0.0.1:6379> mset commonkey "my val 1" commonkey "changed common val"
+OK
+
+# Check the value of commonkey
+# The value which was set later is kept
+127.0.0.1:6379> get commonkey
+"changed common val"
