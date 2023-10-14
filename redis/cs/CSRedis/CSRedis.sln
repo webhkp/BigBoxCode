@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Getdel", "..\Getdel\Getdel.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mset", "..\Mset\Mset.csproj", "{3FECC354-2417-4745-9162-0590AA70C2F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Msetnx", "..\Msetnx\Msetnx.csproj", "{6DC5878F-E33F-4300-904F-F9143AAA3959}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{3FECC354-2417-4745-9162-0590AA70C2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FECC354-2417-4745-9162-0590AA70C2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FECC354-2417-4745-9162-0590AA70C2F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DC5878F-E33F-4300-904F-F9143AAA3959}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DC5878F-E33F-4300-904F-F9143AAA3959}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DC5878F-E33F-4300-904F-F9143AAA3959}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DC5878F-E33F-4300-904F-F9143AAA3959}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
