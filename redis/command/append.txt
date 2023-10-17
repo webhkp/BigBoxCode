@@ -1,0 +1,56 @@
+# Redis APPEND command examples
+
+# Check firstkey, it not exist
+127.0.0.1:6379> get firstkey
+(nil)
+
+# Append "abc" to the firstkey. 
+# As firstkey does not already exist, so it will be created and "abc" will be appended to that.
+# After append the length of firstkey value is three(3), so "3" is returned
+127.0.0.1:6379> append firstkey "abc"
+(integer) 3
+
+# Check firstkey, we get "abc"
+127.0.0.1:6379> get firstkey
+"abc"
+
+# Append "def" to firstkey.
+# As firstkey already has "abc" as value, if "def" is appended then firstkey value becomes "abcdef".
+# After append the total length of firstkey value is six(6) so "6" is returned as result.
+127.0.0.1:6379> append firstkey "def"
+(integer) 6
+
+# Check firstkey, we get "abcded"
+127.0.0.1:6379> get firstkey
+"abcdef"
+
+# Check the length of firstkey and we get six(6)
+127.0.0.1:6379> strlen firstkey
+(integer) 6
+
+# Let's check with another key, secondkey, it is not set yet.
+127.0.0.1:6379> get secondkey
+(nil)
+
+# Append a blank string "" to secondkey.
+# secondkey will be create and blank sring "" will be appended to it.
+# As a result the value os second key becomes a blank string "", and length becomes zero(0)
+# Zero(0) is returned as result
+127.0.0.1:6379> append secondkey ""
+(integer) 0
+
+# Check secondkey
+127.0.0.1:6379> get secondkey
+""
+
+# Check secondkey length
+127.0.0.1:6379> strlen secondkey
+(integer) 0
+
+# Create a list
+127.0.0.1:6379> lpush mylist abc
+(integer) 1
+
+# Try to append string to the list type. Returns error
+127.0.0.1:6379> append mylist 98
+(error) WRONGTYPE Operation against a key holding the wrong kind of value

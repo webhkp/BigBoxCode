@@ -102,8 +102,6 @@ namespace Msetnx
 
             Console.WriteLine("Command: get newkey | Result: " + getCommandResult);
 
-
-
         }
     }
 }
