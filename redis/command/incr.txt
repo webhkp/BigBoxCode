@@ -1,0 +1,61 @@
+# Redis INCR command examples
+
+# Set the value of total-user-no key to 10
+127.0.0.1:6379> set total-user-no 10
+OK
+
+# Increament value of total-user-no
+127.0.0.1:6379> incr total-user-no
+(integer) 11
+
+# Check value of total-user-no key
+127.0.0.1:6379> get total-user-no
+"11"
+
+# Check type of total-user-no
+127.0.0.1:6379> type total-user-no
+string
+
+
+
+# Check if some key named "unknownkey" exists
+# it does not exist yet
+127.0.0.1:6379> get unknownkey
+(nil)
+
+# Try to increament the value of "unknownkey" using INCR command
+# The value of "unknownkey" is increamented to 1
+127.0.0.1:6379> incr unknownkey
+(integer) 1
+
+# Check the value of "unknownkey"
+127.0.0.1:6379> get unknownkey
+"1"
+
+
+
+# Set a string vlaue to sitename key
+127.0.0.1:6379> set sitename bigboxcode
+OK
+
+# Try to apply INCR command to sitename
+# We get an error as the value in sitename key is not an integer
+127.0.0.1:6379> incr sitename
+(error) ERR value is not an integer or out of range
+
+
+
+# Max value of allowed integer for 64-bit integer is 9,223,372,036,854,775,807
+# Let's set the value of key "mymaxtest" to a value close to the max value
+127.0.0.1:6379> set mymaxtest 9223372036854775806
+OK
+
+# Let's increament the vlaue of "mymaxtest"
+# It reaches the max value
+127.0.0.1:6379> incr mymaxtest
+(integer) 9223372036854775807
+
+# Let's try to increase the value of "mymaxtest"
+# We get an error as it goes beyond the max value
+127.0.0.1:6379> incr mymaxtest
+(error) ERR increment or decrement would overflow
