@@ -1,4 +1,4 @@
-﻿// Redis GETEX command examples in C#
+﻿// Redis INCR command examples in C#
 
 using StackExchange.Redis;
 

@@ -1,0 +1,71 @@
+# Redis DECR command examples
+
+# Set the value of user:23:score key to 85
+127.0.0.1:6379> set user:23:score 85
+OK
+
+# decreament value of user:23:score
+127.0.0.1:6379> decr user:23:score
+(integer) 84
+
+# Check value of user:23:score key
+127.0.0.1:6379> get user:23:score
+"84"
+
+# Check type of user:23:score
+127.0.0.1:6379> type user:23:score
+string
+
+
+
+# Check if some key named "unknownkey" exists
+# it does not exist yet
+127.0.0.1:6379> get unknownkey
+(nil)
+
+# Try to decreament the value of "unknownkey" using decr command
+# The value of "unknownkey" is decreamented to 1
+127.0.0.1:6379> decr unknownkey
+(integer) -1
+
+# Check the value of "unknownkey"
+127.0.0.1:6379> get unknownkey
+"-1"
+
+
+
+# Set a string vlaue to sitename key
+127.0.0.1:6379> set sitename bigboxcode
+OK
+
+# Try to apply DECR command to sitename
+# We get an error as the value in sitename key is not an integer
+127.0.0.1:6379> decr sitename
+(error) ERR value is not an integer or out of range
+
+
+
+# Max value of allowed integer for 64-bit integer is 9,223,372,036,854,775,807
+# Let's set the value of key "mymaxtest" to a value more than that
+127.0.0.1:6379> set mymaxtest 9223372036854775810
+OK
+
+# Let's decreament the vlaue of "mymaxtest"
+# We get an error
+127.0.0.1:6379> decr mymaxtest
+(error) ERR value is not an integer or out of range
+
+
+
+# Min value allowed as 64-bit int is -9,223,372,036,854,775,808
+# Lets set a value close to that, -9,223,372,036,854,775,807
+127.0.0.1:6379> set mymintest  -9223372036854775807
+OK
+
+# Try to decr the value, it will work as it is still in range
+127.0.0.1:6379> decr mymintest
+(integer) -9223372036854775808
+
+# If we try to decrease once again we get error
+127.0.0.1:6379> decr mymintest
+(error) ERR increment or decrement would overflow

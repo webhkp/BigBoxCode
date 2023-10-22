@@ -59,3 +59,15 @@ OK
 # We get an error as it goes beyond the max value
 127.0.0.1:6379> incr mymaxtest
 (error) ERR increment or decrement would overflow
+
+
+
+# Min value allowed as 64-bit int is -9,223,372,036,854,775,808
+# Lets set a value less than that minmum interger value
+# It will be set, as it is a valid string
+127.0.0.1:6379> set mymintest  -9223372036854775809
+OK
+
+# If we try to perform the INCR operation then we get error
+127.0.0.1:6379> incr mymintest
+(error) ERR value is not an integer or out of range
