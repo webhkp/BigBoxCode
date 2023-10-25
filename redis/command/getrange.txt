@@ -1,0 +1,58 @@
+# Redis GETRANGE command examples
+
+# Set some string value for description key
+127.0.0.1:6379> set description "some long string for GETRANGE testing"
+OK
+
+# Get substring from description from index 0 to 10
+127.0.0.1:6379> getrange description 0 10
+"some long s"
+
+# Get substring from description from index 0 to 1
+127.0.0.1:6379> getrange description 0 1
+"so"
+
+# Get substring from description from index 0 to -1
+127.0.0.1:6379> getrange description 0 -1
+"some long string for GETRANGE testing"
+
+# Get substring from description from index 20 to -1
+127.0.0.1:6379> getrange description 20 -1
+" GETRANGE testing"
+
+# Get substring from description from index -5 to -1
+127.0.0.1:6379> getrange description -5 -1
+"sting"
+
+# Get substring from description from index 20 to 10
+# It will return empty string as the starting index is of a later element
+127.0.0.1:6379> getrange description 20 10
+""
+
+# Get substring from description from index -1 to -5
+# It will return empty string as the starting index is of a later element
+127.0.0.1:6379> getrange description -1 -5
+""
+
+# Get substring from description from index 10 to 2000000
+# As last index is out of range so the result will stop at the end of the source string
+127.0.0.1:6379> getrange description 10 2000000
+"string for GETRANGE testing"
+
+# Get substring from description from index 5 to 5
+127.0.0.1:6379> getrange description 5 5
+"l"
+
+# Try to get substring from a key that is not set.
+# Returns an empty string.
+127.0.0.1:6379> getrange wrongkey 10 20
+""
+
+# Create a list
+127.0.0.1:6379> lpush mylist abcd
+(integer) 1
+
+# Try to get a substring by index, from the list
+# returns error
+127.0.0.1:6379> getrange mylist 0 2
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
