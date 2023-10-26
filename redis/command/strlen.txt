@@ -1,0 +1,29 @@
+# Redis STRLEN command examples
+
+127.0.0.1:6379> set sitename bigboxcode
+OK
+
+# Get string length when the key is set
+127.0.0.1:6379> strlen sitename
+(integer) 10
+
+# Try getting length of a non-existing key, it will return Zero(0)
+127.0.0.1:6379> strlen wrongkey
+(integer) 0
+
+# Set empty string as value for a key
+127.0.0.1:6379> set empkey ""
+OK
+
+# Try getting legnth of a key that has empty string storead as value. It will return Zero(0) as the length of the value is Zero(0)
+127.0.0.1:6379> strlen empkey
+(integer) 0
+
+# Initate a list and add elements
+127.0.0.1:6379> lpush mylist "first list item" "second list item"
+(integer) 2
+
+# Try to apply STRLEN command for the list
+# An error is returned
+127.0.0.1:6379> strlen mylist
+(error) WRONGTYPE Operation against a key holding the wrong kind of value

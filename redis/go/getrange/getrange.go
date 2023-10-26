@@ -28,7 +28,6 @@ func main() {
 	// Set some string value for description key
 	// Command: set description "some long string for GETRANGE testing"
 	// Result: OK
-	///
 	setResult, err := rdb.Set(ctx, "description", "some long string for GETRANGE testing", 0).Result()
 
 	if err != nil {
@@ -40,7 +39,6 @@ func main() {
 	// Get substring from description from index 0 to 10
 	// Command:  getrange description 0 10
 	// Result: "some long s"
-	///
 	getRangeResult, err := rdb.GetRange(ctx, "description", 0, 10).Result()
 
 	if err != nil {
@@ -52,7 +50,6 @@ func main() {
 	// Get substring from description from index 0 to 1
 	// Command:  getrange description 0 1
 	// Result: "so"
-	///
 	getRangeResult, err = rdb.GetRange(ctx, "description", 0, 1).Result()
 
 	if err != nil {
@@ -64,7 +61,6 @@ func main() {
 	// Get substring from description from index 0 to -1
 	// Command:  getrange description 0 -1
 	// Result: "some long string for GETRANGE testing"
-	///
 	getRangeResult, err = rdb.GetRange(ctx, "description", 0, -1).Result()
 
 	if err != nil {

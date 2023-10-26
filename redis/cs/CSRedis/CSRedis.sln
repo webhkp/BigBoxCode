@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Decr", "..\Decr\Decr.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Getrange", "..\Getrange\Getrange.csproj", "{05DF1F9E-EE63-4CEC-B929-8B6AC8F8C5DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strlen", "..\Strlen\Strlen.csproj", "{B6595CBE-FFF2-4AED-987F-9853144DDC61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{05DF1F9E-EE63-4CEC-B929-8B6AC8F8C5DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05DF1F9E-EE63-4CEC-B929-8B6AC8F8C5DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05DF1F9E-EE63-4CEC-B929-8B6AC8F8C5DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6595CBE-FFF2-4AED-987F-9853144DDC61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6595CBE-FFF2-4AED-987F-9853144DDC61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6595CBE-FFF2-4AED-987F-9853144DDC61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6595CBE-FFF2-4AED-987F-9853144DDC61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
