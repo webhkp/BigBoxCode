@@ -1,0 +1,56 @@
+# Redis LPUSH command examples
+
+# Push item to simplelist
+# List is created as it does not already exist
+127.0.0.1:6379> lpush simplelist "first item"
+(integer) 1
+
+# Prepend another element to list
+127.0.0.1:6379> lpush simplelist "second item"
+(integer) 2
+
+# Check list items with LRANGE
+127.0.0.1:6379> lrange simplelist 0 -1
+1) "second item"
+2) "first item"
+
+# Create list and push an item to a new list
+127.0.0.1:6379> lpush user:16:cart 986
+(integer) 1
+
+# Prepend item to list
+127.0.0.1:6379> lpush user:16:cart 32
+(integer) 2
+
+# Prepend another item
+127.0.0.1:6379> lpush user:16:cart 102
+(integer) 3
+
+# Check list items
+127.0.0.1:6379> lrange user:16:cart 0 -1
+1) "102"
+2) "32"
+3) "986"
+
+# Prepend multiple times to list
+127.0.0.1:6379> lpush user:16:cart 1049 167 348 2055
+(integer) 7
+
+# Check the list
+127.0.0.1:6379> lrange user:16:cart 0 -1
+1) "2055"
+2) "348"
+3) "167"
+4) "1049"
+5) "102"
+6) "32"
+7) "986"
+
+# Set a string value
+127.0.0.1:6379> set firstkey "my site"
+OK
+
+# Try to use lpush on a string type
+# We get an error
+127.0.0.1:6379> lpush firstkey "another site"
+(error) WRONGTYPE Operation against a key holding the wrong kind of value

@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Getrange", "..\Getrange\Get
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strlen", "..\Strlen\Strlen.csproj", "{B6595CBE-FFF2-4AED-987F-9853144DDC61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lpush", "..\Lpush\Lpush.csproj", "{BCC5A1FF-9AA2-4ECD-B402-965C9A3A1378}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{B6595CBE-FFF2-4AED-987F-9853144DDC61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6595CBE-FFF2-4AED-987F-9853144DDC61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6595CBE-FFF2-4AED-987F-9853144DDC61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCC5A1FF-9AA2-4ECD-B402-965C9A3A1378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCC5A1FF-9AA2-4ECD-B402-965C9A3A1378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCC5A1FF-9AA2-4ECD-B402-965C9A3A1378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCC5A1FF-9AA2-4ECD-B402-965C9A3A1378}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
