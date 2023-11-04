@@ -1,0 +1,173 @@
+# Redis LMOVE command examples
+
+# Push items to list
+127.0.0.1:6379> rpush bigboxlist one two three four five six seven "last last item"
+(integer) 8
+
+# Check list items
+127.0.0.1:6379> lrange bigboxlist 0 -1
+1) "one"
+2) "two"
+3) "three"
+4) "four"
+5) "five"
+6) "six"
+7) "seven"
+8) "last last item"
+
+# Check if "newlist" exists or not
+# It does not exist yet
+127.0.0.1:6379> exists newlist
+(integer) 0
+
+# Pop item from the left(HEAD) of bigboxlist
+# Push item to the right(TAIL) newlist
+# The moved item is "one"
+127.0.0.1:6379> lmove bigboxlist newlist left right
+"one"
+
+# Check newlist
+127.0.0.1:6379> lrange newlist 0 -1
+1) "one"
+
+# Pop item from the left(HEAD) of bigboxlist
+# Push item to the right(TAIL) newlist
+# The moved item is "two"
+127.0.0.1:6379> lmove bigboxlist newlist left right
+"two"
+
+# Here is the status of newlist after second move
+127.0.0.1:6379> lrange newlist 0 -1
+1) "one"
+2) "two"
+
+# Pop item from the left(HEAD) of bigboxlist
+# Push item to the left(HEAD) newlist
+# The moved item is "three"
+127.0.0.1:6379> lmove bigboxlist newlist left left
+"three"
+
+# Status of newlist after the LMOVE operation
+127.0.0.1:6379> lrange newlist 0 -1
+1) "three"
+2) "one"
+3) "two"
+
+# Perform LMOVE multiple times
+127.0.0.1:6379> lmove bigboxlist newlist left right
+"four"
+127.0.0.1:6379> lmove bigboxlist newlist left right
+"five"
+127.0.0.1:6379> lmove bigboxlist newlist left right
+"six"
+127.0.0.1:6379> lmove bigboxlist newlist left right
+"seven"
+
+# Check status of mylist
+127.0.0.1:6379> lrange newlist 0 -1
+1) "three"
+2) "one"
+3) "two"
+4) "four"
+5) "five"
+6) "six"
+7) "seven"
+
+# Pop item from the left(HEAD) of bigboxlist
+# Push item to the right(TAIL) newlist
+# The moved item is "last last item", this is the last item of bigboxlist
+127.0.0.1:6379> lmove bigboxlist newlist left right
+"last last item"
+
+# Check newlist
+# It has all the items now from bigboxlist
+127.0.0.1:6379> lrange newlist 0 -1
+1) "three"
+2) "one"
+3) "two"
+4) "four"
+5) "five"
+6) "six"
+7) "seven"
+8) "last last item"
+
+# Check items of bigboxlist
+# This is empty now all the items are popped out of it
+127.0.0.1:6379> lrange bigboxlist 0 -1
+(empty array)
+
+# Check if bigboxlist key exists anymore
+# It does not exist. As it was deleted when the last item was popped out of it.
+127.0.0.1:6379> exists bigboxlist
+(integer) 0
+
+# Set a string value
+127.0.0.1:6379> set firstkey "some value here"
+OK
+
+# Try to use a string type key in the LMOVE 
+# It returns an error
+127.0.0.1:6379> lmove newlist firstkey left right
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
+
+127.0.0.1:6379> lmove firstkey newlist left right
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
+
+# Use a non existing list/key as source
+# Nothing is added to the destination list, as there is nothing in the source
+# (nil) is retuned as a result
+127.0.0.1:6379> lmove nonexistingsource newlist left right
+(nil)
+
+# Check the nonexistingsource
+127.0.0.1:6379> lrange nonexistingsource 0 -1
+(empty array)
+
+# Check even if the key exist
+# It does not exist
+127.0.0.1:6379> exists nonexistingsource
+(integer) 0
+
+# Check if newlist was affected in any way by the previous LMOVE operation
+# It was not affected, as the sources did not exists
+127.0.0.1:6379> lrange newlist 0 -1
+1) "three"
+2) "one"
+3) "two"
+4) "four"
+5) "five"
+6) "six"
+7) "seven"
+8) "last last item"
+
+# Use the same list as source and destination
+127.0.0.1:6379> lmove newlist newlist left right
+"three"
+
+# Let's check the list
+# "three" was moved from left/head and added to right/tail
+127.0.0.1:6379> lrange newlist 0 -1
+1) "one"
+2) "two"
+3) "four"
+4) "five"
+5) "six"
+6) "seven"
+7) "last last item"
+8) "three"
+
+# Use the same list as source and desitnation
+# Pop and push at the same end
+127.0.0.1:6379> lmove newlist newlist left left
+"one"
+
+# Last operation results in the same list, as the item was popped and pushed at the same end
+127.0.0.1:6379> lrange newlist 0 -1
+1) "one"
+2) "two"
+3) "four"
+4) "five"
+5) "six"
+6) "seven"
+7) "last last item"
+8) "three"

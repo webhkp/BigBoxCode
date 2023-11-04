@@ -32,14 +32,14 @@ namespace Lpush
 
             Console.WriteLine("Command: lpush simplelist \"second item\" | Result: " + pushResult);
 
-                         /**
-                          * Check list items with LRANGE
-                          *
-                          * Command: lrange simplelist 0 -1
-                          * Result:
-                          *      1) "second item"
-                          *      2) "first item"
-                          */
+            /**
+            * Check list items with LRANGE
+            *
+            * Command: lrange simplelist 0 -1
+            * Result:
+            *      1) "second item"
+            *      2) "first item"
+            */
             RedisValue[] listItems = rdb.ListRange("simplelist", 0, -1);
 
             Console.WriteLine("Command: lrange simplelist 0 -1 | Result: ");
