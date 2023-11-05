@@ -1,0 +1,70 @@
+# Redis LINDEX command examples
+
+# Create list and push items
+127.0.0.1:6379> rpush bigboxlist one two three four five "test a" "test b" "test c" "second last item" "last item"
+(integer) 10
+
+# Check list items
+127.0.0.1:6379> lrange bigboxlist 0 -1
+ 1) "one"
+ 2) "two"
+ 3) "three"
+ 4) "four"
+ 5) "five"
+ 6) "test a"
+ 7) "test b"
+ 8) "test c"
+ 9) "second last item"
+10) "last item"
+
+# Get list item at index Zero(0)
+127.0.0.1:6379> lindex bigboxlist 0
+"one"
+
+# Get list item at index One(1)
+127.0.0.1:6379> lindex bigboxlist 1
+"two"
+
+# Get list item at index Five(5)
+127.0.0.1:6379> lindex bigboxlist 5
+"test a"
+
+# Get list item at index Negative One(-1)
+# The last item in list
+127.0.0.1:6379> lindex bigboxlist -1
+"last item"
+
+# Get list item at index Negative Two(-2)
+# The second last item in list
+127.0.0.1:6379> lindex bigboxlist -2
+"second last item"
+
+# Try to get item at index out of index
+# Returns (nil), if index is out of range
+127.0.0.1:6379> lindex bigboxlist 100000000
+(nil)
+
+# Try to get item at index out of index
+# Returns (nil), if index is out of range
+127.0.0.1:6379> lindex bigboxlist -99999999999
+(nil)
+
+# Try to get list item, when the list does not exist
+# Returns (nil)
+127.0.0.1:6379> lindex nonexistingkey 0
+(nil)
+
+# Set a string key
+127.0.0.1:6379> set firststr "some string value here"
+OK
+
+# Try to use LINDEX for an element that is not a list
+# We get an error in that case
+127.0.0.1:6379> lindex firststr 0
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
+
+
+# Pass a very large(larger than 64-bit) integer as index
+# We get an error related to index being an integer
+127.0.0.1:6379> lindex bigboxlist 14293742398742398423489723984327498327
+(error) ERR value is not an integer or out of range

@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lrange", "..\Lrange\Lrange.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lmove", "..\Lmove\Lmove.csproj", "{7494647C-D343-46CC-8CAF-E2C38B43F39D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lindex", "..\Lindex\Lindex.csproj", "{35DEA7A3-1801-459C-BDF3-8C2C124214B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{7494647C-D343-46CC-8CAF-E2C38B43F39D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7494647C-D343-46CC-8CAF-E2C38B43F39D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7494647C-D343-46CC-8CAF-E2C38B43F39D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35DEA7A3-1801-459C-BDF3-8C2C124214B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35DEA7A3-1801-459C-BDF3-8C2C124214B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35DEA7A3-1801-459C-BDF3-8C2C124214B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35DEA7A3-1801-459C-BDF3-8C2C124214B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

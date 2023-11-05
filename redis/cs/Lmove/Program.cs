@@ -1,4 +1,4 @@
-﻿// Redis LPUSH command examples in C#
+﻿// Redis LMOVE command examples in C#
 
 using StackExchange.Redis;
 
