@@ -1,0 +1,23 @@
+# Redis LLEN command examples
+
+# Create list and push element. We are pushing 5 elements to the list
+127.0.0.1:6379> rpush bigboxlist one two three four five
+(integer) 5
+
+# Check length of the list
+127.0.0.1:6379> llen bigboxlist
+(integer) 5
+
+# Use LLEN for an non existing key
+# It returns Zero(0)
+127.0.0.1:6379> llen nonexistingkey
+(integer) 0
+
+# Set a string key/value
+127.0.0.1:6379> set somestrkey "my string value here for test"
+OK
+
+# Try to use LLEN command for string type key
+# It returns error which indicates, the type of key is wrong
+127.0.0.1:6379> llen somestrkey
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
