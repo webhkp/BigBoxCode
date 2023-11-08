@@ -1,0 +1,100 @@
+# Redis LINSERT command examples
+
+# Push some element in the list
+127.0.0.1:6379> rpush bigboxlist one two three four five one testA two testB testC
+(integer) 10
+
+# Check list items
+127.0.0.1:6379> lrange bigboxlist 0 -1
+ 1) "one"
+ 2) "two"
+ 3) "three"
+ 4) "four"
+ 5) "five"
+ 6) "one"
+ 7) "testA"
+ 8) "two"
+ 9) "testB"
+10) "testC"
+
+# Insert new element after "one"
+127.0.0.1:6379> linsert bigboxlist after one "new element after one"
+(integer) 11
+
+# Check the list. The new item is after one
+127.0.0.1:6379> lrange bigboxlist 0 -1
+ 1) "one"
+ 2) "new element after one"
+ 3) "two"
+ 4) "three"
+ 5) "four"
+ 6) "five"
+ 7) "one"
+ 8) "testA"
+ 9) "two"
+10) "testB"
+11) "testC"
+
+# Insert before the item "one"
+127.0.0.1:6379> linsert bigboxlist before one "new element before one"
+(integer) 12
+
+# Check the list. The new item is inserted before "one"
+127.0.0.1:6379> lrange bigboxlist 0 -1
+ 1) "new element before one"
+ 2) "one"
+ 3) "new element after one"
+ 4) "two"
+ 5) "three"
+ 6) "four"
+ 7) "five"
+ 8) "one"
+ 9) "testA"
+10) "two"
+11) "testB"
+12) "testC"
+
+# Insert before "testC"
+127.0.0.1:6379> linsert bigboxlist before testC "new element before testC"
+(integer) 13
+
+# Check list, the new inserted item is there
+127.0.0.1:6379> lrange bigboxlist 0 -1
+ 1) "new element before one"
+ 2) "one"
+ 3) "new element after one"
+ 4) "two"
+ 5) "three"
+ 6) "four"
+ 7) "five"
+ 8) "one"
+ 9) "testA"
+10) "two"
+11) "testB"
+12) "new element before testC"
+13) "testC"
+
+# Try to insert with wrong case of the existing/pivot item
+# We are using "testc" here, but in the list we have "testC"
+# We get -1, as the item is considered as not exist 
+127.0.0.1:6379> linsert bigboxlist after testc "my new item"
+(integer) -1
+
+# Try to insert before/after a non existing item
+# We get -1, and the operation failed
+127.0.0.1:6379> linsert bigboxlist after "this item does not exist" "my new item"
+(integer) -1
+
+# Try to use LINSERT for a non existing key
+# We get Zero(0) as result
+127.0.0.1:6379> linsert nonexistingkey after somesampleitem "my new item"
+(integer) 0
+
+# Set a string value
+127.0.0.1:6379> set mystr "some string value"
+OK
+
+# Try to use LINSERT on a string type key
+# We get an error in response
+127.0.0.1:6379> linsert mystr after a "my new item"
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
