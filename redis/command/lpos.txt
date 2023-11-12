@@ -1,0 +1,146 @@
+# Redis LPOS command examples
+
+# Push items to list
+127.0.0.1:6379> rpush bigboxlist one two three four five one testA two testB testC one two nine one nine
+(integer) 15
+
+# Check list items
+127.0.0.1:6379> lrange bigboxlist 0 -1
+ 1) "one"
+ 2) "two"
+ 3) "three"
+ 4) "four"
+ 5) "five"
+ 6) "one"
+ 7) "testA"
+ 8) "two"
+ 9) "testB"
+10) "testC"
+11) "one"
+12) "two"
+13) "nine"
+14) "one"
+15) "nine"
+
+# Check first index of "one"
+127.0.0.1:6379> lpos bigboxlist one
+(integer) 0
+
+# Check first index of "two"
+127.0.0.1:6379> lpos bigboxlist two
+(integer) 1
+
+# Check first index of "five"
+127.0.0.1:6379> lpos bigboxlist five
+(integer) 4
+
+# Check second occurrence of "one"
+127.0.0.1:6379> lpos bigboxlist one rank 2
+(integer) 5
+
+# Check 5th occurrence of "one"
+# We get (nil) as this item occurs less than 5 times
+127.0.0.1:6379> lpos bigboxlist one rank 5
+(nil)
+
+# Get first 2 occurrance of "one"
+127.0.0.1:6379> lpos bigboxlist one count 2
+1) (integer) 0
+2) (integer) 5
+
+# Try to get first 8 occurrences of "one"
+# We get only 4 indexes, as "one" is there only 4 times in the list
+127.0.0.1:6379> lpos bigboxlist one count 8
+1) (integer) 0
+2) (integer) 5
+3) (integer) 10
+4) (integer) 13
+
+# Pass count as 0 to return all occurrences
+127.0.0.1:6379> lpos bigboxlist one count 0
+1) (integer) 0
+2) (integer) 5
+3) (integer) 10
+4) (integer) 13
+
+# Get 2 occurrences of "one" starting from the 2nd occurrance
+127.0.0.1:6379> lpos bigboxlist one rank 2 count 2
+1) (integer) 5
+2) (integer) 10
+
+# Get all occurrences of "one" starting from the 2nd occurrance
+127.0.0.1:6379> lpos bigboxlist one rank 2 count 0
+1) (integer) 5
+2) (integer) 10
+3) (integer) 13
+
+# Get one occurence from the end of the list
+127.0.0.1:6379> lpos bigboxlist one rank -1
+(integer) 13
+
+# Get 3 occurences of "one" from the end
+127.0.0.1:6379> lpos bigboxlist one rank -1 count 3
+1) (integer) 13
+2) (integer) 10
+3) (integer) 5
+
+# Try to get index of "two" withing first 1 item
+# (nil) is returned as "two" is not there is first 1 item
+127.0.0.1:6379> lpos bigboxlist two maxlen 1
+(nil)
+
+# Get index of "two" withing first 10 list items
+# We get the index 1, as this is the first occurence
+127.0.0.1:6379> lpos bigboxlist two maxlen 10
+(integer) 1
+
+# Get 2 occurrences of "two" withing first 10 items
+127.0.0.1:6379> lpos bigboxlist two count 2 maxlen 10
+1) (integer) 1
+2) (integer) 7
+
+# Get all occurrences of "two" withing first 10 items
+127.0.0.1:6379> lpos bigboxlist two count 0 maxlen 10
+1) (integer) 1
+2) (integer) 7
+
+# Get all occurrences of "two" withing first 15 items
+127.0.0.1:6379> lpos bigboxlist two count 0 maxlen 15
+1) (integer) 1
+2) (integer) 7
+3) (integer) 11
+
+# Get results from the end and consider 10 items from the end
+127.0.0.1:6379> lpos bigboxlist two maxlen 10 rank -1
+(integer) 11
+
+# Get 2nd occurence from the end and consider 10 items from the end
+127.0.0.1:6379> lpos bigboxlist two maxlen 10 rank -2
+(integer) 7
+
+# Get 1st occurence of "three" from the end and consider 10 items from the end
+# Three does not exist in last 10 items, so we get (nil)
+127.0.0.1:6379> lpos bigboxlist three maxlen 10 rank -1
+(nil)
+
+# Try to get a non existing element from a list
+# We get (nil) value
+127.0.0.1:6379> lpos bigboxlist nonexistingitem
+(nil)
+
+# Set a string value
+127.0.0.1:6379> set mystr "my string value here"
+OK
+
+# Try to use LPOS command on a string
+# We get an error for the wrong type of operation
+127.0.0.1:6379> lpos mystr m
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
+
+# Error returned if COUNT is negative
+127.0.0.1:6379> lpos bigboxlist one count -3
+(error) ERR COUNT can't be negative
+
+# Error returned if MAXLEN is negative
+127.0.0.1:6379> lpos bigboxlist one maxlen -3
+(error) ERR MAXLEN can't be negative

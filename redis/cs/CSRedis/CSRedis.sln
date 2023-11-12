@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Llen", "..\Llen\Llen.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linsert", "..\Linsert\Linsert.csproj", "{03129883-1990-4A47-899A-A41D5FD2D077}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lpos", "..\Lpos\Lpos.csproj", "{D055CE08-3158-4CA9-B483-00A8E28573AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{03129883-1990-4A47-899A-A41D5FD2D077}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03129883-1990-4A47-899A-A41D5FD2D077}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03129883-1990-4A47-899A-A41D5FD2D077}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D055CE08-3158-4CA9-B483-00A8E28573AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D055CE08-3158-4CA9-B483-00A8E28573AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D055CE08-3158-4CA9-B483-00A8E28573AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D055CE08-3158-4CA9-B483-00A8E28573AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
