@@ -1,0 +1,91 @@
+# Redis LMPOP command examples
+
+# Create list "bigboxlist" and push items
+127.0.0.1:6379> rpush bigboxlist "big list item 1" "big list item 2" "big list item 3" "big lits item 4" "big list item 5"
+(integer) 5
+
+# Check list items
+127.0.0.1:6379> lrange bigboxlist 0 -1
+1) "big list item 1"
+2) "big list item 2"
+3) "big list item 3"
+4) "big lits item 4"
+5) "big list item 5"
+
+# Create and push items in "smallboxlist"
+127.0.0.1:6379> rpush smallboxlist "small list item 1" "small list item 2" "small list item 3"
+(integer) 3
+
+# check item from list
+127.0.0.1:6379> lrange smallboxlist 0 -1
+1) "small list item 1"
+2) "small list item 2"
+3) "small list item 3"
+
+# Use LMPOP on bigboxlist and pop item form left
+127.0.0.1:6379> lmpop 1 bigboxlist LEFT
+1) "bigboxlist"
+2) 1) "big list item 1"
+
+# Pop 2 items from the LEFT of bigboxlist
+127.0.0.1:6379> lmpop 1 bigboxlist LEFT count 2
+1) "bigboxlist"
+2) 1) "big list item 2"
+   2) "big list item 3"
+
+# Try to pop items from any of bigboxlist or smallboxlist
+# Items popped from bigboxlist as this list still has item
+127.0.0.1:6379> lmpop 2 bigboxlist smallboxlist LEFT count 5
+1) "bigboxlist"
+2) 1) "big lits item 4"
+   2) "big list item 5"
+
+# Try to pop again from any of bigbostlist or smallboxlist
+# Items poped from smallboxlist, as there is no item in bigboxlist
+127.0.0.1:6379> lmpop 2 bigboxlist smallboxlist LEFT count 5
+1) "smallboxlist"
+2) 1) "small list item 1"
+   2) "small list item 2"
+   3) "small list item 3"
+
+# Try to pop from a non existing list
+# It returns (nil)
+127.0.0.1:6379> lmpop 1 nonexistinglist LEFT count 5
+(nil)
+
+# Push some items in bigboxlist for continuing the test
+127.0.0.1:6379> rpush bigboxlist "item a" "item b" "item c" "item d"
+(integer) 4
+
+# Try to pop item from any of a non existing list or bigboxlist
+# items popped from bigboxlist and the non existing list is ignored
+127.0.0.1:6379> lmpop 2 nonexistinglist bigboxlist LEFT count 5
+1) "bigboxlist"
+2) 1) "item a"
+   2) "item b"
+   3) "item c"
+   4) "item d"
+
+# Set a string value
+127.0.0.1:6379> set bigboxstr "My big box string"
+OK
+
+# Try to pop from a string item
+# It returns an error
+127.0.0.1:6379> lmpop 1 bigboxstr right
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
+
+# Try to pop items from a string and a list
+# we get an error as the string is the first item and the command tries to pop items from the string
+127.0.0.1:6379> lmpop 2 bigboxstr bigboxlist right
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
+
+# Try to pop items from a list and string
+# we get data if the list is non empty
+127.0.0.1:6379> lmpop 2 bigboxlist bigboxstr right
+1) "bigboxlist"
+2) 1) "big list item 5"
+
+# Count should be greater than zero(0)
+127.0.0.1:6379> lmpop 1 bigboxlist left count 0
+(error) ERR count should be greater than 0
