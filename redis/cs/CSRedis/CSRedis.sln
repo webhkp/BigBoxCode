@@ -45,7 +45,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lpos", "..\Lpos\Lpos.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lmpop", "..\Lmpop\Lmpop.csproj", "{1764FD55-9EFD-4283-B6D1-D94A207A5142}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lpop", "..\Lpop\Lpop.csproj", "{FF51EC3C-E3F9-4FD7-8D94-41DF7514E533}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lpop", "..\Lpop\Lpop.csproj", "{FF51EC3C-E3F9-4FD7-8D94-41DF7514E533}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lset", "..\Lset\Lset.csproj", "{4F8C0055-AC5A-4BE6-9B45-1E57D94B9183}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +143,10 @@ Global
 		{FF51EC3C-E3F9-4FD7-8D94-41DF7514E533}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF51EC3C-E3F9-4FD7-8D94-41DF7514E533}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF51EC3C-E3F9-4FD7-8D94-41DF7514E533}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F8C0055-AC5A-4BE6-9B45-1E57D94B9183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F8C0055-AC5A-4BE6-9B45-1E57D94B9183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F8C0055-AC5A-4BE6-9B45-1E57D94B9183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F8C0055-AC5A-4BE6-9B45-1E57D94B9183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,57 @@
+# Redis LSET command examples
+
+# Push some value to list
+127.0.0.1:6379> rpush bigboxlist "Item A" "Item B" "Item C" "Item D" "Item E"
+(integer) 5
+
+# Check list
+127.0.0.1:6379> lrange bigboxlist 0 -1
+1) "Item A"
+2) "Item B"
+3) "Item C"
+4) "Item D"
+5) "Item E"
+
+# Set value at index 0
+127.0.0.1:6379> lset bigboxlist 0 "Changed item AAAA"
+OK
+
+# Set value at index 2 of list
+127.0.0.1:6379> lset bigboxlist 2 "Changed item CCCC"
+OK
+
+# Set value at index -1 of list
+127.0.0.1:6379> lset bigboxlist -1 "Changed item EEEE"
+OK
+
+# Check list value
+127.0.0.1:6379> lrange bigboxlist 0 -1
+1) "Changed item AAAA"
+2) "Item B"
+3) "Changed item CCCC"
+4) "Item D"
+5) "Changed item EEEE"
+
+# Try to set value at some out of range index
+# error returned
+127.0.0.1:6379> lset bigboxlist 200 "Some out of range dummy"
+(error) ERR index out of range
+
+# Try to set value at some out of range index
+# error returned
+127.0.0.1:6379> lset bigboxlist -100 "Another out of range dummy"
+(error) ERR index out of range
+
+# Try to use LSET on a non existing list
+# We get an error
+127.0.0.1:6379> lset nonexistinglist 0 "My value 101"
+(error) ERR no such key
+
+# Set some string value
+127.0.0.1:6379> set bigboxstr "some string value here"
+OK
+
+# Try to use LSET for a string
+# error returned as LSET can only be used on a list
+127.0.0.1:6379> lset bigboxstr 0 "use lset for str"
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
