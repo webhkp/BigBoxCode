@@ -49,6 +49,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lpop", "..\Lpop\Lpop.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lset", "..\Lset\Lset.csproj", "{4F8C0055-AC5A-4BE6-9B45-1E57D94B9183}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lrem", "..\Lrem\Lrem.csproj", "{48877A61-B3B0-4A08-B38C-E91A7D7C4EF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -147,6 +149,10 @@ Global
 		{4F8C0055-AC5A-4BE6-9B45-1E57D94B9183}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F8C0055-AC5A-4BE6-9B45-1E57D94B9183}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F8C0055-AC5A-4BE6-9B45-1E57D94B9183}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48877A61-B3B0-4A08-B38C-E91A7D7C4EF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48877A61-B3B0-4A08-B38C-E91A7D7C4EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48877A61-B3B0-4A08-B38C-E91A7D7C4EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48877A61-B3B0-4A08-B38C-E91A7D7C4EF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

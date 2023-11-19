@@ -10,7 +10,7 @@ const redisClient = createClient({
 await redisClient.on('error', err => console.log('Error while connecting to Redis', err));
 
 // Connect Redis client
-await await redisClient.connect();
+await redisClient.connect();
 
 
 /**

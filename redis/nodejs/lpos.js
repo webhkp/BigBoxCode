@@ -12,7 +12,7 @@ await redisClient.on("error", (err) =>
 );
 
 // Connect Redis client
-await await redisClient.connect();
+await redisClient.connect();
 
 /**
  * Push items to list
