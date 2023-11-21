@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lset", "..\Lset\Lset.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lrem", "..\Lrem\Lrem.csproj", "{48877A61-B3B0-4A08-B38C-E91A7D7C4EF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ltrim", "..\Ltrim\Ltrim.csproj", "{CE12F884-27AA-40DE-A153-B89CE2280B70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{48877A61-B3B0-4A08-B38C-E91A7D7C4EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48877A61-B3B0-4A08-B38C-E91A7D7C4EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48877A61-B3B0-4A08-B38C-E91A7D7C4EF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE12F884-27AA-40DE-A153-B89CE2280B70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE12F884-27AA-40DE-A153-B89CE2280B70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE12F884-27AA-40DE-A153-B89CE2280B70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE12F884-27AA-40DE-A153-B89CE2280B70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

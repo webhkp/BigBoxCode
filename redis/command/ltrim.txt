@@ -1,0 +1,88 @@
+# Redis LTRIM command examples
+
+# Push items and create list
+127.0.0.1:6379> rpush bigboxlist B I G B O X C O D E B I O
+(integer) 13
+
+# Check list
+127.0.0.1:6379> lrange bigboxlist 0 -1
+ 1) "B"
+ 2) "I"
+ 3) "G"
+ 4) "B"
+ 5) "O"
+ 6) "X"
+ 7) "C"
+ 8) "O"
+ 9) "D"
+10) "E"
+11) "B"
+12) "I"
+13) "O"
+
+# Trim items outside of index 3 to the end
+127.0.0.1:6379> ltrim bigboxlist 3 -1
+OK
+
+# Check list. Initial 3 items are deleted
+127.0.0.1:6379> lrange bigboxlist 0 -1
+ 1) "B"
+ 2) "O"
+ 3) "X"
+ 4) "C"
+ 5) "O"
+ 6) "D"
+ 7) "E"
+ 8) "B"
+ 9) "I"
+10) "O"
+
+# Keep items from index 0 to 6 and delete others
+127.0.0.1:6379> ltrim bigboxlist 0 6
+OK
+
+# Check list
+127.0.0.1:6379> lrange bigboxlist 0 -1
+1) "B"
+2) "O"
+3) "X"
+4) "C"
+5) "O"
+6) "D"
+7) "E"
+
+# Try to trim by keeping items from index 3 to 100
+# Max index in existing list is 6. So it will use 6 instead of 100
+127.0.0.1:6379> ltrim bigboxlist 3 100
+OK
+
+# Check list
+127.0.0.1:6379> lrange bigboxlist 0 -1
+1) "C"
+2) "O"
+3) "D"
+4) "E"
+
+# Provide ltrim indexes where start index is larger
+# This will empty the list
+127.0.0.1:6379> ltrim bigboxlist 2 1
+OK
+
+# Check list, the list is empty now
+127.0.0.1:6379> lrange bigboxlist 0 -1
+(empty array)
+
+# Try to trim a list that does not exist
+# It will return OK
+127.0.0.1:6379> ltrim nonexistinglist 0 1
+OK
+
+# Set a string
+127.0.0.1:6379> set bigboxstr "Some string for test"
+OK
+
+# Try to use LTRIM on a string
+# we get an error
+127.0.0.1:6379> ltrim bigboxstr 0 1
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
+
