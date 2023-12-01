@@ -1,0 +1,16 @@
+GEM
+  specs:
+    connection_pool (2.4.1)
+    redis (5.0.7)
+      redis-client (>= 0.9.0)
+    redis-client (0.17.0)
+      connection_pool
+
+PLATFORMS
+  x64-mingw-ucrt
+
+DEPENDENCIES
+  redis
+
+BUNDLED WITH
+   2.4.20

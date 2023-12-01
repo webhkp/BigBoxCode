@@ -1,4 +1,4 @@
-# Redis TRIM command example in Ruby
+# Redis LTRIM command example in Ruby
 
 require 'redis'
 

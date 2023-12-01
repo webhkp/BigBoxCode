@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example 5 - Event Capturing & Bubbling</title>
+
+    <style>
+      .sample-box {margin: 60px;padding: 20px 40px;color: white;font-size: 22px;}#item1 {background-color: red;}#item2 {background-color: green;}#item3 {background-color: blue;}#bigboxbutton {margin: 40px;padding: 20px;font-size: 20px;}
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Event Capturing & Bubbling Example</h1>
+      <p>Check browser console for logs</p>
+    </header>
+
+    <section class="sample-box">
+      <div id="item1" class="sample-box">
+        <p><strong>Item 1</strong> (useCapture = false)</p>
+
+        <div id="item2" class="sample-box">
+          <p><strong>Item 2</strong> (useCapture = false)</p>
+
+          <div id="item3" class="sample-box">
+            <p><strong>Item 3</strong> (useCapture = false)</p>
+
+            <button id="bigboxbutton"><strong>Click this button</strong> (useCapture = true)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+
+  <script>
+    const item1 = document.getElementById("item1");
+    const item2 = document.getElementById("item2");
+    const item3 = document.getElementById("item3");
+    const bigBoxButton = document.getElementById("bigboxbutton");
+
+    item1.addEventListener("click", function (e) {
+      console.log("item1 clicked");
+    });
+
+    item2.addEventListener("click", function (e) {
+      console.log("item2 clicked");
+    });
+
+    item3.addEventListener("click", function (e) {
+      console.log("item3 clicked");
+    });
+
+    bigBoxButton.addEventListener("click", function (e) {
+      console.log("bigboxbutton clicked");
+    }, true);
+  </script>
+</html>
