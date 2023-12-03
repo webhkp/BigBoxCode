@@ -1,0 +1,117 @@
+# Redis BLPOP command examples
+
+# Push item to list
+127.0.0.1:6379> lpush bigboxlist B
+(integer) 1
+
+# Check list
+127.0.0.1:6379> lrange bigboxlist 0 -1
+1) "B"
+
+# Apply BLPOP on the list with 10 second 
+127.0.0.1:6379> blpop bigboxlist 10
+1) "bigboxlist"
+2) "B"
+
+# Apply BLPOP and wait for unlimited time, until data can be popped
+127.0.0.1:6379> blpop bigboxlist 0
+
+# Block and wait
+
+# Executed the following LPUSH command in another terminal/client
+# while the above BLPOP command is waiting
+# 127.0.0.1:6379> lpush bigboxlist G I
+# (integer) 2
+
+# Result from above BLPOP command
+1) "bigboxlist"
+2) "I"
+(15.25s)
+
+# Apply BLPOP and wait 10 seconds
+127.0.0.1:6379> blpop bigboxlist 10
+1) "bigboxlist"
+2) "G"
+
+# Apply BLPOP and wait 10 seconds
+# List is empty so no items are returned
+127.0.0.1:6379> blpop bigboxlist 10
+(nil)
+(10.02s)
+
+# Check if bigboxlist still exists, when all the items are popped
+# The list does not exist anymore
+127.0.0.1:6379> exists bigboxlist
+(integer) 0
+
+
+# Let's deal with multiple lists
+# Here we are considering 3 lists - la, lb, lc
+
+# Push data to list named lb
+127.0.0.1:6379> lpush lb B
+(integer) 1
+
+# Apply BLPOP on la, lb, lc
+# We get data from lb
+127.0.0.1:6379> blpop la lb lc 10
+1) "lb"
+2) "B"
+
+# Push G and I to la
+127.0.0.1:6379> lpush la G I
+(integer) 2
+
+# Push B to lb
+127.0.0.1:6379> lpush lb B
+(integer) 1
+
+# Apply BLPOP on la, lb, lc
+# We get data from la
+127.0.0.1:6379> blpop la lb lc 10
+1) "la"
+2) "I"
+
+# Apply BLPOP on la, lb, lc
+# We get data from la
+127.0.0.1:6379> blpop la lb lc 10
+1) "la"
+2) "G"
+
+# Apply BLPOP on la, lb, lc
+# We get data from lb
+127.0.0.1:6379> blpop la lb lc 0
+1) "lb"
+2) "B"
+
+# Apply BLPOP with unlimited waiting time
+# none of the la, lb, lc has any data
+# so the command will block and wait
+127.0.0.1:6379> blpop la lb lc 0
+
+# block the and wait
+
+# Apply following command in another terminal/client
+# 127.0.0.1:6379> lpush lc X O
+# (integer) 2
+
+# Result from the above BLPOP
+1) "lc"
+2) "O"
+(17.74s)
+
+
+# Try to apply BLPOP to a non exiting list
+# (nil) is returned
+127.0.0.1:6379> blpop nonexistinglist 10
+(nil)
+(10.01s)
+
+# Set a string value
+127.0.0.1:6379> set bigboxstr "Some string in the big box"
+OK
+
+# Try to apply BLPOP on a string
+# We get an error
+127.0.0.1:6379> blpop bigboxstr 0
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
