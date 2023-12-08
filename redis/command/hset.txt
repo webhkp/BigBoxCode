@@ -1,0 +1,85 @@
+# Redis HSET command examples
+
+# Set "street" field of hash
+127.0.0.1:6379> hset customer:103:address street "965 Lakeville St"
+(integer) 1
+
+# Check hash
+127.0.0.1:6379> hgetall customer:103:address
+1) "street"
+2) "965 Lakeville St"
+
+# Set multiple fields of the hash
+127.0.0.1:6379> hset customer:103:address city Petaluma state California zip 94952 country "United States"
+(integer) 4
+
+# Check hash
+127.0.0.1:6379> hgetall customer:103:address
+ 1) "street"
+ 2) "965 Lakeville St"
+ 3) "city"
+ 4) "Petaluma"
+ 5) "state"
+ 6) "California"
+ 7) "zip"
+ 8) "94952"
+ 9) "country"
+10) "United States"
+
+# Set new fields to hash, also update some existing fields
+127.0.0.1:6379> hset customer:103:address city hayward  zip 94566 phone (503)-445-4454
+(integer) 1
+
+# Check hash
+127.0.0.1:6379> hgetall customer:103:address
+ 1) "street"
+ 2) "965 Lakeville St"
+ 3) "city"
+ 4) "hayward"
+ 5) "state"
+ 6) "California"
+ 7) "zip"
+ 8) "94566"
+ 9) "country"
+10) "United States"
+11) "phone"
+12) "(503)-445-4454"
+
+# Try to set the same field multiple times
+# The later provided value is saved
+127.0.0.1:6379> hset customer:103:address zip 94555 zip 94599
+(integer) 0
+
+# Check set value
+127.0.0.1:6379> hgetall customer:103:address
+ 1) "street"
+ 2) "965 Lakeville St"
+ 3) "city"
+ 4) "hayward"
+ 5) "state"
+ 6) "California"
+ 7) "zip"
+ 8) "94599"
+ 9) "country"
+10) "United States"
+11) "phone"
+12) "(503)-445-4454"
+
+# Get single field of hash
+127.0.0.1:6379> hget customer:103:address phone
+"(503)-445-4454"
+
+# Get multiple fields of hash
+127.0.0.1:6379> hmget customer:103:address zip phone country
+1) "94599"
+2) "(503)-445-4454"
+3) "United States"
+
+# Set a string key
+127.0.0.1:6379> set bigboxstr "some string value here"
+OK
+
+# Try to apply HSET on the string data type
+# We get an error
+127.0.0.1:6379> hset bigboxstr testfield "test val"
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
