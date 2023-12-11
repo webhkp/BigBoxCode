@@ -59,6 +59,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dump", "..\Dump\Dump.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hset", "..\Hset\Hset.csproj", "{6D5CCB95-9CCD-486E-9D4D-02576731116C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hget", "..\Hget\Hget.csproj", "{27423468-D753-4A22-AAB4-0E1F983D1CC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -177,6 +179,10 @@ Global
 		{6D5CCB95-9CCD-486E-9D4D-02576731116C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D5CCB95-9CCD-486E-9D4D-02576731116C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D5CCB95-9CCD-486E-9D4D-02576731116C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27423468-D753-4A22-AAB4-0E1F983D1CC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27423468-D753-4A22-AAB4-0E1F983D1CC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27423468-D753-4A22-AAB4-0E1F983D1CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27423468-D753-4A22-AAB4-0E1F983D1CC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
