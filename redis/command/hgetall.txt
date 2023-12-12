@@ -1,0 +1,34 @@
+# Redis HGETALL command examples
+
+# Set some has fields using HSET
+127.0.0.1:6379> hset customer:1099:address street "5342 Hollister Ave" city "Santa Barbara" state California zip 93111 phone "(805) 845-0111" country "United States"
+(integer) 6
+
+# Get all field/value of the hash
+127.0.0.1:6379> hgetall customer:1099:address
+ 1) "street"
+ 2) "5342 Hollister Ave"
+ 3) "city"
+ 4) "Santa Barbara"
+ 5) "state"
+ 6) "California"
+ 7) "zip"
+ 8) "93111"
+ 9) "phone"
+10) "(805) 845-0111"
+11) "country"
+12) "United States"
+
+# Try to use HGETALL on a non existing key
+# we get (empty array)
+127.0.0.1:6379> hgetall somenonexistingkey
+(empty array)
+
+# Set a string value
+127.0.0.1:6379> set bigboxstr "some string in the box"
+OK
+
+# Try to use the HGETALL on a string type of key
+# We get an error
+127.0.0.1:6379> hgetall bigboxstr
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
