@@ -1,0 +1,49 @@
+# Redis HKEYS command examples
+
+# Set hash field/value
+127.0.0.1:6379> hset customer:1786:address street "6414 Losee Rd" city "North Las Vegas" state "North Carolina" zip "89086" phone "(702) 399-9939" country "United States" latutude 36.27704 longitude -115.115868
+(integer) 8
+
+# Check hash full data
+127.0.0.1:6379> hgetall customer:1786:address
+ 1) "street"
+ 2) "6414 Losee Rd"
+ 3) "city"
+ 4) "North Las Vegas"
+ 5) "state"
+ 6) "North Carolina"
+ 7) "zip"
+ 8) "89086"
+ 9) "phone"
+10) "(702) 399-9939"
+11) "country"
+12) "United States"
+13) "latutude"
+14) "36.27704"
+15) "longitude"
+16) "-115.115868"
+
+# Get all the keys of hash
+127.0.0.1:6379> hkeys customer:1786:address
+1) "street"
+2) "city"
+3) "state"
+4) "zip"
+5) "phone"
+6) "country"
+7) "latutude"
+8) "longitude"
+
+# Use HKEYS on a non existing key
+# We get (empty list)
+127.0.0.1:6379> hkeys nonexistingkey
+(empty array)
+
+# Set string value
+127.0.0.1:6379> set bigboxstr "some stiring value for HKEYS command testing"
+OK
+
+# Try to use HKEYS on a hash
+# We get an error
+127.0.0.1:6379> hkeys bigboxstr
+(error) WRONGTYPE Operation against a key holding the wrong kind of value

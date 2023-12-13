@@ -10,12 +10,12 @@ redis = Redis.new(host: "localhost", port: 6379)
 # Result: (integer) 6
 commandResult = redis.hset("customer:1099:address", {
     "street" => "342 Hollister Ave",
-"city" => "Santa Barbara",
-"state" => "California",
-"zip" => "93111",
-"phone" => "(805) 845-0111",
-"country" => "United States",
-    })
+    "city" => "Santa Barbara",
+    "state" => "California",
+    "zip" => "93111",
+    "phone" => "(805) 845-0111",
+    "country" => "United States",
+})
 
 print("Command: hset customer:1099:address street \"5342 Hollister Ave\" city \"Santa Barbara\" state California zip 93111 phone \"(805) 845-0111\" country \"United States\" | Result: ", commandResult, "\n")
 
