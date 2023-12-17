@@ -1,0 +1,110 @@
+# Redis HINCRBY command examples
+
+# Set hash fields
+127.0.0.1:6379> hset customer:100 name "Kenneth Braun" gender male age 42 order_count 1
+(integer) 4
+
+# Check hash fields
+127.0.0.1:6379> hgetall customer:100
+1) "name"
+2) "Kenneth Braun"
+3) "gender"
+4) "male"
+5) "age"
+6) "42"
+7) "order_count"
+8) "1"
+
+# Increament order_count field by 2
+127.0.0.1:6379> hincrby customer:100 order_count 2
+(integer) 3
+
+# Check the order_count field
+127.0.0.1:6379> hget customer:100 order_count
+"3"
+
+# bigboxhash does not exist
+Check field of a non existing hash
+127.0.0.1:6379> hget bigboxhash firstfield
+(nil)
+
+# Try to apply HINCRBY on a hash that does not exist
+127.0.0.1:6379>  hincrby bigboxhash firstfield 100
+(integer) 100
+
+# Increament firstfield of bigboxhash
+# We see the increased value
+127.0.0.1:6379> hget bigboxhash firstfield
+"100"
+
+# Check a non existing field, of a hash that exists
+127.0.0.1:6379> hget bigboxhash secondfield
+(nil)
+
+# Implement HINCRBY on a non existing field
+127.0.0.1:6379>  hincrby bigboxhash secondfield 5
+(integer) 5
+
+# Check the secondfield
+127.0.0.1:6379> hget bigboxhash secondfield
+"5"
+
+# Use a negative value with HINCRBY
+# That will decrease the existing value
+127.0.0.1:6379>  hincrby bigboxhash secondfield -3
+(integer) 2
+
+# Check secondfield value
+127.0.0.1:6379> hget bigboxhash secondfield
+"2"
+
+# Decreament of the hash field by -5
+127.0.0.1:6379>  hincrby bigboxhash secondfield -5
+(integer) -3
+
+# Check the secondfield value
+127.0.0.1:6379> hget bigboxhash secondfield
+"-3"
+
+# Set a string key
+127.0.0.1:6379> set bigboxstr "some str value here"
+OK
+
+# Try to use HINCRBY on the string
+# We get an error as command is applied to a wrong data type
+127.0.0.1:6379>  hincrby bigboxstr field1 10
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
+
+# Check cutsomer name
+127.0.0.1:6379> hget customer:100 name
+"Kenneth Braun"
+
+# Try to apply HINCRBY on the name field
+# We get an error, as the field has string value
+127.0.0.1:6379>  hincrby customer:100 name 10
+(error) ERR hash value is not an integer
+
+# Set a filed of a hash to a larg integer value
+127.0.0.1:6379> hset bigboxhash max_test_field 9223372036854775806
+(integer) 1
+
+# Max value of allowed integer for 64-bit integer is 9,223,372,036,854,775,807
+# So if we try to increment max_test_field by 10 then it excedes the max integer limit
+# We get an error related to max value overflow
+127.0.0.1:6379> hincrby bigboxhash max_test_field 10
+(error) ERR increment or decrement would overflow
+
+# Set field value of a has to large negative nubmer
+127.0.0.1:6379> hset bigboxhash max_test_field -9223372036854775709
+(integer) 0
+
+# Check the value, we se the negative value is set
+# as it is withing the limit of 64-bit signed integer
+127.0.0.1:6379> hget bigboxhash max_test_field
+"-9223372036854775709"
+
+# Min value allowed as 64-bit int is -9,223,372,036,854,775,808
+# Try to decrease the value by 10
+# We get an error as the target value goes beyond the minimum integer value
+127.0.0.1:6379> hincrby bigboxhash max_test_field -100
+(error) ERR increment or decrement would overflow
