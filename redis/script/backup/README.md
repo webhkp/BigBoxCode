@@ -6,7 +6,7 @@
 </div>
 
 
-This redis.backup.sh script is used to backup Redis RDB file.
+This redis_backup.sh script is used to backup Redis RDB file.
 
 Check Details of backup and recovery process - <a title="Redis Backup and Recovery" href="https://bigboxcode.com/redis-backup-restore">https://bigboxcode.com/redis-backup-restore</a>
 
