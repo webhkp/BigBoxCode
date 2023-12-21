@@ -1,0 +1,46 @@
+# Redis SADD command examples
+
+# Add members to set
+127.0.0.1:6379> sadd bigboxset "first item" "second item" "third item" "just another item"
+(integer) 4
+
+# Check set members
+127.0.0.1:6379> smembers bigboxset
+1) "first item"
+2) "second item"
+3) "third item"
+4) "just another item"
+
+# Add members to set
+# Trying to add some already existing members. The existing members are ignored by the command.
+127.0.0.1:6379> sadd bigboxset "second item" "New item one" "first item" "New item two"
+(integer) 2
+
+# Check set members
+127.0.0.1:6379> smembers bigboxset
+1) "first item"
+2) "second item"
+3) "third item"
+4) "just another item"
+5) "New item one"
+6) "New item two"
+
+# Try to add member using SADD, to a non-existing key
+# Key is created and members are added
+127.0.0.1:6379> sadd nonexistingset one two three
+(integer) 3
+
+# Check set members
+127.0.0.1:6379> smembers nonexistingset
+1) "one"
+2) "two"
+3) "three"
+
+# Set a string key
+127.0.0.1:6379> set bigboxstr "some string value"
+OK
+
+# Try to use SADD on the string key
+# We get an error
+127.0.0.1:6379> sadd bigboxstr "some element"
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
