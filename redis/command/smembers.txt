@@ -1,0 +1,41 @@
+# Redis SMEMBERS command examples
+
+# Add members to set
+127.0.0.1:6379> sadd bigboxset one two three "ninety nine" "twelve"
+(integer) 5
+
+# Check set members
+127.0.0.1:6379> smembers bigboxset
+1) "one"
+2) "two"
+3) "three"
+4) "ninety nine"
+5) "twelve"
+
+# Add some more members
+# existing members are ignored
+127.0.0.1:6379> sadd bigboxset "new element" two "ninety nine"
+(integer) 1
+
+# Check set members
+127.0.0.1:6379> smembers bigboxset
+1) "one"
+2) "two"
+3) "three"
+4) "ninety nine"
+5) "twelve"
+6) "new element"
+
+# Use SMEMBERS on a key that does not exist
+# Returns an empty array
+127.0.0.1:6379> smembers nonexistingset
+(empty array)
+
+# Set a string key
+127.0.0.1:6379> set bigboxstr 'url of the site is bigboxcode.com'
+OK
+
+# Try to use SMEMBERS on a string
+# we get an error
+127.0.0.1:6379> smembers bigboxstr
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
