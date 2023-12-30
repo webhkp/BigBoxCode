@@ -73,6 +73,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SAdd", "..\SAdd\SAdd.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMembers", "..\SMembers\SMembers.csproj", "{30D103A8-72FB-4689-A5AE-CD5A17AC0A31}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRem", "..\SRem\SRem.csproj", "{6814F833-A08B-4036-B108-678BCF5A1500}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -219,6 +221,10 @@ Global
 		{30D103A8-72FB-4689-A5AE-CD5A17AC0A31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30D103A8-72FB-4689-A5AE-CD5A17AC0A31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30D103A8-72FB-4689-A5AE-CD5A17AC0A31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6814F833-A08B-4036-B108-678BCF5A1500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6814F833-A08B-4036-B108-678BCF5A1500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6814F833-A08B-4036-B108-678BCF5A1500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6814F833-A08B-4036-B108-678BCF5A1500}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

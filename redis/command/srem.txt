@@ -1,0 +1,58 @@
+# Redis SREM command examples
+
+# Add members to set
+127.0.0.1:6379> sadd bigboxset nine eight seven six five four three two one
+(integer) 9
+
+# Check set members
+127.0.0.1:6379> smembers bigboxset
+1) "nine"
+2) "eight"
+3) "seven"
+4) "six"
+5) "five"
+6) "four"
+7) "three"
+8) "two"
+9) "one"
+
+# Remove set member
+127.0.0.1:6379> srem bigboxset eight
+(integer) 1
+
+# Check set members
+127.0.0.1:6379> smembers bigboxset
+1) "nine"
+2) "seven"
+3) "six"
+4) "five"
+5) "four"
+6) "three"
+7) "two"
+8) "one"
+
+# Remove set members
+127.0.0.1:6379> srem bigboxset two four six someunknownitem
+(integer) 3
+
+# Check set members
+127.0.0.1:6379> smembers bigboxset
+1) "nine"
+2) "seven"
+3) "five"
+4) "three"
+5) "one"
+
+# Try to remove from a non existing key
+# SREM handles it as an empty array, and returns zero(0)
+127.0.0.1:6379> srem nonexistingkey a b c
+(integer) 0
+
+# Set a string
+127.0.0.1:6379> set bigboxstr "some string value for demo"
+OK
+
+# Try to use SREM on a string
+# Returns error ans SREM can only be used a set
+127.0.0.1:6379> srem bigboxstr "some"
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
