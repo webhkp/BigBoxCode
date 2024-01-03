@@ -1,0 +1,65 @@
+# Redis GEOADD command examples
+
+# Add single location
+127.0.0.1:6379> geoadd bigboxcity 2.352222 48.856613 Paris
+(integer) 1
+
+# Add multiple location data
+127.0.0.1:6379> geoadd bigboxcity 100.501762 13.756331 Bangkok 114.109497 22.396427 "Hong Kong" 139.691711 35.689487 Tokyo 12.496365 41.902782 Rome
+(integer) 4
+
+# Check geospatial data using sorted set command
+127.0.0.1:6379> zrange bigboxcity 0 -1 withscores
+ 1) "Rome"
+ 2) "3480343273965391"
+ 3) "Paris"
+ 4) "3663832779125283"
+ 5) "Bangkok"
+ 6) "3962257436268857"
+ 7) "Hong Kong"
+ 8) "4046429669534462"
+ 9) "Tokyo"
+10) "4171231230197033"
+
+# Try to add only if the record does not exit
+127.0.0.1:6379> geoadd bigboxcity NX 2.352222 48.856613 Paris
+(integer) 0
+
+# Check the location data
+127.0.0.1:6379> geopos bigboxcity Paris
+1) 1) "2.35221952199935913"
+   2) "48.85661220395509474"
+
+# Add/change only if it exits
+127.0.0.1:6379> geoadd bigboxcity XX 2.352222 48.856615 Paris
+(integer) 0
+
+# Check location data
+# It is changed by the previous GEOADD command
+127.0.0.1:6379> geopos bigboxcity Paris
+1) 1) "2.35221952199935913"
+   2) "48.85661473867625659"
+
+# Add/change location data
+# and return the total number of items changed(added or update)
+127.0.0.1:6379> geoadd bigboxcity CH 2.352222 48.856612 Paris
+(integer) 1
+
+# Check location. it is changed by the preivous command
+127.0.0.1:6379> geopos bigboxcity Paris
+1) 1) "2.35221952199935913"
+   2) "48.85661220395509474"
+
+# Try to use value that is out of range
+# We get an error, which indicates vlaue is out of range
+127.0.0.1:6379> geoadd bigboxcity 200 80 "Out of range"
+(error) ERR invalid longitude,latitude pair 200.000000,80.000000
+
+# Set a string value
+127.0.0.1:6379> set bigboxstr "my string for testing"
+OK
+
+# Try to use the string key for GETADD command
+# We get an error, which indicates the type of key is wrong
+127.0.0.1:6379> geoadd bigboxstr 37.617298 55.755825 Moscow
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
