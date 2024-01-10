@@ -1,0 +1,58 @@
+# Redis RPUSH command examples
+
+# Push item to bigboxlist
+# list does not exist yet, 
+# so first list is created then item pushed into it
+127.0.0.1:6379> rpush bigboxlist "first item"
+(integer) 1
+
+# Push item to list
+127.0.0.1:6379> rpush bigboxlist "second item"
+(integer) 2
+
+# Check list items
+127.0.0.1:6379> lrange bigboxlist 0 -1
+1) "first item"
+2) "second item"
+
+# Push item to user card for user id 16
+# The key we are using here is user:16:cart
+127.0.0.1:6379> rpush user:16:cart 986
+(integer) 1
+
+# Push another item
+127.0.0.1:6379> rpush user:16:cart 32
+(integer) 2
+
+# Push another item to list
+127.0.0.1:6379> rpush user:16:cart 102
+(integer) 3
+
+# Check list item
+127.0.0.1:6379> lrange user:16:cart 0 -1
+1) "986"
+2) "32"
+3) "102"
+
+# Push multiple items to list
+127.0.0.1:6379> rpush user:16:cart 1049 167 348 2055
+(integer) 7
+
+# Check list items
+127.0.0.1:6379> lrange user:16:cart 0 -1
+1) "986"
+2) "32"
+3) "102"
+4) "1049"
+5) "167"
+6) "348"
+7) "2055"
+
+# Create a new string type key
+127.0.0.1:6379> set bigboxstr "test string here"
+OK
+
+# Try to use RPUSH command on a string
+# We get an error as the type does not match
+127.0.0.1:6379> rpush bigboxstr "changed string here"
+(error) WRONGTYPE Operation against a key holding the wrong kind of value

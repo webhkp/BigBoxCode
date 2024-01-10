@@ -71,11 +71,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HIncrBy", "..\HIncrBy\HIncr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SAdd", "..\SAdd\SAdd.csproj", "{0F2A9EB2-777E-41C6-B8B4-4F7892107961}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMembers", "..\SMembers\SMembers.csproj", "{30D103A8-72FB-4689-A5AE-CD5A17AC0A31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMembers", "..\SMembers\SMembers.csproj", "{30D103A8-72FB-4689-A5AE-CD5A17AC0A31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRem", "..\SRem\SRem.csproj", "{6814F833-A08B-4036-B108-678BCF5A1500}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SRem", "..\SRem\SRem.csproj", "{6814F833-A08B-4036-B108-678BCF5A1500}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoAdd", "..\GeoAdd\GeoAdd.csproj", "{A9E78225-306B-4D22-A268-24A5408E3CA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoAdd", "..\GeoAdd\GeoAdd.csproj", "{A9E78225-306B-4D22-A268-24A5408E3CA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPush", "..\RPush\RPush.csproj", "{C642CE29-3305-4A83-92C3-D139A98B2712}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -231,6 +233,10 @@ Global
 		{A9E78225-306B-4D22-A268-24A5408E3CA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9E78225-306B-4D22-A268-24A5408E3CA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9E78225-306B-4D22-A268-24A5408E3CA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C642CE29-3305-4A83-92C3-D139A98B2712}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C642CE29-3305-4A83-92C3-D139A98B2712}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C642CE29-3305-4A83-92C3-D139A98B2712}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C642CE29-3305-4A83-92C3-D139A98B2712}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
