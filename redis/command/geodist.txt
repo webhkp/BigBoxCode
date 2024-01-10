@@ -1,0 +1,40 @@
+# Redis GEODIST command examples
+
+# Add city longitude and latitude to geoindex named bigboxcity
+127.0.0.1:6379> geoadd bigboxcity 2.352222 48.856613 Paris 100.501762 13.756331 Bangkok 114.109497 22.396427 "Hong Kong" 139.691711 35.689487 Tokyo 12.496365 41.902782 Rome
+(integer) 5
+
+# Check the items in bigboxcity
+127.0.0.1:6379> zrange bigboxcity 0 -1
+1) "Rome"
+2) "Paris"
+3) "Bangkok"
+4) "Hong Kong"
+5) "Tokyo"
+
+# Check distance of Paris and Tokyo
+# This distance is in meter unit, as meter is the default
+127.0.0.1:6379> geodist bigboxcity Paris Tokyo
+"9714811.3348"
+
+# Check distance of Paris and Hong Kong
+# This distance is in kilometer as we provide km to the command
+127.0.0.1:6379> geodist bigboxcity Paris "Hong Kong" km
+"9618.5790"
+
+# Distance to the same city will be zero
+127.0.0.1:6379> geodist bigboxcity Paris Paris
+"0.0000"
+
+# We get (nil) if one or both of the cities do not exist in our geoindex
+127.0.0.1:6379> geodist bigboxcity Paris "unknown city"
+(nil)
+
+# Set a string
+127.0.0.1:6379> set bigboxstr "test string here"
+OK
+
+# Try to add GEODIST on a string
+# We get a type error
+127.0.0.1:6379> geodist bigboxstr Paris Tokyo
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
