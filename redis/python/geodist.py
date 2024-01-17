@@ -93,4 +93,4 @@ try:
 
     print("Command: geodist bigboxstr Paris Tokyo | Result: {}".format(commandResult))
 except Exception as error:
-    print("Command: geodist bigboxstr Paris Tokyo | Result: ", error)
+    print("Command: geodist bigboxstr Paris Tokyo | Error: ", error)

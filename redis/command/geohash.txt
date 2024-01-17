@@ -1,0 +1,68 @@
+# Redis GEOHASH command examples
+
+# Add members to a geo index named bigboxcity
+127.0.0.1:6379> geoadd bigboxcity 2.352222 48.856613 Paris 100.501762 13.756331 Bangkok 114.109497 22.396427 "Hong Kong" 139.691711 35.689487 Tokyo 12.496365 41.902782 Rome
+(integer) 5
+
+# Check members saved in bigboxcity
+127.0.0.1:6379> zrange bigboxcity 0 -1
+1) "Rome"
+2) "Paris"
+3) "Bangkok"
+4) "Hong Kong"
+5) "Tokyo"
+
+# Check geohash of a single member
+127.0.0.1:6379> geohash bigboxcity Paris
+1) "u09tvw0f6s0"
+
+# Check geohash of multiple members
+127.0.0.1:6379> geohash bigboxcity Rome "Hong Kong" Tokyo Paris Bangkok
+1) "sr2ykk5t6k0"
+2) "wecpkt5uxu0"
+3) "xn774c06kf0"
+4) "u09tvw0f6s0"
+5) "w4rqqbr0kv0"
+
+# Check geohash of multiple members
+# But pass one non existing member name 
+# We get (nil) for the non existing member
+127.0.0.1:6379> geohash bigboxcity Rome "Hong Kong" Tokyo WrongMemberValueHere Bangkok
+1) "sr2ykk5t6k0"
+2) "wecpkt5uxu0"
+3) "xn774c06kf0"
+4) (nil)
+5) "w4rqqbr0kv0"
+
+# Check geohash of a non existing members
+# (nil) is returned for the non existing members
+127.0.0.1:6379> geohash bigboxcity wrongmember1 wrongmember2 wrongmember3
+1) (nil)
+2) (nil)
+3) (nil)
+
+# Check the command without any member
+# We get an empty array
+127.0.0.1:6379> geohash bigboxcity
+(empty array)
+
+# Pass a wrong non existing key
+# we get an empty array
+127.0.0.1:6379> geohash wrongkey
+(empty array)
+
+# Pass wrong key and wrong members
+# Returns (nil) for all those members
+127.0.0.1:6379> geohash wrongkey membera memberb memberc
+1) (nil)
+2) (nil)
+3) (nil)
+
+# Set string value
+127.0.0.1:6379> set bigboxstr "some string here"
+OK
+
+# Try to use GEOHASH with some key that is not a geindex
+# We get an error, for using key of wrong type
+127.0.0.1:6379> geohash bigboxstr abc
+(error) WRONGTYPE Operation against a key holding the wrong kind of value

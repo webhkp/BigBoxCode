@@ -50,6 +50,19 @@
 1) 1) "2.35221952199935913"
    2) "48.85661220395509474"
 
+# Add a member with empty string
+127.0.0.1:6379> geoadd bigboxcity -87.629799 41.878113 ""
+(integer) 1
+
+# Check members
+127.0.0.1:6379> zrange bigboxcity 0 -1
+1) ""
+2) "Rome"
+3) "Paris"
+4) "Bangkok"
+5) "Hong Kong"
+6) "Tokyo"
+
 # Try to use value that is out of range
 # We get an error, which indicates vlaue is out of range
 127.0.0.1:6379> geoadd bigboxcity 200 80 "Out of range"
