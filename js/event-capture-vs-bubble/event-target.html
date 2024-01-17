@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>BigBoxCode Event Target in Bubble and Capture</title>
+  </head>
+  <body>
+    <div id="parent">
+      <button id="child">Big Box Button</button>
+    </div>
+  </body>
+  <script>
+    const parentElement = document.getElementById("parent");
+    const childElement = document.getElementById("child");
+
+    // Add a click event listener to the child element
+    childElement.addEventListener("click", (e) => {
+      console.log(
+        "Click event triggered for - child (button) || Event triggered from source: ",
+        e.target
+      );
+    });
+
+    // Add a click evnet listener to the parent element
+    parentElement.addEventListener("click", (e) => {
+      console.log(
+        "Click event triggered for - parent (div) || Event triggered from source: ",
+        e.target
+      );
+    });
+
+    // Add a click event listener to the body
+    document.body.addEventListener("click", (e) => {
+      console.log(
+        "Click event triggered for - body || Event triggered from source: ",
+        e.target
+      );
+    });
+
+    // Add a click evnet listener to the document
+    document.addEventListener("click", (e) => {
+      console.log(
+        "Click event triggered for - document || Event triggered from source: ",
+        e.target
+      );
+    });
+  </script>
+</html>

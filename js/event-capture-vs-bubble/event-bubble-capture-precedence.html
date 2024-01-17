@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>BigBoxCode Event Bubble and Capture Precedence</title>
+  </head>
+  <body>
+    <div id="parent">
+      <button id="child">Big Box Button</button>
+    </div>
+  </body>
+  <script>
+    const parentElement = document.getElementById("parent");
+    const childElement = document.getElementById("child");
+
+    // Add a click event listener to the child element
+    // This one has bubbling enabled
+    childElement.addEventListener("click", (e) => {
+      console.log(
+        "Click event triggered for - child (button) [ Event Bubbling ]"
+      );
+    });
+
+    // Add another click event listener to the child element
+    // This one has capturing enabled
+    childElement.addEventListener(
+      "click",
+      (e) => {
+        console.log(
+          "Click event triggered for - child (button) [ Event Capturing ]"
+        );
+      },
+      true // Capturing is enabled for this
+    );
+
+    // Add a click evnet listener to the parent element
+    // This one has bubbling enabled
+    parentElement.addEventListener("click", (e) => {
+      console.log(
+        "Click event triggered for - parent (div) [ Event Bubbling ]"
+      );
+    });
+
+    // Add a click evnet listener to the parent element
+    // This one has capturing enabled
+    parentElement.addEventListener(
+      "click",
+      (e) => {
+        console.log(
+          "Click event triggered for - parent (div) [ Event Capturing ]"
+        );
+      },
+      true // Capturing is enabled for this
+    );
+
+    // Add a click event listener to the body
+    // This one has bubbling enabled
+    document.body.addEventListener("click", (e) => {
+      console.log("Click event triggered for - body [ Event Bubbling ]");
+    });
+
+    // Add a click event listener to the body
+    // This one has capturing enabled
+    document.body.addEventListener(
+      "click",
+      (e) => {
+        console.log("Click event triggered for - body [ Event Capturing ]");
+      },
+      true // Capturing is enabled for this
+    );
+
+    // Add a click evnet listener to the document
+    // This one has bubbling enabled
+    document.addEventListener("click", (e) => {
+      console.log("Click event triggered for - document [ Event Bubbling ]");
+    });
+
+    // Add a click evnet listener to the document
+    // This one has capturing enabled
+    document.addEventListener(
+      "click",
+      (e) => {
+        console.log("Click event triggered for - document [ Event Capturing ]");
+      },
+      true // Capturing is enabled for this
+    );
+  </script>
+</html>
