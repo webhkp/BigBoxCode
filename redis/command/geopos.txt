@@ -1,0 +1,87 @@
+# Redis GEOPOS command examples
+
+# Add members to a geo index named bigboxcity
+127.0.0.1:6379> geoadd bigboxcity 2.352222 48.856613 Paris 100.501762 13.756331 Bangkok 114.109497 22.396427 "Hong Kong" 139.691711 35.689487 Tokyo 12.496365 41.902782 Rome
+(integer) 5
+
+# Check members saved in bigboxcity
+127.0.0.1:6379> zrange bigboxcity 0 -1
+1) "Rome"
+2) "Paris"
+3) "Bangkok"
+4) "Hong Kong"
+5) "Tokyo"
+
+# Check geopos of a single member
+127.0.0.1:6379> geopos bigboxcity Paris
+1) 1) "2.35221952199935913"
+   2) "48.85661220395509474"
+
+# Check geopos of multiple members
+127.0.0.1:6379> geopos bigboxcity Rome "Hong Kong" Tokyo Paris Bangkok
+1) 1) "12.49636620283126831"
+   2) "41.90278213378983452"
+2) 1) "114.10949438810348511"
+   2) "22.39642736199028406"
+3) 1) "139.69171196222305298"
+   2) "35.68948605865241319"
+4) 1) "2.35221952199935913"
+   2) "48.85661220395509474"
+5) 1) "100.50176292657852173"
+   2) "13.75633095031508191"
+
+# Check geopos of multiple members
+# But pass one non existing member name 
+# We get (nil) for the non existing member
+127.0.0.1:6379> geopos bigboxcity Rome "Hong Kong" Tokyo WrongMemberValueHere Bangkok
+1) 1) "12.49636620283126831"
+   2) "41.90278213378983452"
+2) 1) "114.10949438810348511"
+   2) "22.39642736199028406"
+3) 1) "139.69171196222305298"
+   2) "35.68948605865241319"
+4) (nil)
+5) 1) "100.50176292657852173"
+   2) "13.75633095031508191"
+
+# Using the same member multiple times will return the position multiple times
+127.0.0.1:6379> geopos bigboxcity Tokyo Tokyo Tokyo
+1) 1) "139.69171196222305298"
+   2) "35.68948605865241319"
+2) 1) "139.69171196222305298"
+   2) "35.68948605865241319"
+3) 1) "139.69171196222305298"
+   2) "35.68948605865241319"
+
+# Check geopos of a non existing members
+# (nil) is returned for the non existing members
+127.0.0.1:6379> geopos bigboxcity wrongmember1 wrongmember2 wrongmember3
+1) (nil)
+2) (nil)
+3) (nil)
+
+# Check the command without any member
+# We get an empty array
+127.0.0.1:6379> geopos bigboxcity
+(empty array)
+
+# Pass a wrong non existing key
+# we get an empty array
+127.0.0.1:6379> geopos wrongkey
+(empty array)
+
+# Pass wrong key and wrong members
+# Returns (nil) for all those members
+127.0.0.1:6379> geopos wrongkey membera memberb memberc
+1) (nil)
+2) (nil)
+3) (nil)
+
+# Set string value
+127.0.0.1:6379> set bigboxstr "some string here"
+OK
+
+# Try to use GEOHASH with some key that is not a geindex
+# We get an error, for using key of wrong type
+127.0.0.1:6379> geopos bigboxstr abc
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
