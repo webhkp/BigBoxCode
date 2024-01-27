@@ -1,0 +1,130 @@
+# Redis GEOSEARCH command examples
+
+# Add members to a geo index named bigboxcity
+127.0.0.1:6379> geoadd bigboxcity 2.352222 48.856613 Paris 100.501762 13.756331 Bangkok 114.109497 22.396427 "Hong Kong" 139.691711 35.689487 Tokyo 12.496365 41.902782 Rome
+(integer) 5
+
+# Check members saved in bigboxcity
+127.0.0.1:6379> zrange bigboxcity 0 -1
+1) "Rome"
+2) "Paris"
+3) "Bangkok"
+4) "Hong Kong"
+5) "Tokyo"
+
+# Check cities in a certeain size rectagle from Paris
+127.0.0.1:6379> geosearch bigboxcity frommember Paris bybox 21500 20000 km
+1) "Rome"
+2) "Paris"
+3) "Bangkok"
+
+# Check cities in 9700KM radius from Paris
+127.0.0.1:6379> geosearch bigboxcity frommember Paris byradius 9700 km
+1) "Rome"
+2) "Paris"
+3) "Bangkok"
+4) "Hong Kong"
+
+# Search location and get additional information like coordinates, distance, width
+127.0.0.1:6379> geosearch bigboxcity frommember Paris byradius 9700 km withcoord withdist withhash
+1) 1) "Rome"
+   2) "1105.5914"
+   3) (integer) 3480343273965391
+   4) 1) "12.49636620283126831"
+      2) "41.90278213378983452"
+2) 1) "Paris"
+   2) "0.0000"
+   3) (integer) 3663832779125283
+   4) 1) "2.35221952199935913"
+      2) "48.85661220395509474"
+3) 1) "Bangkok"
+   2) "9445.7597"
+   3) (integer) 3962257436268857
+   4) 1) "100.50176292657852173"
+      2) "13.75633095031508191"
+4) 1) "Hong Kong"
+   2) "9618.5790"
+   3) (integer) 4046429669534462
+   4) 1) "114.10949438810348511"
+      2) "22.39642736199028406"
+
+# Search location by distance from certain longitude and latitude
+127.0.0.1:6379> geosearch bigboxcity fromlonlat 114.109497 22.3982 byradius 9000 km withcoord withdist withhash
+1) 1) "Bangkok"
+   2) "1728.5852"
+   3) (integer) 3962257436268857
+   4) 1) "100.50176292657852173"
+      2) "13.75633095031508191"
+2) 1) "Hong Kong"
+   2) "0.1972"
+   3) (integer) 4046429669534462
+   4) 1) "114.10949438810348511"
+      2) "22.39642736199028406"
+3) 1) "Tokyo"
+   2) "2880.1615"
+   3) (integer) 4171231230197033
+   4) 1) "139.69171196222305298"
+      2) "35.68948605865241319"
+
+# Use COUNT option to limit the number of results
+127.0.0.1:6379> geosearch bigboxcity fromlonlat 114.109497 22.3982 byradius 9000 km withcoord withdist withhash count 2
+1) 1) "Hong Kong"
+   2) "0.1972"
+   3) (integer) 4046429669534462
+   4) 1) "114.10949438810348511"
+      2) "22.39642736199028406"
+2) 1) "Bangkok"
+   2) "1728.5852"
+   3) (integer) 3962257436268857
+   4) 1) "100.50176292657852173"
+      2) "13.75633095031508191"
+
+# Use ASC options to order assinding by disance
+127.0.0.1:6379> geosearch bigboxcity fromlonlat 114.109497 22.3982  byradius 9000 km withcoord withdist withhash count 2 ASC
+1) 1) "Hong Kong"
+   2) "0.1972"
+   3) (integer) 4046429669534462
+   4) 1) "114.10949438810348511"
+      2) "22.39642736199028406"
+2) 1) "Bangkok"
+   2) "1728.5852"
+   3) (integer) 3962257436268857
+   4) 1) "100.50176292657852173"
+      2) "13.75633095031508191"
+
+# Use DESC options to order desinding by disance
+127.0.0.1:6379> geosearch bigboxcity fromlonlat 114.109497 22.3982  byradius 9000 km withcoord withdist withhash count 2 DESC
+1) 1) "Tokyo"
+   2) "2880.1615"
+   3) (integer) 4171231230197033
+   4) 1) "139.69171196222305298"
+      2) "35.68948605865241319"
+2) 1) "Bangkok"
+   2) "1728.5852"
+   3) (integer) 3962257436268857
+   4) 1) "100.50176292657852173"
+      2) "13.75633095031508191"
+
+# Use non existing key
+# We get empty array
+127.0.0.1:6379> geosearch wrongkey frommember Paris bybox 21500 20000 km
+(empty array)
+
+# Use non existing member name
+# We get an error
+127.0.0.1:6379> geosearch bigboxcity frommember wrongmember bybox 21500 20000 km
+(error) ERR could not decode requested zset member
+
+# Use wrong key and wrong member name
+# We get empty array
+127.0.0.1:6379> geosearch wrongkey frommember wrongmember bybox 21500 20000 km
+(empty array)
+
+# Set a string
+127.0.0.1:6379> set bigboxstr "some str here"
+OK
+
+# Try to use a key that is not a geoindex
+# We get an error
+127.0.0.1:6379> geosearch bigboxstr fromlonlat 114.109497 22.3982 byradius 9000 km
+(error) WRONGTYPE Operation against a key holding the wrong kind of value

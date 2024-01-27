@@ -81,9 +81,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPush", "..\RPush\RPush.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoDist", "..\GeoDist\GeoDist.csproj", "{2CCA7913-9065-4E6D-8946-1906C719C937}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoHash", "..\GeoHash\GeoHash.csproj", "{F1B28AD7-158F-4A67-81D4-5423D12F44D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoHash", "..\GeoHash\GeoHash.csproj", "{F1B28AD7-158F-4A67-81D4-5423D12F44D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoPos", "..\GeoPos\GeoPos.csproj", "{CC2CF6A0-63D3-4893-AE67-03A203E35E19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoPos", "..\GeoPos\GeoPos.csproj", "{CC2CF6A0-63D3-4893-AE67-03A203E35E19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoSearch", "..\GeoSearch\GeoSearch.csproj", "{D810C7D6-65D8-4A4D-B90E-1124E9C0DCC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -255,6 +257,10 @@ Global
 		{CC2CF6A0-63D3-4893-AE67-03A203E35E19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC2CF6A0-63D3-4893-AE67-03A203E35E19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC2CF6A0-63D3-4893-AE67-03A203E35E19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D810C7D6-65D8-4A4D-B90E-1124E9C0DCC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D810C7D6-65D8-4A4D-B90E-1124E9C0DCC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D810C7D6-65D8-4A4D-B90E-1124E9C0DCC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D810C7D6-65D8-4A4D-B90E-1124E9C0DCC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
