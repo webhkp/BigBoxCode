@@ -37,7 +37,7 @@ bigboxcode> db.customer.insertMany([
   }
 ])
 
-
+output>
 {
   acknowledged: true,
   insertedIds: {
@@ -50,6 +50,8 @@ bigboxcode> db.customer.insertMany([
 
 # Find all document from cutomer collection
 bigboxcode> db.customer.find()
+
+output>
 [
   {
     _id: ObjectId('65a8a2077de99c6d115fb6e5'),
@@ -91,6 +93,8 @@ bigboxcode> db.customer.find()
 
 # Apply fitler where age=29
 bigboxcode> db.customer.find({age: 29})
+
+output>
 [
   {
     _id: ObjectId('65a8a2077de99c6d115fb6e7'),
@@ -108,6 +112,8 @@ bigboxcode> db.customer.find({age: 29})
 
 # Apply filter where age >= 29
 bigboxcode> db.customer.find({age: {$gte: 29}})
+
+output>
 [
   {
     _id: ObjectId('65a8a2077de99c6d115fb6e6'),
@@ -137,6 +143,8 @@ bigboxcode> db.customer.find({age: {$gte: 29}})
 
 # Use $or operator for the query filter
 bigboxcode> db.customer.find({$or: [{age: {$gt: 29}}, {"address.postalCode": "81007"}]})
+
+output>
 [
   {
     _id: ObjectId('65a8a2077de99c6d115fb6e5'),
@@ -166,6 +174,8 @@ bigboxcode> db.customer.find({$or: [{age: {$gt: 29}}, {"address.postalCode": "81
 
 # Set projection to get name and phone only
 bigboxcode> db.customer.find({}, { name: 1, phone: true})
+
+output>
 [
   {
     _id: ObjectId('65a8a2077de99c6d115fb6e5'),
@@ -186,6 +196,8 @@ bigboxcode> db.customer.find({}, { name: 1, phone: true})
 
 # Set projection to ignore name and phone field
 bigboxcode> db.customer.find({}, { name: false, phone: 0})
+
+output>
 [
   {
     _id: ObjectId('65a8a2077de99c6d115fb6e5'),
@@ -221,6 +233,8 @@ bigboxcode> db.customer.find({}, { name: false, phone: 0})
 
 # Ignore nested property inside address
 bigboxcode> db.customer.find({}, {"address.city": 0, age: 0, "address.street": false})
+
+output>
 [
   {
     _id: ObjectId('65a8a2077de99c6d115fb6e5'),
@@ -244,6 +258,8 @@ bigboxcode> db.customer.find({}, {"address.city": 0, age: 0, "address.street": f
 
 # Sort by age in assending order
 bigboxcode> db.customer.find().sort({age: 1})
+
+output>
 {
   _id: ObjectId("65b82c3618683e2d785ca6d1"),
   name: 'Izabella Conroy',
@@ -283,6 +299,8 @@ bigboxcode> db.customer.find().sort({age: 1})
 
 # Sort by age in descending order
 bigboxcode> db.customer.find().sort({age: -1})
+
+output>
 {
   _id: ObjectId("65b82c3618683e2d785ca6d2"),
   name: 'Alisa Parker',
@@ -322,6 +340,8 @@ bigboxcode> db.customer.find().sort({age: -1})
 
 # Apply limit
 bigboxcode> db.customer.find().sort({age: 1}).limit(2)
+
+output>
 {
   _id: ObjectId("65b82c3618683e2d785ca6d1"),
   name: 'Izabella Conroy',
@@ -349,6 +369,8 @@ bigboxcode> db.customer.find().sort({age: 1}).limit(2)
 
 # Skip certain results
 bigboxcode> db.customer.find().sort({age: 1}).skip(2).limit(2)
+
+output>
 {
   _id: ObjectId("65b82c3618683e2d785ca6d2"),
   name: 'Alisa Parker',
