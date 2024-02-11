@@ -1,0 +1,72 @@
+# MongoDB db.collection.insertOne() method demo
+
+# Insert one document
+bigboxcode> db.customer.insertOne({
+    name: "john doe", 
+    age: 34
+})
+
+output:
+{
+  acknowledged: true,
+  insertedId: ObjectId('65c4de9e2d7236b44a64547e')
+}
+
+
+# Insert document with _id defined
+bigboxcode> db.customer.insertOne({
+    _id: 99, 
+    name: "Leatha Ledner", 
+    age: 54
+})
+
+output:
+{ 
+    acknowledged: true, 
+    insertedId: 99
+}
+
+
+# Try to add a document with an existing _id
+# We get an error
+bigboxcode> db.customer.insertOne({
+    _id: 99, 
+    name: "Sophia Gray", 
+    age: 25
+})
+
+output:
+MongoServerError: E11000 duplicate key error collection: bigboxcode.customer index: _id_ dup key: { _id: 99 }
+
+# Provide writeConcern to insertOne
+bigboxcode> db.customer.insertOne({
+    _id: 100, 
+    name: "Sophia Gray", 
+    age: 25
+}, {writeConcern: {w: "majority", wtimeout: 100}})
+
+output:
+{ 
+    acknowledged: true, 
+    insertedId: 100 
+}
+
+# Insert nested document
+bigboxcode> db.customer.insertOne({
+    name: "Devonte Greenholt", 
+    dob: ISODate("1976-01-12T06:00:00Z"), 
+    address: { 
+        street: "1114 Edmonton Trail NE", 
+        city: "Calgary", 
+        state: "Alberta", 
+        zip: "T2E 0Z2", 
+        phone: "(403) 277-3408", 
+        country: "canada"
+    }
+})
+
+output:
+{
+  acknowledged: true,
+  insertedId: ObjectId('65c709112d7236b44a64547f')
+}
