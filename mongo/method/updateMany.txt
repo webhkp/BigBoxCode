@@ -1,0 +1,151 @@
+# MongoDB db.collection.updateMany() method demo
+
+# Insert some documents
+bigboxcode> db.customer.insertMany([
+  {
+    "name": "Izabella Conroy",
+    "age": 19,
+    "phone": "108-679-2154",
+    "address": {
+      "street": "11 North Vineyard Drive",
+      "city": "Minneapolis",
+      "state": "Minnesota",
+      "postalCode": "19426",
+      "country": "US"
+    },
+    "profileCompletenessScore": 30
+  },
+  {
+    "name": "Lambert Purdy",
+    "age": 28,
+    "phone": "(610) 489-3633",
+    "address": {
+      "street": "305 2nd Ave",
+      "city": "Collegeville",
+      "state": "Minnesota",
+      "postalCode": "81007",
+      "country": "US"
+    },
+    "profileCompletenessScore": 40
+  },
+  {
+    "name": "Alisa Parker",
+    "age": 72,
+    "phone": "768-319-1054",
+    "address": {
+      "street": "8532 Ingalls Circle",
+      "city": "Arvada",
+      "state": "CO",
+      "postalCode": "80003",
+      "country": "CA"
+    },
+    "profileCompletenessScore": 60
+  },
+  {
+    "name": "Eloise Weber",
+    "age": 29,
+    "phone": "618-357-2104",
+    "address": {
+      "street": "632 Belmar Drive",
+      "city": "Edmond",
+      "state": "OK",
+      "postalCode": "73025",
+      "country": "CA"
+    },
+    "profileCompletenessScore": 80
+  }
+])
+
+output>
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('65d9ab2b339803ed78702c18'),
+    '1': ObjectId('65d9ab2b339803ed78702c19'),
+    '2': ObjectId('65d9ab2b339803ed78702c1a'),
+    '3': ObjectId('65d9ab2b339803ed78702c1b')
+  }
+}
+
+
+# Update based on country and state
+# Update phone number and set latitude, longitude
+bigboxcode> db.customer.updateMany(
+  {"address.country": "US", "address.state": "Minnesota"},
+  {$set: {"phone": "(310) 794-7217", "latitude": 34.061106, "longitude": -118.447428}}
+)
+
+output>
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+
+
+# Check if age and location exists
+# Increase profileCompletenessScore
+bigboxcode> db.customer.updateMany(
+  {age: {$exists: true}, latitude: {$exists: true}},
+  {$inc: {profileCompletenessScore: 20}}
+)
+
+output>
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+
+
+# Check by name
+# Try to set state, and increase profileCompletenessScore
+# Nothing updated as the named does not exist
+bigboxcode> db.customer.updateMany(
+  {name: "non existing name"},
+  {$set: {"address.state": "NY"}, $inc: {profileCompletenessScore: 20}}
+)
+
+output>
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+
+# Check by name
+# set upsert=true
+# document created as the named does not exist
+bigboxcode> db.customer.updateMany(
+  {name: "non existing name"},
+  {$set: {"address.state": "NY"}, $inc: {profileCompletenessScore: 20}},
+  {upsert: true}
+)
+
+output>
+{
+  acknowledged: true,
+  insertedId: ObjectId('65d9b38f3fe0144bdabd2bb2'),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+
+
+# Check the recently created(upserted) data
+bigboxcode> db.customer.findOne(ObjectId('65d9b38f3fe0144bdabd2bb2'))
+
+output>
+{
+  _id: ObjectId('65d9b38f3fe0144bdabd2bb2'),
+  name: 'non existing name',
+  address: { state: 'NY' },
+  profileCompletenessScore: 20
+}
