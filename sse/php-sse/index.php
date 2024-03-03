@@ -1,4 +1,6 @@
 <?php
+// index.php
+
 require 'vendor/autoload.php';
 
 $redisClient = new Predis\Client([
@@ -30,6 +32,14 @@ foreach ($pubsub as $message) {
     flush();
 }
 
+// Unsubscribe
 $pubsub->unsubscribe('message_update');
 
+
+// Required in some cases
+// This helps to cleanup and preven protocol deserialization
+unset($pubsub);
+
+// Disconnect redis
 $redisClient->disconnect();
+
