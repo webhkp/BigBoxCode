@@ -1,14 +1,12 @@
 <?php
 require 'vendor/autoload.php';
 
-
 $redisClient = new Predis\Client([
     'scheme' => 'tcp',
-    'host'   => 'localhost',
-    'port'   => 6379,
+    'host' => 'localhost',
+    'port' => 6379,
 ]);
 
-set_time_limit(0);
 header('Content-Type: text/event-stream');
 header('Connection: keep-alive');
 header('Cache-Control: no-store');
@@ -19,15 +17,12 @@ $pubsub = $redisClient->pubSubLoop();
 $pubsub->subscribe('message_update');
 
 foreach ($pubsub as $message) {
-    switch ($message->kind) {
-        case 'subscribe':
-            $data = "Subscribed to {$message->channel}\n";
-            break;
-
-        case 'message':
-            $data = date('Y-m-d H:i:s') . ": " . $message->payload;
-            break;
-    }
+    // Switch can be used here, if you prefer
+    // in place of match
+    $data = match ($message->kind) {
+        'subscribe' => "Subscribed to {$message->channel}\n",
+        'message' => date('Y-m-d H:i:s') . ": " . $message->payload,
+    };
 
     echo "data: " . $data . "\n\n";
 
@@ -35,4 +30,6 @@ foreach ($pubsub as $message) {
     flush();
 }
 
-unset($pubsub);
+$pubsub->unsubscribe('message_update');
+
+$redisClient->disconnect();
