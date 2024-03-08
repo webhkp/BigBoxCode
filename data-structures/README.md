@@ -24,165 +24,165 @@ Let's explore the data structures in detail-
         <td>Array</td>
         <td>Array Details</td>
         <td>Pseudocode</td>
-        <td>JS Impleentation Details</td>
-        <td>JS Code</td>
-        <td>JS Demo</td>
-        <td>JS Test</td>
-        <td>TS Impleentation Details</td>
-        <td>TS Code</td>
-        <td>TS Demo</td>
-        <td>TS Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
     </tr>
     <tr>
         <td>List</td>
         <td>List Details</td>
         <td>Pseudocode</td>
-        <td>JS Impleentation Details</td>
-        <td>JS Code</td>
-        <td>JS Demo</td>
-        <td>JS Test</td>
-        <td>TS Impleentation Details</td>
-        <td>TS Code</td>
-        <td>TS Demo</td>
-        <td>TS Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
     </tr>
     <tr>
         <td>Stack</td>
         <td>Stack Details</td>
         <td>Pseudocode</td>
-        <td>JS Impleentation Details</td>
-        <td>JS Code</td>
-        <td>JS Demo</td>
-        <td>JS Test</td>
-        <td>TS Impleentation Details</td>
-        <td>TS Code</td>
-        <td>TS Demo</td>
-        <td>TS Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
     </tr>
     <tr>
         <td>Queue</td>
         <td>Queue Details</td>
         <td>Pseudocode</td>
-        <td>JS Impleentation Details</td>
-        <td>JS Code</td>
-        <td>JS Demo</td>
-        <td>JS Test</td>
-        <td>TS Impleentation Details</td>
-        <td>TS Code</td>
-        <td>TS Demo</td>
-        <td>TS Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
     </tr>
     <tr>
         <td>Dequeue</td>
         <td>Double-Ended Queue Details</td>
         <td>Pseudocode</td>
-        <td>JS Impleentation Details</td>
-        <td>JS Code</td>
-        <td>JS Demo</td>
-        <td>JS Test</td>
-        <td>TS Impleentation Details</td>
-        <td>TS Code</td>
-        <td>TS Demo</td>
-        <td>TS Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
     </tr>
     <tr>
         <td rowspan="2"><a href="">Linked List</a></td>
         <td><a href="">Singly Linked List</a></td>
         <td>Pseudocode</td>
-        <td>JS Impleentation Details</td>
-        <td><a href="">JS Code</a></td>
-        <td><a href="">JS Demo</a></td>
-        <td><a href="">JS Test</a></td>
-        <td>TS Impleentation Details</td>
-        <td><a href="">TS Code</a></td>
-        <td><a href="">TS Demo</a></td>
-        <td><a href="">TS Test</a></td>
+        <td>Details</td>
+        <td><a href="">Code</a></td>
+        <td><a href="">Demo</a></td>
+        <td><a href="">Test</a></td>
+        <td>Details</td>
+        <td><a href="">Code</a></td>
+        <td><a href="">Demo</a></td>
+        <td><a href="">Test</a></td>
     </tr>
     <tr>
         <td><a href="">Doubly Linked List</a></td>
         <td>Pseudocode</td>
-        <td>JS Impleentation Details</td>
-        <td><a href="">JS Code</a></td>
-        <td><a href="">JS Demo</a></td>
-        <td><a href="">JS Test</a></td>
-        <td>TS Impleentation Details</td>
-        <td><a href="">TS Code</a></td>
-        <td><a href="">TS Demo</a></td>
-        <td><a href="">TS Test</a></td>
+        <td>Details</td>
+        <td><a href="">Code</a></td>
+        <td><a href="">Demo</a></td>
+        <td><a href="">Test</a></td>
+        <td>Details</td>
+        <td><a href="">Code</a></td>
+        <td><a href="">Demo</a></td>
+        <td><a href="">Test</a></td>
     </tr>
     <tr>
         <td>Heap</td>
         <td>Heap Details</td>
         <td>Pseudocode</td>
-        <td>JS Impleentation Details</td>
-        <td>JS Code</td>
-        <td>JS Demo</td>
-        <td>JS Test</td>
-        <td>TS Impleentation Details</td>
-        <td>TS Code</td>
-        <td>TS Demo</td>
-        <td>TS Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
     </tr>
     <tr>
         <td>Priority Queue</td>
         <td>Priority Queue Details</td>
         <td>Pseudocode</td>
-        <td>JS Impleentation Details</td>
-        <td>JS Code</td>
-        <td>JS Demo</td>
-        <td>JS Test</td>
-        <td>TS Impleentation Details</td>
-        <td>TS Code</td>
-        <td>TS Demo</td>
-        <td>TS Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
     </tr>
     <tr>
         <td>Tree</td>
         <td>Tree Details</td>
         <td>Pseudocode</td>
-        <td>JS Impleentation Details</td>
-        <td>JS Code</td>
-        <td>JS Demo</td>
-        <td>JS Test</td>
-        <td>TS Impleentation Details</td>
-        <td>TS Code</td>
-        <td>TS Demo</td>
-        <td>TS Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
     </tr><tr>
         <td>Dictionary</td>
         <td>Dictionary Details</td>
         <td>Pseudocode</td>
-        <td>JS Code</td>
-        <td>JS Demo</td>
-        <td>JS Test</td>
-        <td>TS Impleentation Details</td>
-        <td>TS Code</td>
-        <td>TS Demo</td>
-        <td>TS Test</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
     </tr><tr>
         <td>Hash Table</td>
         <td>Hash Table Details</td>
         <td>Pseudocode</td>
-        <td>JS Impleentation Details</td>
-        <td>JS Code</td>
-        <td>JS Demo</td>
-        <td>JS Test</td>
-        <td>TS Impleentation Details</td>
-        <td>TS Code</td>
-        <td>TS Demo</td>
-        <td>TS Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
     </tr><tr>
         <td>Set</td>
         <td>Set Details</td>
         <td>Pseudocode</td>
-        <td>JS Impleentation Details</td>
-        <td>JS Code</td>
-        <td>JS Demo</td>
-        <td>JS Test</td>
-        <td>TS Impleentation Details</td>
-        <td>TS Code</td>
-        <td>TS Demo</td>
-        <td>TS Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
+        <td>Details</td>
+        <td>Code</td>
+        <td>Demo</td>
+        <td>Test</td>
     </tr>
     
 </table>
