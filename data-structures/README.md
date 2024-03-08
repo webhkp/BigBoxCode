@@ -152,6 +152,7 @@ Let's explore the data structures in detail-
         <td>Dictionary</td>
         <td>Dictionary Details</td>
         <td>Pseudocode</td>
+        <td>Details</td>
         <td>Code</td>
         <td>Demo</td>
         <td>Test</td>
@@ -171,7 +172,8 @@ Let's explore the data structures in detail-
         <td>Code</td>
         <td>Demo</td>
         <td>Test</td>
-    </tr><tr>
+    </tr>
+    <tr>
         <td>Set</td>
         <td>Set Details</td>
         <td>Pseudocode</td>
