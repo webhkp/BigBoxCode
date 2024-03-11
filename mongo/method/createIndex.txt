@@ -1,0 +1,344 @@
+# MongoDB db.collection.createIndex() method demo
+
+# Create unique index
+# email => ascending
+bigboxcode> db.customer.createIndex({email: 1}, {unique: true})
+
+output:
+email_1
+
+
+# Check indexes
+bigboxcode> db.customer.getIndexes()
+
+output:
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { email: 1 }, name: 'email_1', unique: true }
+]
+
+
+# Set index with name
+# name => ascending
+bigboxcode> db.customer.createIndex({name: 1}, {name: "my_name_idx"})
+
+output:
+my_name_idx
+
+# Check indexes
+bigboxcode> db.customer.getIndexes()
+
+output:
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { email: 1 }, name: 'email_1', unique: true },
+  { v: 2, key: { name: 1 }, name: 'my_name_idx' }
+]
+
+# Set index
+# address.country => ascending
+# address.state => ascending
+# address.zipcode => hashed
+bigboxcode> db.customer.createIndex({"address.country": 1, "address.state" : 1, "address.zipcode" : "hashed"})
+
+output:
+address.country_1_address.state_1_address.zipcode_hashed
+
+# Check indexes
+bigboxcode> db.customer.getIndexes()
+
+output:
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { email: 1 }, name: 'email_1', unique: true },
+  { v: 2, key: { name: 1 }, name: 'my_name_idx' },
+  {
+    v: 2,
+    key: {
+      'address.country': 1,
+      'address.state': 1,
+      'address.zipcode': 'hashed'
+    },
+    name: 'address.country_1_address.state_1_address.zipcode_hashed'
+  }
+]
+
+
+# Insert some documents
+bigboxcode> db.customer.insertMany([
+  {
+    "name": "Izabella Conroy",
+    "email": "izabella.conroy@hotmail.com",
+    "age": 19,
+    "phone": "108-679-2154",
+    "address": {
+      "street": "11 North Vineyard Drive",
+      "city": "Minneapolis",
+      "state": "Minnesota",
+      "postalCode": "19426",
+      "country": "US"
+    },
+    "profileCompletenessScore": 30
+  },
+  {
+    "name": "Lambert Purdy",
+    "email": "lambert@gmail.com",
+    "age": 28,
+    "phone": "(610) 489-3633",
+    "address": {
+      "street": "305 2nd Ave",
+      "city": "Collegeville",
+      "state": "Minnesota",
+      "postalCode": "81007",
+      "country": "US"
+    },
+    "profileCompletenessScore": 40
+  },
+  {
+    "name": "Alisa Parker",
+    "email": "alisa@example.com",
+    "age": 72,
+    "phone": "768-319-1054",
+    "address": {
+      "street": "8532 Ingalls Circle",
+      "city": "Arvada",
+      "state": "CO",
+      "postalCode": "80003",
+      "country": "CA"
+    },
+    "profileCompletenessScore": 60
+  },
+  {
+    "name": "Eloise Weber",
+    "email": "weber@example.com",
+    "age": 29,
+    "phone": "618-357-2104",
+    "address": {
+      "street": "632 Belmar Drive",
+      "city": "Edmond",
+      "state": "OK",
+      "postalCode": "73025",
+      "country": "CA"
+    },
+    "profileCompletenessScore": 80
+  }
+])
+
+output:
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('65ed9fb6c48992542d0273e4'),
+    '1': ObjectId('65ed9fb6c48992542d0273e5'),
+    '2': ObjectId('65ed9fb6c48992542d0273e6'),
+    '3': ObjectId('65ed9fb6c48992542d0273e7')
+  }
+}
+
+# Expalain find query
+bigboxcode> db.customer.find({"email": "lambert@gmail.com"}).explain()
+
+output:
+{
+  explainVersion: '2',
+  queryPlanner: {
+    namespace: 'bigboxcode.customer',
+    indexFilterSet: false,
+    parsedQuery: { email: { '$eq': 'lambert@gmail.com' } },
+    queryHash: 'B9CE814D',
+    planCacheKey: 'F305ACEB',
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    winningPlan: {
+      queryPlan: {
+        stage: 'FETCH',
+        planNodeId: 2,
+        inputStage: {
+          stage: 'IXSCAN',
+          planNodeId: 1,
+          keyPattern: { email: 1 },
+          indexName: 'email_1',
+          isMultiKey: false,
+          multiKeyPaths: { email: [] },
+          isUnique: true,
+          isSparse: false,
+          isPartial: false,
+          indexVersion: 2,
+          direction: 'forward',
+          indexBounds: { email: [ '["lambert@gmail.com", "lambert@gmail.com"]' ] }
+        }
+      },
+      slotBasedPlan: {
+        slots: '$$RESULT=s11 env: { s1 = TimeZoneDatabase(Africa/Lagos...America/Atikokan) (timeZoneDB), s10 = {"email" : 1}, s2 = Nothing (SEARCH_META), s5 = KS(3C6C616D6265727440676D61696C2E636F6D000104), s3 = 1710072329812 (NOW), s6 = KS(3C6C616D6265727440676D61696C2E636F6D00FE04) }',
+        stages: '[2] nlj inner [] [s4, s7, s8, s9, s10] \n' +
+          '    left \n' +
+          '        [1] cfilter {(exists(s5) && exists(s6))} \n' +
+          '        [1] ixseek s5 s6 s9 s4 s7 s8 [] @"ab70d0c8-768d-4727-ba98-bcddf07b3a0e" @"email_1" true \n' +
+          '    right \n' +
+          '        [2] limit 1 \n' +
+          '        [2] seek s4 s11 s12 s7 s8 s9 s10 [] @"ab70d0c8-768d-4727-ba98-bcddf07b3a0e" true false \n'
+      }
+    },
+    rejectedPlans: []
+  },
+  command: {
+    find: 'customer',
+    filter: { email: 'lambert@gmail.com' },
+    '$db': 'bigboxcode'
+  },
+  serverInfo: {
+    host: 'f50c92e32d6b',
+    port: 27017,
+    version: '7.0.4',
+    gitVersion: '38f3e37057a43d2e9f41a39142681a76062d582e'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeEngine'
+  },
+  ok: 1
+}
+
+
+# Expain a find query and checke used index
+bigboxcode> db.customer.find({"address.country": "US"}).explain()
+
+output:
+{
+  explainVersion: '2',
+  queryPlanner: {
+    namespace: 'bigboxcode.customer',
+    indexFilterSet: false,
+    parsedQuery: { 'address.country': { '$eq': 'US' } },
+    queryHash: '7F4E5F2D',
+    planCacheKey: '7FA5F99E',
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    winningPlan: {
+      queryPlan: {
+        stage: 'FETCH',
+        planNodeId: 2,
+        inputStage: {
+          stage: 'IXSCAN',
+          planNodeId: 1,
+          keyPattern: {
+            'address.country': 1,
+            'address.state': 1,
+            'address.zipcode': 'hashed'
+          },
+          indexName: 'address.country_1_address.state_1_address.zipcode_hashed',
+          isMultiKey: false,
+          isUnique: false,
+          isSparse: false,
+          isPartial: false,
+          indexVersion: 2,
+          direction: 'forward',
+          indexBounds: {
+            'address.country': [ '["US", "US"]' ],
+            'address.state': [ '[MinKey, MaxKey]' ],
+            'address.zipcode': [ '[MinKey, MaxKey]' ]
+          }
+        }
+      },
+      slotBasedPlan: {
+        slots: '$$RESULT=s11 env: { s1 = TimeZoneDatabase(Africa/Lagos...America/Atikokan) (timeZoneDB), s10 = {"address.country" : 1, "address.state" : 1, "address.zipcode" : "hashed"}, s2 = Nothing (SEARCH_META), s5 = KS(3C5553000A0A0104), s3 = 1710072246189 (NOW), s6 = KS(3C555300F0F0FE04) }',
+        stages: '[2] nlj inner [] [s4, s7, s8, s9, s10] \n' +
+          '    left \n' +
+          '        [1] cfilter {(exists(s5) && exists(s6))} \n' +
+          '        [1] ixseek s5 s6 s9 s4 s7 s8 [] @"ab70d0c8-768d-4727-ba98-bcddf07b3a0e" @"address.country_1_address.state_1_address.zipcode_hashed" true \n' +
+          '    right \n' +
+          '        [2] limit 1 \n' +
+          '        [2] seek s4 s11 s12 s7 s8 s9 s10 [] @"ab70d0c8-768d-4727-ba98-bcddf07b3a0e" true false \n'
+      }
+    },
+    rejectedPlans: []
+  },
+  command: {
+    find: 'customer',
+    filter: { 'address.country': 'US' },
+    '$db': 'bigboxcode'
+  },
+  serverInfo: {
+    host: 'f50c92e32d6b',
+    port: 27017,
+    version: '7.0.4',
+    gitVersion: '38f3e37057a43d2e9f41a39142681a76062d582e'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeEngine'
+  },
+  ok: 1
+}
+
+
+# Check expalin output when there is no index
+bigboxcode> db.customer.find({profileCompletenessScore: {$gt: 50}}).explain()
+
+output:
+{
+  explainVersion: '2',
+  queryPlanner: {
+    namespace: 'bigboxcode.customer',
+    indexFilterSet: false,
+    parsedQuery: { profileCompletenessScore: { '$gt': 50 } },
+    queryHash: '641EB697',
+    planCacheKey: '85D689DF',
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    winningPlan: {
+      queryPlan: {
+        stage: 'COLLSCAN',
+        planNodeId: 1,
+        filter: { profileCompletenessScore: { '$gt': 50 } },
+        direction: 'forward'
+      },
+      slotBasedPlan: {
+        slots: '$$RESULT=s5 env: { s1 = TimeZoneDatabase(Africa/Lagos...America/Atikokan) (timeZoneDB), s7 = 50, s2 = Nothing (SEARCH_META), s3 = 1710072480130 (NOW) }',
+        stages: '[1] filter {traverseF(s4, lambda(l1.0) { ((l1.0 > s7) ?: false) }, false)} \n' +
+          '[1] scan s5 s6 none none none none lowPriority [s4 = profileCompletenessScore] @"ab70d0c8-768d-4727-ba98-bcddf07b3a0e" true false '
+      }
+    },
+    rejectedPlans: []
+  },
+  command: {
+    find: 'customer',
+    filter: { profileCompletenessScore: { '$gt': 50 } },
+    '$db': 'bigboxcode'
+  },
+  serverInfo: {
+    host: 'f50c92e32d6b',
+    port: 27017,
+    version: '7.0.4',
+    gitVersion: '38f3e37057a43d2e9f41a39142681a76062d582e'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeEngine'
+  },
+  ok: 1
+}
