@@ -1,0 +1,57 @@
+# MongoDB db.collection.getIndexes() method demo
+
+# Create unique index
+# email => ascending
+bigboxcode> db.customer.createIndex({email: 1}, {unique: true})
+
+output:
+email_1
+
+# Set index with name
+# name => ascending
+bigboxcode> db.customer.createIndex({name: 1}, {name: "my_name_idx"})
+
+output:
+my_name_idx
+
+# Set index
+# address.country => ascending
+# address.state => ascending
+# address.zipcode => hashed
+bigboxcode> db.customer.createIndex({"address.country": 1, "address.state" : 1, "address.zipcode" : "hashed"})
+
+output:
+address.country_1_address.state_1_address.zipcode_hashed
+
+# Create hidden index
+bigboxcode> db.customer.createIndex({profileCompletenessScore: 1}, {hidden: true})
+
+output:
+profileCompletenessScore_1
+
+
+# Check the indexess of customer collection
+bigboxcode> db.customer.getIndexes()
+
+output:
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { email: 1 }, name: 'email_1', unique: true },
+  { v: 2, key: { name: 1 }, name: 'my_name_idx' },
+  {
+    v: 2,
+    key: {
+      'address.country': 1,
+      'address.state': 1,
+      'address.zipcode': 'hashed'
+    },
+    name: 'address.country_1_address.state_1_address.zipcode_hashed'
+  },
+  {
+    v: 2,
+    key: { profileCompletenessScore: 1 },
+    name: 'profileCompletenessScore_1',
+    hidden: true
+  }
+]
+
