@@ -1,7 +1,7 @@
 {
   "name": "bigboxcodeds",
   "version": "1.0.0",
-  "description": "Data structures for BigBoxCode.com",
+  "description": "Data structures for BigBoxCode.com in JavaScript",
   "main": "index.js",
   "type": "module",
   "jest": {

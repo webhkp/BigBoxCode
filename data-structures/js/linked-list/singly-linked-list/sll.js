@@ -1,6 +1,8 @@
 // sll.js
 // Singly linked list in JavaScript
 
+
+// Node class for storing data and reference to the next node
 class Node {
   constructor(data) {
     this.data = data;
@@ -8,6 +10,7 @@ class Node {
   }
 }
 
+// Singly Linked List class
 class SinglyLinkedList {
   constructor() {
     this.head = null;
