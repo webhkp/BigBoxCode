@@ -1,8 +1,9 @@
-// sll.js
-// Singly linked list in JavaScript
+// sll.ts
+// Singly linked list in TypeScript
 
+
+// Node class for storing data and reference to the next node
 class Node<T> {
-  // Node class for storing data and reference to the next node
   data: T;
   next: Node<T> | null;
 
@@ -12,8 +13,8 @@ class Node<T> {
   }
 }
 
+// Singly Linked List class
 class SinglyLinkedList<T> {
-  // Singly Linked List class
   public head: Node<T> | null;
   public tail: Node<T> | null;
   public length: number;

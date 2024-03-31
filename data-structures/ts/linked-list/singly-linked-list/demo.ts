@@ -1,4 +1,4 @@
-// demo.js
+// demo.ts
 import SinglyLinkedList from "./sll";
 
 // Create a new Singly Linked List

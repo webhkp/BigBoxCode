@@ -1,4 +1,4 @@
-// sll.test.js
+// sll.test.ts
 import { describe, it, beforeEach, expect } from 'vitest';
 import SinglyLinkedList from "./sll";
 
