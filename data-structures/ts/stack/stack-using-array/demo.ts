@@ -1,8 +1,8 @@
-// demo.js
-import Stack from "./stack.js";
+// demo.ts
+import Stack from "./stack";
 
 // Create a new Stack
-let bigboxStack = new Stack();
+let bigboxStack = new Stack<string>();
 
 console.log("\n\n----------- Stack Push example -----------\n");
 

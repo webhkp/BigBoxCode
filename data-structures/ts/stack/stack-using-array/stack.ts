@@ -1,23 +1,22 @@
-// stack.js
-// Implementation of stack using array
+// stack.ts
 
-class Stack {
+class Stack<T> {
+  private stackItems: T[];
+
   constructor() {
     this.stackItems = [];
   }
 
-  push(data) {
+  push(data: T): number {
     this.stackItems.push(data);
-
     return this.stackItems.length;
   }
 
-  pop() {
+  pop(): T | null {
     if (this.stackItems.length === 0) {
       return null; // Or return your expected empty value
     }
-
-    return this.stackItems.pop();
+    return this.stackItems.pop()!;
   }
 }
 

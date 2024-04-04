@@ -1,13 +1,13 @@
-// stack.test.js
+// stack.test.ts
 import { describe, it, beforeEach, expect } from "vitest";
 import Stack from "./stack";
 
 describe("Stack using array", () => {
   describe("Push item to Stack", () => {
-    let stack;
+    let stack: Stack<string>;
 
     beforeEach(() => {
-      stack = new Stack();
+      stack = new Stack<string>();
     });
 
     it("Should push items correctly", () => {
@@ -26,10 +26,10 @@ describe("Stack using array", () => {
   });
 
   describe("Pop item from Stack", () => {
-    let stack;
+    let stack: Stack<string>;
 
     beforeEach(() => {
-      stack = new Stack();
+      stack = new Stack<string>();
 
       // Push some items first
       stack.push("Big");
