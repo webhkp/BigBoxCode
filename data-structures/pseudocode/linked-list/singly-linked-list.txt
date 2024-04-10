@@ -1,0 +1,197 @@
+class Node:
+    // Class properties
+    var data
+    var next
+
+    constructor(data):
+        this.data = data
+        this.next = null
+    end constructor
+    
+end class
+
+class SinglyLinkedList:
+    // Class properties
+    head
+    tail
+    length
+
+    // Initialize class property values
+    constructor():
+        this.head = null
+        this.tail = null
+        this.length = 0
+    end constructor
+
+    // Push item to list
+    function push(data):
+        node = new Node(data)
+        if this.head is null:
+            this.head = node
+        else:
+            this.tail.next = node
+        end if
+        
+        this.tail = node
+        this.length++
+        
+        return this
+    end function
+
+    // Pop item from list
+    function pop():
+        if this.head is null:
+            return null
+        end if
+        
+        current = this.head
+        newTail = current
+        
+        while current.next is not null:
+            newTail = current
+            current = current.next
+        end while
+        
+        this.tail = newTail
+        this.tail.next = null
+        this.length--
+        
+        if this.length is 0:
+            this.head = null
+            this.tail = null
+        end if
+        
+        return current
+    end function
+
+    // Traverse full list
+    function traverse():
+        current = this.head
+        while current is not null:
+            output current.data
+            current = current.next
+        end while
+        
+    end function
+
+    // Shift the head node
+    function shift():
+        if this.head is null:
+            return null
+        end if
+        
+        currHead = this.head
+        this.head = currHead.next
+        this.length--
+        
+        if this.length is 0:
+            this.head = null
+            this.tail = null
+        end if
+        return currHead
+    end function
+
+    // Unshift the head node and add new node as head
+    function unshift(value):
+        newHead = new Node(value)
+        
+        if this.head is null:
+            this.tail = newHead
+        else:
+            newHead.next = this.head
+        end if
+            
+        this.head = newHead
+        this.length++
+        
+        return this
+    end function
+
+    // Get a node by index
+    function get(index):
+        if index < 0 or index >= this.length:
+            return null
+        selectedNode = this.head
+        for i from 1 to index:
+            selectedNode = selectedNode.next
+        return selectedNode
+    end function
+
+    // Set node data at specific index
+    function set(index, data):
+        nodeAtIndex = this.get(index)
+        if nodeAtIndex is not null:
+            nodeAtIndex.data = data
+            return true
+        return false
+    end function
+
+    // Insert a new node at a specific index
+    function insert(index, data):
+        if index < 0 or index > this.length:
+            return false
+        end if
+        
+        if index is this.length:
+            this.push(data)
+            return true
+        end if
+        
+        if index is 0:
+            this.unshift(data)
+            return true
+        end if
+        
+        newNode = new Node(data)
+        prevNode = this.get(index - 1)
+        newNode.next = prevNode.next
+        prevNode.next = newNode
+        
+        this.length++
+        
+        return true
+    end function
+
+    // Rmove a node at specific index
+    function remove(index):
+        if index < 0 or index >= this.length:
+            return undefined
+        end if
+        
+        if index is 0:
+            return this.shift()
+        end if
+        
+        if index is this.length - 1:
+            return this.pop()
+        end if
+        
+        prevNode = this.get(index - 1)
+        removedNode = prevNode.next
+        prevNode.next = prevNode.next.next
+        
+        this.length--
+        
+        return removedNode
+    end function
+
+    // Reverse the linked list
+    function reverse():
+        currentNode = this.head
+        prevNode = null
+        nextNode = null
+        
+        while currentNode is not null:
+            nextNode = currentNode.next
+            currentNode.next = prevNode
+            prevNode = currentNode
+            currentNode = nextNode
+        end while
+        
+        this.tail = this.head
+        this.head = prevNode
+        
+        return this
+    end function
+    
+end class

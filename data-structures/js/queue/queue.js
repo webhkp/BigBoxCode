@@ -1,4 +1,4 @@
-// queye.js
+// queue.js
 // Implementation of Queue
 
 class Node {

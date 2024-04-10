@@ -35,7 +35,7 @@ class Stack<T> {
     return this.size;
   }
 
-  pop(): T|null {
+  pop(): T | null {
     if (!this.top) {
       return null; // Or return your expected empty value
     }
