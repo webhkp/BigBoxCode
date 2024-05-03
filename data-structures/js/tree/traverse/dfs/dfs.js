@@ -64,6 +64,46 @@ class DfsTree {
 
     return data;
   }
+
+  dfsPostorder() {
+    let data = [];
+
+    const traverse = (node) => {
+      if (node.left) {
+        traverse(node.left);
+      }
+
+      if (node.right) {
+        traverse(node.right);
+      }
+
+      data.push(node);
+    };
+
+    traverse(this.root);
+
+    return data;
+  }
+
+  dfsInorder() {
+    let data = [];
+
+    const traverse = (node) => {
+      if (node.left) {
+        traverse(node.left);
+      }
+
+      data.push(node);
+      
+      if (node.right) {
+        traverse(node.right);
+      }
+    };
+
+    traverse(this.root);
+
+    return data;
+  }
 }
 
 export default DfsTree;
