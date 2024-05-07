@@ -1,4 +1,4 @@
-// mbh.test.js
+// pq.test.js
 import { describe, it, beforeEach, expect } from "vitest";
 import PriorityQueue from "./pq";
 
