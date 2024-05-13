@@ -30,6 +30,8 @@ class Graph {
 
   // Add edge to graph
   addEdge(vertex1, vertex2) {
+    // Checking required
+
     this.adjacencyList[vertex1].push(vertex2);
     this.adjacencyList[vertex2].push(vertex1);
   }
@@ -42,6 +44,52 @@ class Graph {
     this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
       (v) => v !== vertex1
     );
+  }
+
+  // Depth first search for nodes
+  dfs(start) {
+    const result = [];
+    const visited = {start: true};
+    const stack = [start];
+
+    while(stack.length) {
+      const currentVertex = stack.pop();
+      result.push(currentVertex);
+
+      for (const neightbor of this.adjacencyList[currentVertex]) {
+        if(!visited[neightbor]) {
+          visited[neightbor] = true;
+
+          stack.push(neightbor);
+        }
+      }
+    }
+
+    return result;
+  }
+
+  // Depth First Search for the nodes
+  // Using recursion
+  dfsRecursive(start) {
+    const result = [];
+    const visited = {};
+
+    (function processDfs(adjacencyList, vertex) {
+      if (!vertex) {
+        return null;
+      }
+
+      visited[vertex] = true;
+      result.push(vertex);
+
+      for (let neighbor of adjacencyList[vertex]) {
+        if (!visited[neighbor]) {
+          processDfs(adjacencyList, neighbor);
+        }
+      }
+    })(this.adjacencyList, start);
+
+    return result;
   }
 }
 
