@@ -33,7 +33,7 @@ describe("Graph", () => {
   });
 
   describe("Add edge to graph", () => {
-    beforeEach(() => {
+    it("Should have correct edges", () => {
       graph.addEdge("Paris", "Tokyo");
       graph.addEdge("Paris", "Rome");
       graph.addEdge("Paris", "London");
@@ -42,9 +42,7 @@ describe("Graph", () => {
       graph.addEdge("Berlin", "Moscow");
       graph.addEdge("Berlin", "London");
       graph.addEdge("Moscow", "London");
-    });
 
-    it("Should have correct edge length", () => {
       expect(graph.adjacencyList.Paris).toMatchObject([
         "Tokyo",
         "Rome",
@@ -61,6 +59,43 @@ describe("Graph", () => {
         "Berlin",
         "Moscow",
       ]);
+    });
+  });
+
+  describe("Remove edge from graph", () => {
+    beforeEach(() => {
+      graph.addEdge("Paris", "Tokyo");
+      graph.addEdge("Paris", "Rome");
+      graph.addEdge("Paris", "London");
+      graph.addEdge("Tokyo", "London");
+      graph.addEdge("Rome", "London");
+      graph.addEdge("Berlin", "Moscow");
+      graph.addEdge("Berlin", "London");
+      graph.addEdge("Moscow", "London");
+    });
+
+    it("Should have correct edges", () => {
+      graph.removeEdge("Paris", "Tokyo");
+      graph.removeEdge("Tokyo", "London");
+      graph.removeEdge("Moscow", "Berlin");
+
+      expect(graph.adjacencyList.Paris).toMatchObject(["Rome", "London"]);
+      expect(graph.adjacencyList.Rome).toMatchObject(["Paris", "London"]);
+      expect(graph.adjacencyList.Moscow).toMatchObject(["London"]);
+      expect(graph.adjacencyList.London).toMatchObject([
+        "Paris",
+        "Rome",
+        "Berlin",
+        "Moscow",
+      ]);
+    });
+  });
+
+  describe("Remove vertex from graph", () => {
+    it("Should have correct edges", () => {
+      graph.removeVertex("Berlin");
+
+      expect(graph.adjacencyList.Berlin).toBeUndefined();
     });
   });
 });
