@@ -221,7 +221,8 @@ class DoublyLinkedList {
 
     node.next = null;
     node.previous = null;
-
+    this.length--;
+    
     return node;
   }
 }
