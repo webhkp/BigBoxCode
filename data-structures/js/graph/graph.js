@@ -49,15 +49,15 @@ class Graph {
   // Depth first search for nodes
   dfs(start) {
     const result = [];
-    const visited = {start: true};
+    const visited = { [start]: true };
     const stack = [start];
 
-    while(stack.length) {
-      const currentVertex = stack.pop();
+    while (stack.length) {
+      const currentVertex = stack.pop(); // Only difference between BFS and DFS is this line
       result.push(currentVertex);
 
       for (const neightbor of this.adjacencyList[currentVertex]) {
-        if(!visited[neightbor]) {
+        if (!visited[neightbor]) {
           visited[neightbor] = true;
 
           stack.push(neightbor);
@@ -88,6 +88,28 @@ class Graph {
         }
       }
     })(this.adjacencyList, start);
+
+    return result;
+  }
+
+  // Breadth first search
+  bfs(start) {
+    const result = [];
+    const visited = { [start]: true };
+    const stack = [start];
+
+    while (stack.length) {
+      const currentVertex = stack.shift(); // Only difference between BFS and DFS is this line
+      result.push(currentVertex);
+
+      for (const neightbor of this.adjacencyList[currentVertex]) {
+        if (!visited[neightbor]) {
+          visited[neightbor] = true;
+
+          stack.push(neightbor);
+        }
+      }
+    }
 
     return result;
   }

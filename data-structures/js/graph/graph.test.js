@@ -98,4 +98,84 @@ describe("Graph", () => {
       expect(graph.adjacencyList.Berlin).toBeUndefined();
     });
   });
+
+  describe("Traverse graph nodes using DFS", () => {
+    beforeEach(() => {
+      graph.addEdge("Paris", "Tokyo");
+      graph.addEdge("Paris", "Rome");
+      graph.addEdge("Paris", "London");
+      graph.addEdge("Tokyo", "London");
+      graph.addEdge("Rome", "London");
+      graph.addEdge("Berlin", "Moscow");
+      graph.addEdge("Berlin", "London");
+      graph.addEdge("Moscow", "London");
+    });
+
+    it("Should traverse the graph correctly", () => {
+      expect(graph.dfs("London")).toMatchObject([
+        "London",
+        "Moscow",
+        "Berlin",
+        "Rome",
+        "Tokyo",
+        "Paris",
+      ]);
+      expect(graph.dfs("Moscow")).toMatchObject([
+        "Moscow",
+        "London",
+        "Rome",
+        "Tokyo",
+        "Paris",
+        "Berlin",
+      ]);
+      expect(graph.dfs("Tokyo")).toMatchObject([
+        "Tokyo",
+        "London",
+        "Moscow",
+        "Berlin",
+        "Rome",
+        "Paris",
+      ]);
+    });
+  });
+
+  describe("Traverse graph nodes using BFS", () => {
+    beforeEach(() => {
+      graph.addEdge("Paris", "Tokyo");
+      graph.addEdge("Paris", "Rome");
+      graph.addEdge("Paris", "London");
+      graph.addEdge("Tokyo", "London");
+      graph.addEdge("Rome", "London");
+      graph.addEdge("Berlin", "Moscow");
+      graph.addEdge("Berlin", "London");
+      graph.addEdge("Moscow", "London");
+    });
+
+    it("Should traverse the graph correctly", () => {
+      expect(graph.bfs("London")).toMatchObject([
+        "London",
+        "Paris",
+        "Tokyo",
+        "Rome",
+        "Berlin",
+        "Moscow",
+      ]);
+      expect(graph.bfs("Moscow")).toMatchObject([
+        "Moscow",
+        "Berlin",
+        "London",
+        "Paris",
+        "Tokyo",
+        "Rome",
+      ]);
+      expect(graph.bfs("Tokyo")).toMatchObject([
+        "Tokyo",
+        "Paris",
+        "London",
+        "Rome",
+        "Berlin",
+        "Moscow",
+      ]);
+    });
+  });
 });

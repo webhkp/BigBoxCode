@@ -49,6 +49,13 @@ console.log("DFS starting from Moscow: ", bigBoxGraph.dfsRecursive('Moscow'));
 console.log("DFS starting from Tokyo: ", bigBoxGraph.dfsRecursive('Tokyo'));
 
 
+console.log("\n---------- Graph - BFS example -----------\n");
+
+console.log("BFS starting from London: ", bigBoxGraph.bfs('London'));
+console.log("BFS starting from Moscow: ", bigBoxGraph.bfs('Moscow'));
+console.log("BFS starting from Tokyo: ", bigBoxGraph.bfs('Tokyo'));
+
+
 console.log("\n---------- Graph - Remove Edge example -----------\n");
 
 bigBoxGraph.removeEdge('Paris', 'Tokyo');
@@ -64,5 +71,3 @@ console.log("\n---------- Graph - Remove Vertex example -----------\n");
 bigBoxGraph.removeVertex('Berlin');
 
 console.log(bigBoxGraph.adjacencyList);
-
-
