@@ -39,7 +39,7 @@ class DoublyLinkedList {
     // Increase the length by 1
     this.length++;
 
-    // Return the SinglyLinkedList
+    // Return the DoublyLinkedList
     return this;
   }
 
@@ -121,7 +121,7 @@ class DoublyLinkedList {
     // Increase the length by 1
     this.length++;
 
-    // Return the SinglyLinkedList
+    // Return the DoublyLinkedList
     return this;
   }
 

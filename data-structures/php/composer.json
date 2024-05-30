@@ -1,0 +1,16 @@
+{
+    "name": "webhkp/bigboxcode",
+    "description": "Data structures in PHP",
+    "type": "library",
+    "require-dev": {
+        "pestphp/pest": "^2.34"
+    },
+    "autoload": {
+        "psr-4": {"DataStructure\\": "src/"}
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
