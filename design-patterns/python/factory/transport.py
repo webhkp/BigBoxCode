@@ -54,12 +54,14 @@ class TransportFactory:
         transport_type = transport_type.lower()
         if transport_type == "bike":
             return Bike()
-        elif transport_type == "car":
+
+        if transport_type == "car":
             return Car()
-        elif transport_type == "plane":
+
+        if transport_type == "plane":
             return Plane()
-        else:
-            return None
+
+        return None
 
 
 # Demo usage

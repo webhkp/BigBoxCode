@@ -91,10 +91,13 @@ class RoadTransportFactory(TransportFactory):
     def get_transport(self, name: str) -> Transport:
         if name.lower() == "car":
             return Car()
-        elif name.lower() == "bike":
+
+        if name.lower() == "bike":
             return Bike()
-        elif name.lower() == "bus":
+
+        if name.lower() == "bus":
             return Bus()
+
         return None
 
 
@@ -102,8 +105,10 @@ class AirTransportFactory(TransportFactory):
     def get_transport(self, name: str) -> Transport:
         if name.lower() == "plane":
             return Plane()
-        elif name.lower() == "helicopter":
+
+        if name.lower() == "helicopter":
             return Helicopter()
+
         return None
 
 
