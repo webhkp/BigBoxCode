@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 
 # File Operation interface
-class FileOp:
+class FileOp(ABC):
     @abstractmethod
     def read_file(self) -> str:
         pass
