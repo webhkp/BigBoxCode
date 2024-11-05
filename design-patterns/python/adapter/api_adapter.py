@@ -13,7 +13,7 @@ class FileOp(ABC):
 
 
 # File operation class implementing File operation interface
-class FileOperation:
+class FileOperation(FileOp):
     def __init__(self, file_name: str) -> None:
         self.file_name = file_name
 
