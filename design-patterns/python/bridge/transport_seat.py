@@ -9,13 +9,13 @@ class Seat(Protocol):
 
 
 # BusinessClassSeat class
-class BusinessClassSeat:
+class BusinessClassSeat(Seat):
     def select_seat(self) -> None:
         print("Select a Business class seat")
 
 
 # EconomyClassSeat class
-class EconomyClassSeat:
+class EconomyClassSeat(Seat):
     def select_seat(self) -> None:
         print("Select an Economy class seat")
 
