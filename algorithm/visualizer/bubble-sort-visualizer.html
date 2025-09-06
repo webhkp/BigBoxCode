@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Sort Visualizer</title>
+    <style>
+        input,
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+
+        #container {
+            display: flex;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .block {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #333;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            background-color: #f0f0f0;
+            position: relative;
+            transition: transform 0.8s ease, background-color 0.8s ease;
+        }
+
+        .highlight {
+            background-color: #ffeb3b;
+        }
+
+        .swap {
+            background-color: #34d399;
+        }
+
+        .sorted {
+            background-color: #60a5fa;
+        }
+
+        .arrow {
+            position: absolute;
+            top: -25px;
+            font-size: 24px;
+            color: red;
+            transition: left 0.8s ease;
+        }
+
+        #log {
+            max-height: 150px;
+            overflow-y: auto;
+            width: 100%;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 14px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h2>Bubble Sort Visualizer</h2>
+    <input type="text" id="numbers" value="5,3,8,4,2,7,1,9,6">
+    <button id="startBtn" onclick="startSort()">Start Sorting</button>
+    <button id="resetBtn" onclick="resetSort()">Reset</button>
+    <div id="container"></div>
+    <div id="log"></div>
+</body>
+<script>
+    let blocks = [];
+    let originalArr = [];
+    let arrows = [];
+    let stopSorting = false;
+
+    function createBlocks(arr) {
+        const container = document.getElementById('container');
+        container.innerHTML = '';
+        blocks = arr.map(num => {
+            const block = document.createElement('div');
+            block.classList.add('block');
+            block.textContent = num;
+            container.appendChild(block);
+            return block;
+        });
+        arrows = [document.createElement('div'), document.createElement('div')];
+        arrows.forEach(arrow => {
+            arrow.classList.add('arrow');
+            arrow.textContent = '⬇';
+            container.appendChild(arrow);
+        });
+    }
+
+    function logStep(message) {
+        const logDiv = document.getElementById('log');
+        const p = document.createElement('div');
+        p.textContent = message;
+        logDiv.appendChild(p);
+        logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    async function startSort() {
+        document.getElementById('startBtn').disabled = true;
+        stopSorting = false;
+        const input = document.getElementById('numbers').value;
+        let arr = input.split(',').map(x => parseInt(x.trim())).filter(x => !isNaN(x));
+        originalArr = arr.slice();
+        createBlocks(arr);
+        await bubbleSort(arr);
+        if (!stopSorting) logStep(`Sorting completed: ${arr.join(', ')}`);
+        document.getElementById('startBtn').disabled = false;
+    }
+
+    function resetSort() {
+        stopSorting = true;
+        document.getElementById('startBtn').disabled = false;
+        createBlocks(originalArr);
+        document.getElementById('log').innerHTML = '';
+    }
+
+    async function bubbleSort(arr) {
+        const n = arr.length;
+        for (let i = 0; i < n - 1; i++) {
+            for (let j = 0; j < n - i - 1; j++) {
+                if (stopSorting) return;
+                blocks[j].classList.add('highlight');
+                blocks[j + 1].classList.add('highlight');
+                positionArrows(j, j + 1);
+                logStep(`Step ${i * (n - 1) + j + 1}: Comparing ${arr[j]} and ${arr[j + 1]}`);
+                await sleep(1500);
+
+                if (stopSorting) return;
+                if (arr[j] > arr[j + 1]) {
+                    [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                    blocks[j].classList.add('swap');
+                    blocks[j + 1].classList.add('swap');
+                    logStep(`Step ${i * (n - 1) + j + 1}: Swapping ${arr[j]} and ${arr[j + 1]}`);
+                    await swapBlocks(j, j + 1);
+                    [blocks[j], blocks[j + 1]] = [blocks[j + 1], blocks[j]];
+                    blocks[j].classList.remove('swap');
+                    blocks[j + 1].classList.remove('swap');
+                }
+
+                blocks[j].classList.remove('highlight');
+                blocks[j + 1].classList.remove('highlight');
+            }
+            if (stopSorting) return;
+            blocks[n - i - 1].classList.add('sorted');
+        }
+        if (!stopSorting) blocks[0].classList.add('sorted');
+    }
+
+    function positionArrows(i, j) {
+        const rect1 = blocks[i].getBoundingClientRect();
+        const rect2 = blocks[j].getBoundingClientRect();
+        const containerRect = document.getElementById('container').getBoundingClientRect();
+        arrows[0].style.left = (rect1.left - containerRect.left + rect1.width / 2 - 12) + 'px';
+        arrows[1].style.left = (rect2.left - containerRect.left + rect2.width / 2 - 12) + 'px';
+    }
+
+    async function swapBlocks(i, j) {
+        return new Promise(resolve => {
+            const block1 = blocks[i];
+            const block2 = blocks[j];
+            const container = document.getElementById('container');
+            const temp = document.createElement('div');
+            container.insertBefore(temp, block1);
+            container.insertBefore(block1, block2);
+            container.insertBefore(block2, temp);
+            container.removeChild(temp);
+            setTimeout(resolve, 1200);
+        });
+    }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+</script>
+
+</html>
