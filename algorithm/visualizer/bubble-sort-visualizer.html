@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,13 +13,18 @@
             font-size: 16px;
         }
 
-        #container {
+        #bbc-visualizer-wrapper {
+            border: 1px solid gray;
+            padding: 50px;
+        }
+
+        #bbc-visualizer-container {
             display: flex;
-            margin-top: 30px;
+            margin-top: 50px;
             position: relative;
         }
 
-        .block {
+        .bbc-visualizer-block {
             width: 50px;
             height: 50px;
             border: 2px solid #333;
@@ -32,19 +38,19 @@
             transition: transform 0.8s ease, background-color 0.8s ease;
         }
 
-        .highlight {
+        .bbc-visualizer-highlight {
             background-color: #ffeb3b;
         }
 
-        .swap {
+        .bbc-visualizer-swap {
             background-color: #34d399;
         }
 
-        .sorted {
+        .bbc-visualizer-sorted {
             background-color: #60a5fa;
         }
 
-        .arrow {
+        .bbc-visualizer-arrow {
             position: absolute;
             top: -25px;
             font-size: 24px;
@@ -52,7 +58,7 @@
             transition: left 0.8s ease;
         }
 
-        #log {
+        #bbc-visualizer-log {
             max-height: 150px;
             overflow-y: auto;
             width: 100%;
@@ -64,40 +70,67 @@
         }
     </style>
 </head>
+
 <body>
     <h2>Bubble Sort Visualizer</h2>
-    <input type="text" id="numbers" value="5,3,8,4,2,7,1,9,6">
-    <button id="startBtn" onclick="startSort()">Start Sorting</button>
-    <button id="resetBtn" onclick="resetSort()">Reset</button>
-    <div id="container"></div>
-    <div id="log"></div>
+
+    <div id="bbc-visualizer-wrapper">
+        <label for="bbc-visualizer-numbers">Enter numbers to sort (comma separated):</label>
+        <input type="text" id="bbc-visualizer-numbers" value="5,3,8,4,2,7,1,9,6">
+        <div style="font-size:13px; color:#555; margin-bottom:10px;">
+            Enter integers separated by commas(Example: 5,3,8,4,2,7,1,9,6).
+            <br />
+            Click 'Start Sorting' to visualize bubble sort.
+            <br />
+            Click 'Reset' to clear and re-enter numbers.
+        </div>
+        <button id="bbc-visualizer-startBtn" onclick="toggleSort()">Start Sorting</button>
+        <button id="bbc-visualizer-resetBtn" onclick="resetSort()">Reset</button>
+        <div id="bbc-visualizer-container"></div>
+        <div id="bbc-visualizer-log">Bubble Sort Visualizer Logs...</div>
+    </div>
 </body>
 <script>
     let blocks = [];
     let originalArr = [];
     let arrows = [];
     let stopSorting = false;
+    let isPaused = false;
+    let sortingInProgress = false;
+    
+    function toggleSort() {
+        const btn = document.getElementById('bbc-visualizer-startBtn');
+        if (!sortingInProgress) {
+            startSort();
+        } else if (!isPaused) {
+            isPaused = true;
+            btn.textContent = 'Resume Sorting';
+        } else {
+            isPaused = false;
+            btn.textContent = 'Stop Sorting';
+        }
+    }
 
     function createBlocks(arr) {
-        const container = document.getElementById('container');
+        const container = document.getElementById('bbc-visualizer-container');
         container.innerHTML = '';
         blocks = arr.map(num => {
             const block = document.createElement('div');
-            block.classList.add('block');
+            block.classList.add('bbc-visualizer-block');
             block.textContent = num;
             container.appendChild(block);
             return block;
         });
         arrows = [document.createElement('div'), document.createElement('div')];
         arrows.forEach(arrow => {
-            arrow.classList.add('arrow');
+            arrow.classList.add('bbc-visualizer-arrow');
             arrow.textContent = '⬇';
             container.appendChild(arrow);
         });
     }
 
     function logStep(message) {
-        const logDiv = document.getElementById('log');
+        const logDiv = document.getElementById('bbc-visualizer-log');
         const p = document.createElement('div');
         p.textContent = message;
         logDiv.appendChild(p);
@@ -105,22 +138,32 @@
     }
 
     async function startSort() {
-        document.getElementById('startBtn').disabled = true;
+        const btn = document.getElementById('bbc-visualizer-startBtn');
+        btn.textContent = 'Stop Sorting';
+        btn.disabled = false;
         stopSorting = false;
-        const input = document.getElementById('numbers').value;
+        isPaused = false;
+        sortingInProgress = true;
+        const input = document.getElementById('bbc-visualizer-numbers').value;
         let arr = input.split(',').map(x => parseInt(x.trim())).filter(x => !isNaN(x));
         originalArr = arr.slice();
         createBlocks(arr);
         await bubbleSort(arr);
         if (!stopSorting) logStep(`Sorting completed: ${arr.join(', ')}`);
-        document.getElementById('startBtn').disabled = false;
+        btn.textContent = 'Start Sorting';
+        sortingInProgress = false;
+        isPaused = false;
     }
 
     function resetSort() {
         stopSorting = true;
-        document.getElementById('startBtn').disabled = false;
+        isPaused = false;
+        sortingInProgress = false;
+        const btn = document.getElementById('bbc-visualizer-startBtn');
+        btn.textContent = 'Start Sorting';
+        btn.disabled = false;
         createBlocks(originalArr);
-        document.getElementById('log').innerHTML = '';
+        document.getElementById('bbc-visualizer-log').innerHTML = '';
     }
 
     async function bubbleSort(arr) {
@@ -128,8 +171,12 @@
         for (let i = 0; i < n - 1; i++) {
             for (let j = 0; j < n - i - 1; j++) {
                 if (stopSorting) return;
-                blocks[j].classList.add('highlight');
-                blocks[j + 1].classList.add('highlight');
+                while (isPaused) {
+                    await sleep(200);
+                    if (stopSorting) return;
+                }
+                blocks[j].classList.add('bbc-visualizer-highlight');
+                blocks[j + 1].classList.add('bbc-visualizer-highlight');
                 positionArrows(j, j + 1);
                 logStep(`Step ${i * (n - 1) + j + 1}: Comparing ${arr[j]} and ${arr[j + 1]}`);
                 await sleep(1500);
@@ -137,28 +184,28 @@
                 if (stopSorting) return;
                 if (arr[j] > arr[j + 1]) {
                     [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-                    blocks[j].classList.add('swap');
-                    blocks[j + 1].classList.add('swap');
+                    blocks[j].classList.add('bbc-visualizer-swap');
+                    blocks[j + 1].classList.add('bbc-visualizer-swap');
                     logStep(`Step ${i * (n - 1) + j + 1}: Swapping ${arr[j]} and ${arr[j + 1]}`);
                     await swapBlocks(j, j + 1);
                     [blocks[j], blocks[j + 1]] = [blocks[j + 1], blocks[j]];
-                    blocks[j].classList.remove('swap');
-                    blocks[j + 1].classList.remove('swap');
+                    blocks[j].classList.remove('bbc-visualizer-swap');
+                    blocks[j + 1].classList.remove('bbc-visualizer-swap');
                 }
 
-                blocks[j].classList.remove('highlight');
-                blocks[j + 1].classList.remove('highlight');
+                blocks[j].classList.remove('bbc-visualizer-highlight');
+                blocks[j + 1].classList.remove('bbc-visualizer-highlight');
             }
             if (stopSorting) return;
-            blocks[n - i - 1].classList.add('sorted');
+            blocks[n - i - 1].classList.add('bbc-visualizer-sorted');
         }
-        if (!stopSorting) blocks[0].classList.add('sorted');
+        if (!stopSorting) blocks[0].classList.add('bbc-visualizer-sorted');
     }
 
     function positionArrows(i, j) {
         const rect1 = blocks[i].getBoundingClientRect();
         const rect2 = blocks[j].getBoundingClientRect();
-        const containerRect = document.getElementById('container').getBoundingClientRect();
+        const containerRect = document.getElementById('bbc-visualizer-container').getBoundingClientRect();
         arrows[0].style.left = (rect1.left - containerRect.left + rect1.width / 2 - 12) + 'px';
         arrows[1].style.left = (rect2.left - containerRect.left + rect2.width / 2 - 12) + 'px';
     }
@@ -167,7 +214,7 @@
         return new Promise(resolve => {
             const block1 = blocks[i];
             const block2 = blocks[j];
-            const container = document.getElementById('container');
+            const container = document.getElementById('bbc-visualizer-container');
             const temp = document.createElement('div');
             container.insertBefore(temp, block1);
             container.insertBefore(block1, block2);
