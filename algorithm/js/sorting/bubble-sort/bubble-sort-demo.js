@@ -1,6 +1,6 @@
 import bubbleSort from "./bubble-sort.js";
 
-
+// Demo cases
 const demoCases = [
 	{ name: "Random order", arr: [5, 3, 8, 4, 2] },
 	{ name: "Already sorted", arr: [1, 2, 3, 4, 5] },
@@ -11,7 +11,7 @@ const demoCases = [
 ];
 
 demoCases.forEach(({ name, arr }) => {
-	const inputArr = [...arr]; // Copy to avoid mutation
+	const inputArr = [...arr];
 	const sortedArr = bubbleSort(inputArr);
 	console.log(`\nCase: ${name}`);
 	console.log("Input Array:", arr);

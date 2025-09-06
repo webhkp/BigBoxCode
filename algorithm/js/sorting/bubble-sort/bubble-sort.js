@@ -1,3 +1,8 @@
+/**
+ * Bubble Sort Algorithm
+ * @param {number[]} arr - The array to sort
+ * @returns {number[]} - The sorted array
+ */
 function bubbleSort(arr) {
     const n = arr.length;
     for (let i = 0; i < n - 1; i++) {
