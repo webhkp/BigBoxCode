@@ -9,22 +9,22 @@ function selectionSort(arr) {
     const n = arr.length;
 
     for (let i = 0; i < n - 1; i++) {
-        let indexOfSmallesElem = i;
+        let minElemIdx = i;
 
         for (let j = i + 1; j < n; j++) {
-            if (arr[j] < arr[indexOfSmallesElem]) {
-                indexOfSmallesElem = j;
+            if (arr[j] < arr[minElemIdx]) {
+                minElemIdx = j;
             }
         }
 
-        if (indexOfSmallesElem !== i) {
+        if (minElemIdx !== i) {
             // Swap using array destructuring
-            [arr[i], arr[indexOfSmallesElem]] = [arr[indexOfSmallesElem], arr[i]];
+            [arr[i], arr[minElemIdx]] = [arr[minElemIdx], arr[i]];
 
             // Or use a temporary variable
             // let temp = arr[i];
-            // arr[i] = arr[indexOfSmallesElem];
-            // arr[indexOfSmallesElem] = temp;
+            // arr[i] = arr[minElemIdx];
+            // arr[minElemIdx] = temp;
         }
     }
     
