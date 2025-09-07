@@ -18,10 +18,13 @@ function selectionSort(arr) {
         }
 
         if (indexOfSmallesElem !== i) {
-            // Swap arr[i] and arr[indexOfSmallesElem]
-            let temp = arr[i];
-            arr[i] = arr[indexOfSmallesElem];
-            arr[indexOfSmallesElem] = temp;
+            // Swap using array destructuring
+            [arr[i], arr[indexOfSmallesElem]] = [arr[indexOfSmallesElem], arr[i]];
+
+            // Or use a temporary variable
+            // let temp = arr[i];
+            // arr[i] = arr[indexOfSmallesElem];
+            // arr[indexOfSmallesElem] = temp;
         }
     }
     
