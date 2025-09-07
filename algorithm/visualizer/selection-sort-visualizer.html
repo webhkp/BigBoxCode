@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selection Sort Visualizer</title>
+    <style>
+        .bbc-visualizer-arrow-label {
+            font-weight: bold;
+            text-align: center;
+            width: 80px;
+            left: 0;
+            transform: translateX(-50%);
+        }
+        input,
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        #bbc-visualizer-wrapper {
+            border: 1px solid gray;
+            padding: 50px;
+        }
+        #bbc-visualizer-container {
+            display: flex;
+            margin: 80px 0;
+            position: relative;
+        }
+        .bbc-visualizer-block {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #333;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            background-color: #f0f0f0;
+            position: relative;
+            transition: transform 0.8s ease, background-color 0.8s ease;
+        }
+        .bbc-visualizer-highlight {
+            background-color: #ffeb3b;
+        }
+        .bbc-visualizer-min {
+            background-color: #f87171;
+        }
+        .bbc-visualizer-swap {
+            background-color: #34d399;
+        }
+        .bbc-visualizer-sorted {
+            background-color: #60a5fa;
+        }
+        .bbc-visualizer-arrow {
+            position: absolute;
+            top: -25px;
+            font-size: 24px;
+            color: red;
+            transition: left 0.8s ease;
+        }
+        .bbc-visualizer-bottom-arrow {
+            position: absolute;
+            bottom: -25px;
+            font-size: 24px;
+            color: blue;
+            left: 0;
+            transition: left 0.8s ease;
+        }
+        #bbc-visualizer-log {
+            max-height: 150px;
+            overflow-y: auto;
+            width: 100%;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 14px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h2>Selection Sort Visualizer</h2>
+    <div id="bbc-visualizer-wrapper">
+        <label for="bbc-visualizer-numbers">Enter numbers to sort (comma separated):</label>
+        <input type="text" id="bbc-visualizer-numbers" value="5,3,8,4,2,7,1,9,6">
+        <div style="font-size:13px; color:#555; margin-bottom:10px;">
+            Enter integers separated by commas(Example: 5,3,8,4,2,7,1,9,6).<br />
+            Click 'Start Sorting' to visualize selection sort.<br />
+            Click 'Reset' to clear and re-enter numbers.
+        </div>
+        <button id="bbc-visualizer-startBtn" onclick="toggleSort()">Start Sorting</button>
+        <button id="bbc-visualizer-resetBtn" onclick="resetSort()">Reset</button>
+        <div id="bbc-visualizer-container"></div>
+        <div id="bbc-visualizer-log">Selection Sort Visualizer Logs...</div>
+    </div>
+</body>
+<script>
+let blocks = [];
+let originalArr = [];
+let arrows = [];
+let stopSorting = false;
+let isPaused = false;
+let sortingInProgress = false;
+
+function toggleSort() {
+    const btn = document.getElementById('bbc-visualizer-startBtn');
+    if (!sortingInProgress) {
+        startSort();
+    } else if (!isPaused) {
+        isPaused = true;
+        btn.textContent = 'Resume Sorting';
+    } else {
+        isPaused = false;
+        btn.textContent = 'Stop Sorting';
+    }
+}
+
+function createBlocks(arr) {
+    const container = document.getElementById('bbc-visualizer-container');
+    container.innerHTML = '';
+    blocks = arr.map(num => {
+        const block = document.createElement('div');
+        block.classList.add('bbc-visualizer-block');
+        block.textContent = num;
+        container.appendChild(block);
+        return block;
+    });
+    arrows = [document.createElement('div'), document.createElement('div'), document.createElement('div')];
+    let arrowLabels = [null, null, document.createElement('div')];
+    arrows.forEach((arrow, idx) => {
+        arrow.classList.add('bbc-visualizer-arrow');
+        arrow.textContent = '⬇';
+        container.appendChild(arrow);
+        if (idx === 2) {
+            arrowLabels[2].classList.add('bbc-visualizer-arrow-label');
+            arrowLabels[2].style.position = 'absolute';
+            arrowLabels[2].style.top = '-70px';
+            arrowLabels[2].style.fontSize = '14px';
+            arrowLabels[2].style.color = '#333';
+            container.appendChild(arrowLabels[2]);
+        }
+    });
+    // Add bottom arrow for selection position
+    window.bottomArrow = document.createElement('div');
+    window.bottomArrow.classList.add('bbc-visualizer-bottom-arrow');
+    window.bottomArrow.textContent = '⬆';
+    container.appendChild(window.bottomArrow);
+    // Add label for bottom arrow
+    window.bottomArrowLabel = document.createElement('div');
+    window.bottomArrowLabel.classList.add('bbc-visualizer-arrow-label');
+    window.bottomArrowLabel.style.position = 'absolute';
+    window.bottomArrowLabel.style.bottom = '-55px';
+    window.bottomArrowLabel.style.fontSize = '14px';
+    window.bottomArrowLabel.style.color = '#333';
+    window.bottomArrowLabel.textContent = 'Selected Position';
+    container.appendChild(window.bottomArrowLabel);
+    window.arrowLabels = arrowLabels;
+}
+
+function logStep(message) {
+    const logDiv = document.getElementById('bbc-visualizer-log');
+    const p = document.createElement('div');
+    p.textContent = message;
+    logDiv.appendChild(p);
+    logDiv.scrollTop = logDiv.scrollHeight;
+}
+
+async function startSort() {
+    const btn = document.getElementById('bbc-visualizer-startBtn');
+    btn.textContent = 'Stop Sorting';
+    btn.disabled = false;
+    stopSorting = false;
+    isPaused = false;
+    sortingInProgress = true;
+    const input = document.getElementById('bbc-visualizer-numbers').value;
+    let arr = input.split(',').map(x => parseInt(x.trim())).filter(x => !isNaN(x));
+    originalArr = arr.slice();
+    createBlocks(arr);
+    await selectionSort(arr);
+    if (!stopSorting) logStep(`Sorting completed: ${arr.join(', ')}`);
+    btn.textContent = 'Start Sorting';
+    sortingInProgress = false;
+    isPaused = false;
+}
+
+function resetSort() {
+    stopSorting = true;
+    isPaused = false;
+    sortingInProgress = false;
+    const btn = document.getElementById('bbc-visualizer-startBtn');
+    btn.textContent = 'Start Sorting';
+    btn.disabled = false;
+    createBlocks(originalArr);
+    document.getElementById('bbc-visualizer-log').innerHTML = '';
+}
+
+async function selectionSort(arr) {
+    const n = arr.length;
+    for (let i = 0; i < n - 1; i++) {
+        let minIdx = i;
+        blocks[minIdx].classList.add('bbc-visualizer-min');
+        // Position bottom arrow at selection position for this cycle
+        positionBottomArrow(i);
+        for (let j = i + 1; j < n; j++) {
+            if (stopSorting) return;
+            while (isPaused) {
+                await sleep(200);
+                if (stopSorting) return;
+            }
+            blocks[j].classList.add('bbc-visualizer-highlight');
+            window.currentMinIdx = minIdx;
+            window.currentJ = j;
+            window.currentI = i;
+            positionArrows(minIdx, j, i, false); // Don't move bottom arrow here
+            logStep(`Step ${i * (n - 1) + j}: Comparing min (${arr[minIdx]}) and ${arr[j]}`);
+            await sleep(1200);
+            if (arr[j] < arr[minIdx]) {
+                blocks[minIdx].classList.remove('bbc-visualizer-min');
+                minIdx = j;
+                blocks[minIdx].classList.add('bbc-visualizer-min');
+                window.currentMinIdx = minIdx;
+                positionArrows(minIdx, j, i, false); // Don't move bottom arrow here
+                logStep(`New min found: ${arr[minIdx]} at index ${minIdx}`);
+            }
+            blocks[j].classList.remove('bbc-visualizer-highlight');
+        }
+        if (minIdx !== i) {
+            [arr[i], arr[minIdx]] = [arr[minIdx], arr[i]];
+            blocks[i].classList.add('bbc-visualizer-swap');
+            blocks[minIdx].classList.add('bbc-visualizer-swap');
+            logStep(`Swapping ${arr[minIdx]} and ${arr[i]}`);
+            await swapBlocks(i, minIdx);
+            [blocks[i], blocks[minIdx]] = [blocks[minIdx], blocks[i]];
+            blocks[i].classList.remove('bbc-visualizer-swap');
+            blocks[minIdx].classList.remove('bbc-visualizer-swap');
+        }
+        blocks[i].classList.remove('bbc-visualizer-min');
+        blocks[i].classList.add('bbc-visualizer-sorted');
+    }
+    if (!stopSorting) blocks[n - 1].classList.add('bbc-visualizer-sorted');
+}
+
+function positionArrows(i, j, selectionIdx, moveBottomArrow = true) {
+    const rect1 = blocks[i].getBoundingClientRect();
+    const rect2 = blocks[j].getBoundingClientRect();
+    const rectMin = blocks[window.currentMinIdx].getBoundingClientRect();
+    const containerRect = document.getElementById('bbc-visualizer-container').getBoundingClientRect();
+    // Arrow for i (current index)
+    arrows[0].style.left = (rect1.left - containerRect.left + rect1.width / 2 - 12) + 'px';
+    // Arrow for j (current comparison)
+    arrows[1].style.left = (rect2.left - containerRect.left + rect2.width / 2 - 12) + 'px';
+    // Arrow for minIdx (smallest item)
+    arrows[2].style.left = (rectMin.left - containerRect.left + rectMin.width / 2 - 12) + 'px';
+    if (window.arrowLabels) {
+        arrowLabels[2].style.left = (rectMin.left - containerRect.left + rectMin.width / 2) + 'px';
+        arrowLabels[2].textContent = `Current Smallest Item`;
+    }
+    // Only move bottom arrow if requested
+    if (window.bottomArrow && moveBottomArrow) {
+        window.bottomArrow.style.left = (blocks[selectionIdx].getBoundingClientRect().left - containerRect.left + blocks[selectionIdx].getBoundingClientRect().width / 2 - 12) + 'px';
+    }
+}
+
+function positionBottomArrow(selectionIdx) {
+    const containerRect = document.getElementById('bbc-visualizer-container').getBoundingClientRect();
+    if (window.bottomArrow) {
+        const rect = blocks[selectionIdx].getBoundingClientRect();
+        window.bottomArrow.style.left = (rect.left - containerRect.left + rect.width / 2 - 12) + 'px';
+        if (window.bottomArrowLabel) {
+            window.bottomArrowLabel.style.left = (rect.left - containerRect.left + rect.width / 2) + 'px';
+        }
+    }
+}
+
+async function swapBlocks(i, j) {
+    return new Promise(resolve => {
+        const block1 = blocks[i];
+        const block2 = blocks[j];
+        const container = document.getElementById('bbc-visualizer-container');
+        const temp = document.createElement('div');
+        container.insertBefore(temp, block1);
+        container.insertBefore(block1, block2);
+        container.insertBefore(block2, temp);
+        container.removeChild(temp);
+        setTimeout(resolve, 1200);
+    });
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+</script>
+</html>
