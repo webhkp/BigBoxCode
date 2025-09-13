@@ -10,6 +10,11 @@ function bubbleSort(arr) {
             if (arr[j] > arr[j + 1]) { // If elements are in wrong order
                 // Swap them
                 [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+
+                // Or you can use a temporary variable
+                // let temp = arr[j];
+                // arr[j] = arr[j + 1];
+                // arr[j + 1] = temp;
             }
         }
     }
