@@ -1,0 +1,27 @@
+// Pseudocode for Bubble Sort
+// Improved version with is swapped checking
+
+procedure BubbleSort(array A)
+    n = length(A)               // Get the size of the array
+
+    // Outer loop for each pass
+    for i from 0 to n-1 do
+        swapped = false          // Flag to check if any swap happened in this pass
+
+        // Inner loop compares adjacent elements
+        // Last i elements are already sorted, so we can skip them
+        for j from 0 to n-i-2 do
+            if A[j] > A[j+1] then    // If current element is greater than next
+                swap A[j] and A[j+1] // Swap them
+                swapped = true        // Mark that a swap occurred
+            end if
+        end for
+
+        // If no swaps happened in this pass, array is already sorted
+        if swapped == false then
+            break                   // Stop early
+        end if
+        
+    end for
+    
+end procedure

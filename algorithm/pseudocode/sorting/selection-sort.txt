@@ -1,0 +1,22 @@
+// Selection Sort Pseudocode
+
+procedure SelectionSort(array A)
+    n = length(A)
+
+    for i from 0 to n-2 do
+        minIndex = i
+
+        // Find the index of the smallest element in the unsorted part
+        for j from i+1 to n-1 do
+            if A[j] < A[minIndex] then
+                minIndex = j
+            end if
+        end for
+
+        // Swap the smallest element with the element at index i
+        if minIndex != i then
+            swap A[i] and A[minIndex]
+        end if
+    end for
+    
+end procedure

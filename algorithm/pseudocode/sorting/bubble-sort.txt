@@ -1,0 +1,18 @@
+// Pseudocode for Bubble Sort
+
+procedure BubbleSort(array A)
+    n = length(A)               // Get the size of the array
+
+    // Outer loop for each pass
+    for i from 0 to n-1 do
+        // Inner loop compares adjacent elements
+        // Last i elements are already sorted, so we can skip them
+        for j from 0 to n-i-2 do
+            if A[j] > A[j+1] then    // If current element is greater than next
+                swap A[j] and A[j+1] // Swap them
+            end if
+        end for
+        
+    end for
+    
+end procedure
