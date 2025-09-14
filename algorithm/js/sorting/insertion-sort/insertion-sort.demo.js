@@ -1,3 +1,6 @@
+// File: algorithm/js/sorting/insertion-sort/insertion-sort.demo.js
+// Demo for Insertion Sort
+
 import insertionSort from "./insertion-sort.js";
 
 // Demo cases

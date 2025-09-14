@@ -1,4 +1,6 @@
+// File: algorithm/js/sorting/insertion-sort/insertion-sort.js
 // Insertion Sort implementation
+
 /**
  * Insertion Sort Algorithm
  * @param {number[]} arr - The array to be sorted
@@ -18,7 +20,7 @@ function insertionSort(arr) {
             arr[j + 1] = arr[j];
             j--;
         }
-        
+
         // Insert the key element at its correct position
         arr[j + 1] = key;
     }

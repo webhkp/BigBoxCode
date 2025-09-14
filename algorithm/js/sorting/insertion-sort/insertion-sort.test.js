@@ -1,3 +1,6 @@
+// File: algorithm/js/sorting/insertion-sort/insertion-sort.test.js
+// Tests for Insertion Sort
+
 import { describe, it, expect } from "vitest";
 import insertionSort from "./insertion-sort.js";
 

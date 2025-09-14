@@ -1,3 +1,6 @@
+// File: algorithm/js/sorting/insertion-sort/insertion-sort.bench.js
+// Benchmarks for Insertion Sort
+
 import insertionSort from "./insertion-sort.js";
 import { bench } from "vitest";
 
