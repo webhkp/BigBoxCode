@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertion Sort Visualizer</title>
+    <style>
+        .bbc-visualizer-arrow-label {
+            font-weight: bold;
+            text-align: center;
+            width: 80px;
+            left: 0;
+            transform: translateX(-50%);
+            line-height: 15px;
+        }
+        input,
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        #bbc-visualizer-wrapper {
+            border: 1px solid gray;
+            padding: 50px;
+        }
+        #bbc-visualizer-container {
+            display: flex;
+            margin: 80px 0;
+            position: relative;
+        }
+        .bbc-visualizer-block {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #333;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            background-color: #f0f0f0;
+            position: relative;
+            transition: transform 0.8s ease, background-color 0.8s ease;
+        }
+        .bbc-visualizer-highlight {
+            background-color: #ffeb3b;
+        }
+        .bbc-visualizer-key {
+            background-color: #f87171;
+        }
+        .bbc-visualizer-shift {
+            background-color: #34d399;
+        }
+        .bbc-visualizer-sorted {
+            background-color: #60a5fa;
+        }
+        .bbc-visualizer-arrow {
+            position: absolute;
+            top: -25px;
+            font-size: 24px;
+            color: red;
+            transition: left 0.8s ease;
+        }
+        .bbc-visualizer-bottom-arrow {
+            position: absolute;
+            bottom: -25px;
+            font-size: 24px;
+            color: blue;
+            left: 0;
+            transition: left 0.8s ease;
+        }
+        #bbc-visualizer-log {
+            max-height: 150px;
+            overflow-y: auto;
+            width: 100%;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 14px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h2>Insertion Sort Visualizer</h2>
+    <div id="bbc-visualizer-wrapper">
+        <label for="bbc-visualizer-numbers">Enter numbers to sort (comma separated):</label>
+        <input type="text" id="bbc-visualizer-numbers" value="5,3,8,4,2,7,1,9,6">
+        <div style="font-size:13px; color:#555; margin-bottom:10px;">
+            Enter integers separated by commas(Example: 5,3,8,4,2,7,1,9,6).<br />
+            Click 'Start Sorting' to visualize insertion sort.<br />
+            Click 'Reset' to clear and re-enter numbers.
+        </div>
+        <button id="bbc-visualizer-startBtn" onclick="toggleSort()">Start Sorting</button>
+        <button id="bbc-visualizer-resetBtn" onclick="resetSort()">Reset</button>
+        <div id="bbc-visualizer-container"></div>
+        <div id="bbc-visualizer-log">Insertion Sort Visualizer Logs...</div>
+    </div>
+</body>
+<script>
+let blocks = [];
+let originalArr = [];
+let arrows = [];
+let stopSorting = false;
+let isPaused = false;
+let sortingInProgress = false;
+
+function toggleSort() {
+    const btn = document.getElementById('bbc-visualizer-startBtn');
+    if (!sortingInProgress) {
+        startSort();
+    } else if (!isPaused) {
+        isPaused = true;
+        btn.textContent = 'Resume Sorting';
+    } else {
+        isPaused = false;
+        btn.textContent = 'Stop Sorting';
+    }
+}
+
+function createBlocks(arr) {
+    const container = document.getElementById('bbc-visualizer-container');
+    container.innerHTML = '';
+    blocks = arr.map(num => {
+        const block = document.createElement('div');
+        block.classList.add('bbc-visualizer-block');
+        block.textContent = num;
+        container.appendChild(block);
+        return block;
+    });
+    arrows = [document.createElement('div'), document.createElement('div')];
+    let arrowLabels = [document.createElement('div'), document.createElement('div')];
+    arrows.forEach((arrow, idx) => {
+        if (idx === 0) {
+            arrow.classList.add('bbc-visualizer-bottom-arrow');
+            arrow.textContent = '⬆';
+            container.appendChild(arrow);
+            arrowLabels[idx].classList.add('bbc-visualizer-arrow-label');
+            arrowLabels[idx].style.position = 'absolute';
+            arrowLabels[idx].style.bottom = '-55px';
+            arrowLabels[idx].style.fontSize = '14px';
+            arrowLabels[idx].style.color = '#333';
+            arrowLabels[idx].textContent = 'Key Item';
+            container.appendChild(arrowLabels[idx]);
+        } else {
+            arrow.classList.add('bbc-visualizer-arrow');
+            arrow.textContent = '⬇';
+            container.appendChild(arrow);
+            arrowLabels[idx].classList.add('bbc-visualizer-arrow-label');
+            arrowLabels[idx].style.position = 'absolute';
+            arrowLabels[idx].style.top = '-70px';
+            arrowLabels[idx].style.fontSize = '14px';
+            arrowLabels[idx].style.color = '#333';
+            arrowLabels[idx].textContent = 'Compare & Shift';
+            container.appendChild(arrowLabels[idx]);
+        }
+    });
+    
+    window.arrowLabels = arrowLabels;
+}
+
+function logStep(message) {
+    const logDiv = document.getElementById('bbc-visualizer-log');
+    // Add a blank line before each "Step ..." log for better readability
+    if (message.startsWith('Step')) {
+        const br = document.createElement('br');
+        logDiv.appendChild(br);
+    }
+    const p = document.createElement('div');
+    p.textContent = message;
+    logDiv.appendChild(p);
+    logDiv.scrollTop = logDiv.scrollHeight;
+}
+
+async function startSort() {
+    const btn = document.getElementById('bbc-visualizer-startBtn');
+    btn.textContent = 'Stop Sorting';
+    btn.disabled = false;
+    stopSorting = false;
+    isPaused = false;
+    sortingInProgress = true;
+    const input = document.getElementById('bbc-visualizer-numbers').value;
+    let arr = input.split(',').map(x => parseInt(x.trim())).filter(x => !isNaN(x));
+    originalArr = arr.slice();
+    createBlocks(arr);
+    await insertionSort(arr);
+    if (!stopSorting) logStep(`Sorting completed: ${arr.join(', ')}`);
+    btn.textContent = 'Start Sorting';
+    sortingInProgress = false;
+    isPaused = false;
+}
+
+function resetSort() {
+    stopSorting = true;
+    isPaused = false;
+    sortingInProgress = false;
+    const btn = document.getElementById('bbc-visualizer-startBtn');
+    btn.textContent = 'Start Sorting';
+    btn.disabled = false;
+    createBlocks(originalArr);
+    document.getElementById('bbc-visualizer-log').innerHTML = '';
+}
+
+async function insertionSort(arr) {
+    const n = arr.length;
+    for (let i = 1; i < n; i++) {
+        let key = arr[i];
+        let j = i - 1;
+        blocks[i].classList.add('bbc-visualizer-key');
+        // Both arrows start at key item
+        positionArrows(i, i, i, false);
+        logStep(`Step #${i}: Key=${key}, Compare with index ${j}`);
+        await sleep(1200);
+        while (j >= 0 && arr[j] > key) {
+            if (stopSorting) return;
+            while (isPaused) {
+                await sleep(200);
+                if (stopSorting) return;
+            }
+            blocks[j].classList.add('bbc-visualizer-highlight');
+            // Move compare/shift arrow to current compare index
+            positionArrows(i, j, j + 1, true);
+            logStep(`Shifting ${arr[j]} to position ${j + 1}`);
+            arr[j + 1] = arr[j];
+            await swapBlocks(j, j + 1);
+            [blocks[j], blocks[j + 1]] = [blocks[j + 1], blocks[j]];
+            blocks[j].classList.remove('bbc-visualizer-highlight');
+            j--;
+            await sleep(800);
+        }
+        arr[j + 1] = key;
+        blocks[i].classList.remove('bbc-visualizer-key');
+        blocks[j + 1].classList.add('bbc-visualizer-shift');
+        positionBottomArrow(j + 1);
+        logStep(`Inserted key=${key} at position ${j + 1}`);
+        await sleep(1000);
+        blocks[j + 1].classList.remove('bbc-visualizer-shift');
+        for (let k = 0; k <= i; k++) {
+            blocks[k].classList.add('bbc-visualizer-sorted');
+        }
+    }
+    for (let k = 0; k < n; k++) {
+        blocks[k].classList.add('bbc-visualizer-sorted');
+    }
+}
+
+function positionArrows(keyIdx, compareIdx, insertionIdx, moveBottomArrow = true) {
+    const rectKey = blocks[keyIdx].getBoundingClientRect();
+    const rectCompare = blocks[compareIdx]?.getBoundingClientRect();
+    const containerRect = document.getElementById('bbc-visualizer-container').getBoundingClientRect();
+    // Arrow for key item
+    arrows[0].style.left = (rectKey.left - containerRect.left + rectKey.width / 2 - 12) + 'px';
+    // Arrow for compare index
+    if (rectCompare) {
+        arrows[1].style.left = (rectCompare.left - containerRect.left + rectCompare.width / 2 - 12) + 'px';
+    }
+    if (window.arrowLabels) {
+        window.arrowLabels[0].style.left = (rectKey.left - containerRect.left + rectKey.width / 2) + 'px';
+        window.arrowLabels[1].style.left = rectCompare ? (rectCompare.left - containerRect.left + rectCompare.width / 2) + 'px' : '-9999px';
+    }
+    // Only move bottom arrow if requested
+    if (window.bottomArrow && moveBottomArrow) {
+        window.bottomArrow.style.left = (blocks[insertionIdx].getBoundingClientRect().left - containerRect.left + blocks[insertionIdx].getBoundingClientRect().width / 2 - 12) + 'px';
+    }
+}
+
+function positionBottomArrow(insertionIdx) {
+    const containerRect = document.getElementById('bbc-visualizer-container').getBoundingClientRect();
+    if (window.bottomArrow) {
+        const rect = blocks[insertionIdx].getBoundingClientRect();
+        window.bottomArrow.style.left = (rect.left - containerRect.left + rect.width / 2 - 12) + 'px';
+    }
+}
+
+async function swapBlocks(i, j) {
+    return new Promise(resolve => {
+        const block1 = blocks[i];
+        const block2 = blocks[j];
+        const container = document.getElementById('bbc-visualizer-container');
+        const temp = document.createElement('div');
+        container.insertBefore(temp, block1);
+        container.insertBefore(block1, block2);
+        container.insertBefore(block2, temp);
+        container.removeChild(temp);
+        setTimeout(resolve, 1200);
+    });
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+</script>
+</html>
