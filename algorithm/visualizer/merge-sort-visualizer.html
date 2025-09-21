@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Sort Visualizer</title>
+    <style>
+        .bbc-visualizer-arrow-label {
+            font-weight: bold;
+            text-align: center;
+            width: 80px;
+            left: 0;
+            transform: translateX(-50%);
+            line-height: 15px;
+        }
+        input,
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        #bbc-visualizer-wrapper {
+            border: 1px solid gray;
+            padding: 50px;
+        }
+        #bbc-visualizer-container {
+            display: flex;
+            margin: 80px 0;
+            position: relative;
+        }
+        .bbc-visualizer-block {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #333;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            background-color: #f0f0f0;
+            position: relative;
+            transition: transform 0.8s ease, background-color 0.8s ease;
+        }
+        .bbc-visualizer-left {
+            background-color: #ffeb3b;
+        }
+        .bbc-visualizer-right {
+            background-color: #f87171;
+        }
+        .bbc-visualizer-merged {
+            background-color: #34d399;
+        }
+        .bbc-visualizer-sorted {
+            background-color: #60a5fa;
+        }
+        .bbc-visualizer-split {
+            border: 2px dashed #a78bfa;
+            background-color: #ede9fe;
+        }
+        .bbc-visualizer-split-left {
+            transform: translate(-40px, -40px);
+            opacity: 1;
+        }
+        .bbc-visualizer-split-right {
+            transform: translate(40px, 40px);
+            opacity: 1;
+        }
+        .bbc-visualizer-dim {
+            opacity: 0.3;
+        }
+        .bbc-visualizer-merge-center {
+            transform: translate(0, 0);
+            transition: transform 0.8s ease;
+        }
+        .bbc-visualizer-arrow {
+            position: absolute;
+            top: -25px;
+            font-size: 24px;
+            color: red;
+            transition: left 0.8s ease;
+        }
+        #bbc-visualizer-log {
+            max-height: 150px;
+            overflow-y: auto;
+            width: 100%;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 14px;
+            background-color: #f9f9f9;
+        }
+        .bbc-visualizer-floating {
+            position: absolute;
+            top: -60px;
+            left: 0;
+            width: 50px;
+            height: 50px;
+            background: #fffbe6;
+            border: 2px solid #f59e42;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            z-index: 10;
+            transition: top 0.8s, left 0.8s;
+        }
+        .bbc-visualizer-split-bar {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: #a78bfa;
+            z-index: 2;
+        }
+        .bbc-visualizer-separated {
+            margin-left: 40px !important;
+            margin-right: 40px !important;
+            opacity: 0.5;
+            filter: blur(1px);
+            transition: margin 0.8s, opacity 0.8s, filter 0.8s;
+        }
+    </style>
+</head>
+<body>
+    <h2>Merge Sort Visualizer</h2>
+    <div id="bbc-visualizer-wrapper">
+        <label for="bbc-visualizer-numbers">Enter numbers to sort (comma separated):</label>
+        <input type="text" id="bbc-visualizer-numbers" value="5,3,8,4,2,7,1,9,6">
+        <div style="font-size:13px; color:#555; margin-bottom:10px;">
+            Enter integers separated by commas(Example: 5,3,8,4,2,7,1,9,6).<br />
+            Click 'Start Sorting' to visualize merge sort.<br />
+            Click 'Reset' to clear and re-enter numbers.
+        </div>
+        <button id="bbc-visualizer-startBtn" onclick="toggleSort()">Start Sorting</button>
+        <button id="bbc-visualizer-resetBtn" onclick="resetSort()">Reset</button>
+        <div id="bbc-visualizer-container"></div>
+        <div id="bbc-visualizer-log">Merge Sort Visualizer Logs...</div>
+    </div>
+</body>
+<script>
+let blocks = [];
+let originalArr = [];
+let stopSorting = false;
+let isPaused = false;
+let sortingInProgress = false;
+
+function toggleSort() {
+    const btn = document.getElementById('bbc-visualizer-startBtn');
+    if (!sortingInProgress) {
+        startSort();
+    } else if (!isPaused) {
+        isPaused = true;
+        btn.textContent = 'Resume Sorting';
+    } else {
+        isPaused = false;
+        btn.textContent = 'Stop Sorting';
+    }
+}
+
+function createBlocks(arr, left = 0, right = arr.length - 1, activeRange = null, bringTogether = false) {
+    const container = document.getElementById('bbc-visualizer-container');
+    container.innerHTML = '';
+    blocks = arr.map((num, idx) => {
+        const block = document.createElement('div');
+        let extraClass = '';
+        if (activeRange && (idx < activeRange[0] || idx > activeRange[1])) {
+            extraClass = ' bbc-visualizer-separated';
+        }
+        block.className = 'bbc-visualizer-block' + extraClass;
+        block.textContent = num;
+        container.appendChild(block);
+        // If bringTogether is true, remove separation for active blocks
+        if (bringTogether && activeRange && idx >= activeRange[0] && idx <= activeRange[1]) {
+            block.style.marginLeft = '5px';
+            block.style.marginRight = '5px';
+            block.style.opacity = '1';
+            block.style.filter = 'none';
+        }
+        return block;
+    });
+}
+
+function logStep(message) {
+    const logDiv = document.getElementById('bbc-visualizer-log');
+    // Add a blank line before each "Step ..." log for better readability
+    if (message.startsWith('Step')) {
+        const br = document.createElement('br');
+        logDiv.appendChild(br);
+        // Make "Step #" bold
+        const stepMatch = message.match(/^(Step \d+:)(.*)$/);
+        if (stepMatch) {
+            const p = document.createElement('div');
+            p.innerHTML = `<strong>${stepMatch[1]}</strong>${stepMatch[2]}`;
+            logDiv.appendChild(p);
+            logDiv.scrollTop = logDiv.scrollHeight;
+            return;
+        }
+    }
+    const p = document.createElement('div');
+    p.textContent = message;
+    logDiv.appendChild(p);
+    logDiv.scrollTop = logDiv.scrollHeight;
+}
+
+async function startSort() {
+    const btn = document.getElementById('bbc-visualizer-startBtn');
+    btn.textContent = 'Stop Sorting';
+    btn.disabled = false;
+    stopSorting = false;
+    isPaused = false;
+    sortingInProgress = true;
+    const input = document.getElementById('bbc-visualizer-numbers').value;
+    let arr = input.split(',').map(x => parseInt(x.trim())).filter(x => !isNaN(x));
+    originalArr = arr.slice();
+    createBlocks(arr);
+    await mergeSort(arr, 0, arr.length - 1);
+    if (!stopSorting) logStep(`Sorting completed: ${arr.join(', ')}`);
+    btn.textContent = 'Start Sorting';
+    sortingInProgress = false;
+    isPaused = false;
+}
+
+function resetSort() {
+    stopSorting = true;
+    isPaused = false;
+    sortingInProgress = false;
+    const btn = document.getElementById('bbc-visualizer-startBtn');
+    btn.textContent = 'Start Sorting';
+    btn.disabled = false;
+    createBlocks(originalArr);
+    document.getElementById('bbc-visualizer-log').innerHTML = '';
+}
+
+async function mergeSort(arr, left, right, step = { count: 1 }) {
+    if (left >= right) return;
+    const mid = Math.floor((left + right) / 2);
+    // Dim blocks not involved in split
+    for (let i = 0; i < blocks.length; i++) {
+        if (i < left || i > right) blocks[i].classList.add('bbc-visualizer-dim');
+    }
+    // Move and highlight split blocks
+    for (let i = left; i <= mid; i++) {
+        blocks[i].classList.add('bbc-visualizer-split', 'bbc-visualizer-split-left');
+    }
+    for (let i = mid + 1; i <= right; i++) {
+        blocks[i].classList.add('bbc-visualizer-split', 'bbc-visualizer-split-right');
+    }
+    createBlocks(arr, left, right, [left, right]); // Show separated blocks
+    logStep(`Step ${step.count++}: Splitting [${arr.slice(left, right + 1).join(', ')}] at index ${mid}`);
+    await sleep(1200);
+    // Restore blocks
+    for (let i = left; i <= right; i++) {
+        blocks[i].classList.remove('bbc-visualizer-split', 'bbc-visualizer-split-left', 'bbc-visualizer-split-right');
+    }
+    for (let i = 0; i < blocks.length; i++) {
+        blocks[i].classList.remove('bbc-visualizer-dim');
+    }
+    // Bring active blocks together for operation
+    createBlocks(arr, left, right, [left, right], true);
+    await sleep(600);
+    await mergeSort(arr, left, mid, step);
+    await mergeSort(arr, mid + 1, right, step);
+    await merge(arr, left, mid, right, step);
+    // After operations, bring all blocks back together
+    createBlocks(arr);
+    await sleep(400);
+}
+
+async function merge(arr, left, mid, right, step) {
+    let n1 = mid - left + 1;
+    let n2 = right - mid;
+    let L = arr.slice(left, mid + 1);
+    let R = arr.slice(mid + 1, right + 1);
+    // Dim blocks not involved in merge
+    for (let i = 0; i < blocks.length; i++) {
+        if (i < left || i > right) blocks[i].classList.add('bbc-visualizer-dim');
+    }
+    // Move blocks back to center for merge
+    for (let i = left; i <= right; i++) {
+        blocks[i].classList.add('bbc-visualizer-merge-center');
+    }
+    // Highlight left and right for merging
+    for (let i = left; i <= mid; i++) blocks[i].classList.add('bbc-visualizer-left');
+    for (let i = mid + 1; i <= right; i++) blocks[i].classList.add('bbc-visualizer-right');
+    logStep(`Step ${step.count++}: Merging [${L.join(', ')}] and [${R.join(', ')}]`);
+    await sleep(1200);
+    let i = 0, j = 0, k = left;
+    const container = document.getElementById('bbc-visualizer-container');
+    while (i < n1 && j < n2) {
+        if (stopSorting) return;
+        while (isPaused) {
+            await sleep(200);
+            if (stopSorting) return;
+        }
+        blocks[k].classList.add('bbc-visualizer-merged');
+        logStep(`Step ${step.count++}: Compare ${L[i]} and ${R[j]}`);
+        await sleep(1000);
+        let value, sourceIdx;
+        if (L[i] <= R[j]) {
+            value = L[i];
+            sourceIdx = left + i;
+            logStep(`Pick ${L[i]} from left, move to position ${k}`);
+            i++;
+        } else {
+            value = R[j];
+            sourceIdx = mid + 1 + j;
+            logStep(`Pick ${R[j]} from right, move to position ${k}`);
+            j++;
+        }
+        // Create floating block
+        const sourceBlock = blocks[sourceIdx];
+        const targetBlock = blocks[k];
+        const floating = document.createElement('div');
+        floating.className = 'bbc-visualizer-block bbc-visualizer-floating';
+        floating.textContent = value;
+        const sourceRect = sourceBlock.getBoundingClientRect();
+        const targetRect = targetBlock.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        floating.style.left = (sourceRect.left - containerRect.left) + 'px';
+        floating.style.top = (sourceRect.top - containerRect.top - 60) + 'px';
+        container.appendChild(floating);
+        await sleep(400);
+        // Animate to target
+        floating.style.left = (targetRect.left - containerRect.left) + 'px';
+        floating.style.top = (targetRect.top - containerRect.top) + 'px';
+        await sleep(600);
+        arr[k] = value;
+        blocks[k].textContent = value;
+        container.removeChild(floating);
+        k++;
+        await sleep(400);
+    }
+    while (i < n1) {
+        let value = L[i];
+        let sourceIdx = left + i;
+        logStep(`Pick ${value} from left, move to position ${k}`);
+        const sourceBlock = blocks[sourceIdx];
+        const targetBlock = blocks[k];
+        const floating = document.createElement('div');
+        floating.className = 'bbc-visualizer-block bbc-visualizer-floating';
+        floating.textContent = value;
+        const sourceRect = sourceBlock.getBoundingClientRect();
+        const targetRect = targetBlock.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        floating.style.left = (sourceRect.left - containerRect.left) + 'px';
+        floating.style.top = (sourceRect.top - containerRect.top - 60) + 'px';
+        container.appendChild(floating);
+        await sleep(400);
+        floating.style.left = (targetRect.left - containerRect.left) + 'px';
+        floating.style.top = (targetRect.top - containerRect.top) + 'px';
+        await sleep(600);
+        arr[k] = value;
+        blocks[k].textContent = value;
+        container.removeChild(floating);
+        blocks[k].classList.add('bbc-visualizer-merged');
+        i++; k++;
+        await sleep(400);
+    }
+    while (j < n2) {
+        let value = R[j];
+        let sourceIdx = mid + 1 + j;
+        logStep(`Pick ${value} from right, move to position ${k}`);
+        const sourceBlock = blocks[sourceIdx];
+        const targetBlock = blocks[k];
+        const floating = document.createElement('div');
+        floating.className = 'bbc-visualizer-block bbc-visualizer-floating';
+        floating.textContent = value;
+        const sourceRect = sourceBlock.getBoundingClientRect();
+        const targetRect = targetBlock.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        floating.style.left = (sourceRect.left - containerRect.left) + 'px';
+        floating.style.top = (sourceRect.top - containerRect.top - 60) + 'px';
+        container.appendChild(floating);
+        await sleep(400);
+        floating.style.left = (targetRect.left - containerRect.left) + 'px';
+        floating.style.top = (targetRect.top - containerRect.top) + 'px';
+        await sleep(600);
+        arr[k] = value;
+        blocks[k].textContent = value;
+        container.removeChild(floating);
+        blocks[k].classList.add('bbc-visualizer-merged');
+        j++; k++;
+        await sleep(400);
+    }
+    // Mark sorted and restore blocks
+    for (let idx = left; idx <= right; idx++) {
+        blocks[idx].classList.remove('bbc-visualizer-left');
+        blocks[idx].classList.remove('bbc-visualizer-right');
+        blocks[idx].classList.remove('bbc-visualizer-merged');
+        blocks[idx].classList.remove('bbc-visualizer-merge-center');
+        blocks[idx].classList.add('bbc-visualizer-sorted');
+    }
+    for (let i = 0; i < blocks.length; i++) {
+        blocks[i].classList.remove('bbc-visualizer-dim');
+    }
+    await sleep(600);
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+</script>
+</html>
