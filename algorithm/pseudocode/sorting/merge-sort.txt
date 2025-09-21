@@ -1,0 +1,39 @@
+// Merge Sort Pseudocode
+
+procedure MergeSort(array A)
+    n = length(A)
+    if n <= 1 then
+        return A
+    end if
+
+    mid = floor(n / 2)
+    left = MergeSort(A[0..mid-1])
+    right = MergeSort(A[mid..n-1])
+
+    return Merge(left, right)
+end procedure
+
+procedure Merge(left, right)
+    result = empty array
+    i = 0
+    j = 0
+    while i < length(left) and j < length(right) do
+        if left[i] <= right[j] then
+            append left[i] to result
+            i = i + 1
+        else
+            append right[j] to result
+            j = j + 1
+        end if
+    end while
+    // Append remaining elements
+    while i < length(left) do
+        append left[i] to result
+        i = i + 1
+    end while
+    while j < length(right) do
+        append right[j] to result
+        j = j + 1
+    end while
+    return result
+end procedure
