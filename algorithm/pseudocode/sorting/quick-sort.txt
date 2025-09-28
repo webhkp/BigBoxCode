@@ -1,0 +1,19 @@
+# Quick Sort Pseudocode
+
+procedure QuickSort(A, Low, High)
+    IF Low < High
+        PivotIndex ← Partition(A, Low, High)
+        QuickSort(A, Low, PivotIndex - 1)
+        QuickSort(A, PivotIndex + 1, High)
+end procedure
+
+procedure Partition(A, Low, High)
+    Pivot ← A[High]              // choose last element as pivot
+    I ← Low - 1                  // index of smaller element
+    FOR J ← Low TO High - 1
+        IF A[J] ≤ Pivot
+            I ← I + 1
+            SWAP A[I] ↔ A[J]
+    SWAP A[I + 1] ↔ A[High]
+    RETURN I + 1                  // final pivot position
+end procedure
