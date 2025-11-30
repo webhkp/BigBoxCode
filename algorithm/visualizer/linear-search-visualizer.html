@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Search Visualizer</title>
+    <style>
+        input,
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+
+        #bbc-visualizer-wrapper {
+            border: 1px solid gray;
+            padding: 50px;
+        }
+
+        #bbc-visualizer-container {
+            display: flex;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .bbc-visualizer-block {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #333;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            background-color: #f0f0f0;
+            position: relative;
+            transition: background-color 0.5s ease;
+        }
+
+        .bbc-visualizer-current {
+            background-color: #ffeb3b;
+        }
+
+        .bbc-visualizer-found {
+            background-color: #34d399;
+        }
+
+        .bbc-visualizer-not-found {
+            background-color: #f87171;
+        }
+
+        .bbc-visualizer-checked {
+            background-color: #94a3b8;
+        }
+
+        .bbc-visualizer-arrow {
+            position: absolute;
+            top: -25px;
+            font-size: 24px;
+            color: red;
+            transition: left 0.5s ease;
+        }
+
+        #bbc-visualizer-log {
+            max-height: 150px;
+            overflow-y: auto;
+            width: 100%;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 14px;
+            background-color: #f9f9f9;
+        }
+
+        .bbc-visualizer-result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f2fe;
+            border: 2px solid #0284c7;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Linear Search Visualizer</h2>
+
+    <div id="bbc-visualizer-wrapper">
+        <label for="bbc-visualizer-numbers">Enter numbers (comma separated):</label>
+        <input type="text" id="bbc-visualizer-numbers" value="10,23,45,15,70,11,15,8,42,15,33">
+        <br>
+        <label for="bbc-visualizer-target">Enter target number to search:</label>
+        <input type="text" id="bbc-visualizer-target" value="15">
+        <div style="font-size:13px; color:#555; margin-bottom:10px;">
+            Enter integers separated by commas (Example: 10,23,45,70,11,15,8,42,33).
+            <br />
+            Enter a target number to search for.
+            <br />
+            Click 'Start Search' to visualize linear search.
+            <br />
+            Click 'Reset' to clear and re-enter numbers.
+        </div>
+        <button id="bbc-visualizer-startBtn" onclick="toggleSearch()">Start Search</button>
+        <button id="bbc-visualizer-findAllBtn" onclick="findAllOccurrences()">Find All Occurrences</button>
+        <button id="bbc-visualizer-resetBtn" onclick="resetSearch()">Reset</button>
+        <div id="bbc-visualizer-container"></div>
+        <div id="bbc-visualizer-result"></div>
+        <div id="bbc-visualizer-log">Linear Search Visualizer Logs...</div>
+    </div>
+</body>
+<script>
+    let blocks = [];
+    let originalArr = [];
+    let arrow = null;
+    let stopSearching = false;
+    let isPaused = false;
+    let searchingInProgress = false;
+    
+    function toggleSearch() {
+        const btn = document.getElementById('bbc-visualizer-startBtn');
+        if (!searchingInProgress) {
+            startSearch();
+        } else if (!isPaused) {
+            isPaused = true;
+            btn.textContent = 'Resume Search';
+        } else {
+            isPaused = false;
+            btn.textContent = 'Stop Search';
+        }
+    }
+
+    function createBlocks(arr) {
+        const container = document.getElementById('bbc-visualizer-container');
+        container.innerHTML = '';
+        blocks = arr.map(num => {
+            const block = document.createElement('div');
+            block.classList.add('bbc-visualizer-block');
+            block.textContent = num;
+            container.appendChild(block);
+            return block;
+        });
+        arrow = document.createElement('div');
+        arrow.classList.add('bbc-visualizer-arrow');
+        arrow.textContent = '⬇';
+        container.appendChild(arrow);
+    }
+
+    function logStep(message) {
+        const logDiv = document.getElementById('bbc-visualizer-log');
+        const p = document.createElement('div');
+        p.textContent = message;
+        logDiv.appendChild(p);
+        logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    function showResult(message, found = false) {
+        const resultDiv = document.getElementById('bbc-visualizer-result');
+        resultDiv.textContent = message;
+        resultDiv.style.backgroundColor = found ? '#d1fae5' : '#fee2e2';
+        resultDiv.style.borderColor = found ? '#10b981' : '#ef4444';
+    }
+
+    async function startSearch() {
+        const btn = document.getElementById('bbc-visualizer-startBtn');
+        btn.textContent = 'Stop Search';
+        btn.disabled = false;
+        stopSearching = false;
+        isPaused = false;
+        searchingInProgress = true;
+
+        const input = document.getElementById('bbc-visualizer-numbers').value;
+        const targetInput = document.getElementById('bbc-visualizer-target').value;
+        let arr = input.split(',').map(x => parseInt(x.trim())).filter(x => !isNaN(x));
+        let target = parseInt(targetInput.trim());
+
+        if (isNaN(target)) {
+            alert('Please enter a valid target number');
+            btn.textContent = 'Start Search';
+            searchingInProgress = false;
+            return;
+        }
+
+        originalArr = arr.slice();
+        createBlocks(arr);
+        document.getElementById('bbc-visualizer-log').innerHTML = '';
+        document.getElementById('bbc-visualizer-result').innerHTML = '';
+
+        logStep(`Starting linear search for target: ${target}`);
+        logStep(`Array: [${arr.join(', ')}]`);
+
+        const result = await linearSearch(arr, target);
+        
+        if (!stopSearching) {
+            if (result !== -1) {
+                logStep(`✓ Target ${target} found at index ${result}`);
+                showResult(`Success! Found ${target} at index ${result}`, true);
+            } else {
+                logStep(`✗ Target ${target} not found in the array`);
+                showResult(`Target ${target} not found in the array`, false);
+            }
+        }
+
+        btn.textContent = 'Start Search';
+        searchingInProgress = false;
+        isPaused = false;
+    }
+
+    async function findAllOccurrences() {
+        const btn = document.getElementById('bbc-visualizer-findAllBtn');
+        btn.disabled = true;
+        stopSearching = false;
+        isPaused = false;
+
+        const input = document.getElementById('bbc-visualizer-numbers').value;
+        const targetInput = document.getElementById('bbc-visualizer-target').value;
+        let arr = input.split(',').map(x => parseInt(x.trim())).filter(x => !isNaN(x));
+        let target = parseInt(targetInput.trim());
+
+        if (isNaN(target)) {
+            alert('Please enter a valid target number');
+            btn.disabled = false;
+            return;
+        }
+
+        originalArr = arr.slice();
+        createBlocks(arr);
+        document.getElementById('bbc-visualizer-log').innerHTML = '';
+        document.getElementById('bbc-visualizer-result').innerHTML = '';
+
+        logStep(`Starting search for all occurrences of: ${target}`);
+        logStep(`Array: [${arr.join(', ')}]`);
+
+        const results = await linearSearchAll(arr, target);
+        
+        if (!stopSearching) {
+            if (results.length > 0) {
+                logStep(`✓ Found ${results.length} occurrence(s) at indices: [${results.join(', ')}]`);
+                showResult(`Found ${target} at indices: [${results.join(', ')}] (${results.length} occurrence${results.length > 1 ? 's' : ''})`, true);
+            } else {
+                logStep(`✗ Target ${target} not found in the array`);
+                showResult(`Target ${target} not found in the array`, false);
+            }
+        }
+
+        btn.disabled = false;
+    }
+
+    function resetSearch() {
+        stopSearching = true;
+        isPaused = false;
+        searchingInProgress = false;
+        const btn = document.getElementById('bbc-visualizer-startBtn');
+        btn.textContent = 'Start Search';
+        btn.disabled = false;
+        createBlocks(originalArr);
+        document.getElementById('bbc-visualizer-log').innerHTML = '';
+        document.getElementById('bbc-visualizer-result').innerHTML = '';
+    }
+
+    async function linearSearch(arr, target) {
+        const n = arr.length;
+        
+        for (let i = 0; i < n; i++) {
+            if (stopSearching) return -1;
+            
+            while (isPaused) {
+                await sleep(200);
+                if (stopSearching) return -1;
+            }
+
+            // Highlight current element being checked
+            blocks[i].classList.add('bbc-visualizer-current');
+            positionArrow(i);
+            logStep(`Step ${i + 1}: Checking index ${i} → value: ${arr[i]}`);
+            await sleep(800);
+
+            if (stopSearching) return -1;
+
+            // Check if current element matches target
+            if (arr[i] === target) {
+                blocks[i].classList.remove('bbc-visualizer-current');
+                blocks[i].classList.add('bbc-visualizer-found');
+                logStep(`Step ${i + 1}: Match found! ${arr[i]} === ${target}`);
+                await sleep(1000);
+                return i;
+            } else {
+                logStep(`Step ${i + 1}: ${arr[i]} ≠ ${target}, continue searching...`);
+                blocks[i].classList.remove('bbc-visualizer-current');
+                blocks[i].classList.add('bbc-visualizer-checked');
+                await sleep(500);
+            }
+        }
+
+        // Mark all as not found
+        blocks.forEach(block => {
+            if (!block.classList.contains('bbc-visualizer-checked')) {
+                block.classList.add('bbc-visualizer-not-found');
+            }
+        });
+
+        return -1;
+    }
+
+    async function linearSearchAll(arr, target) {
+        const n = arr.length;
+        const indices = [];
+        
+        for (let i = 0; i < n; i++) {
+            if (stopSearching) return indices;
+            
+            // Highlight current element being checked
+            blocks[i].classList.add('bbc-visualizer-current');
+            positionArrow(i);
+            logStep(`Step ${i + 1}: Checking index ${i} → value: ${arr[i]}`);
+            await sleep(800);
+
+            if (stopSearching) return indices;
+
+            // Check if current element matches target
+            if (arr[i] === target) {
+                blocks[i].classList.remove('bbc-visualizer-current');
+                blocks[i].classList.add('bbc-visualizer-found');
+                indices.push(i);
+                logStep(`Step ${i + 1}: Match found! ${arr[i]} === ${target} at index ${i}`);
+                await sleep(800);
+            } else {
+                logStep(`Step ${i + 1}: ${arr[i]} ≠ ${target}, continue searching...`);
+                blocks[i].classList.remove('bbc-visualizer-current');
+                blocks[i].classList.add('bbc-visualizer-checked');
+                await sleep(500);
+            }
+        }
+
+        return indices;
+    }
+
+    function positionArrow(i) {
+        const rect = blocks[i].getBoundingClientRect();
+        const containerRect = document.getElementById('bbc-visualizer-container').getBoundingClientRect();
+        arrow.style.left = (rect.left - containerRect.left + rect.width / 2 - 12) + 'px';
+    }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    // Initialize on load
+    window.onload = function() {
+        const input = document.getElementById('bbc-visualizer-numbers').value;
+        let arr = input.split(',').map(x => parseInt(x.trim())).filter(x => !isNaN(x));
+        originalArr = arr.slice();
+        createBlocks(arr);
+    };
+</script>
+
+</html>
