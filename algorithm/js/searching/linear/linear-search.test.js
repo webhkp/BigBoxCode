@@ -1,3 +1,5 @@
+// File: algorithm/js/searching/linear/linear-search.test.js
+
 import { describe, it, expect } from 'vitest';
 import { linearSearch, linearSearchAll } from './linear-search.js';
 

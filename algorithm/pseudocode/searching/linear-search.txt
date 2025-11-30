@@ -1,0 +1,31 @@
+// Pseudocode for Linear Search
+
+// Basic Linear Search - Find first occurrence
+procedure LinearSearch(array A, target)
+    n = length(A)               // Get the size of the array
+
+    // Iterate through each element
+    for i from 0 to n-1 do
+        if A[i] == target then  // Check if current element matches target
+            return i            // Return index if found
+        end if
+    end for
+    
+    return -1                   // Return -1 if element not found
+end procedure
+
+
+// Linear Search - Find all occurrences
+procedure LinearSearchAll(array A, target)
+    n = length(A)               // Get the size of the array
+    indices = []                // Initialize empty array for indices
+
+    // Iterate through each element
+    for i from 0 to n-1 do
+        if A[i] == target then  // Check if current element matches target
+            append i to indices // Add index to result array
+        end if
+    end for
+    
+    return indices              // Return array of all matching indices
+end procedure

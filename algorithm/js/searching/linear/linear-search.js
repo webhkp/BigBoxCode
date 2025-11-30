@@ -1,3 +1,5 @@
+// File: algorithm/js/searching/linear/linear-search.js
+
 /**
  * Linear Search Algorithm
  * 

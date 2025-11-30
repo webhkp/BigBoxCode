@@ -1,3 +1,5 @@
+// File: algorithm/js/searching/linear/linear-search-demo.js
+
 /**
  * Linear Search Algorithm - Comprehensive Demo
  * Demonstrates all possible test cases and edge cases

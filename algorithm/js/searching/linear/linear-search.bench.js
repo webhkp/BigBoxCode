@@ -1,3 +1,5 @@
+// File: algorithm/js/searching/linear/linear-search.bench.js
+
 import { bench, describe } from 'vitest';
 import { linearSearch, linearSearchAll } from './linear-search.js';
 
