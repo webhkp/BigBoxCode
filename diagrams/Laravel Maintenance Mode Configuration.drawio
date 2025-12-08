@@ -1,0 +1,74 @@
+<mxfile host="Electron" modified="2024-05-13T12:00:23.910Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.1 Chrome/112.0.5615.87 Electron/24.1.2 Safari/537.36" etag="M5KKctBz-Mw-tG8bSWcJ" version="21.2.1" type="device">
+  <diagram name="Page-1" id="gZrK6a9zM-f8VkkvnK9w">
+    <mxGraphModel dx="1434" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="j2mHoac6HIUZtICor_dT-1" value="Laravel&lt;br style=&quot;font-size: 30px;&quot;&gt;Maintenance Mode" style="rounded=0;whiteSpace=wrap;html=1;fontSize=30;fillColor=#dae8fc;strokeColor=none;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="400" y="320" width="270" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j2mHoac6HIUZtICor_dT-2" value="File-Based" style="rounded=0;whiteSpace=wrap;html=1;fontSize=30;fillColor=#67AB9F;strokeColor=none;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="90" y="590" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="j2mHoac6HIUZtICor_dT-3" value="Cache-Based" style="rounded=0;whiteSpace=wrap;html=1;fontSize=30;fillColor=#67AB9F;strokeColor=none;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="780" y="590" width="230" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="j2mHoac6HIUZtICor_dT-4" value="Database&lt;br&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;as storage&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=30;fillColor=#d5e8d4;strokeColor=none;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="493" y="840" width="223" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j2mHoac6HIUZtICor_dT-5" value="Redis&lt;br&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;as storage&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=30;fillColor=#d5e8d4;strokeColor=none;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="1062" y="840" width="215" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="j2mHoac6HIUZtICor_dT-6" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#999999;strokeWidth=2;" edge="1" parent="1" source="j2mHoac6HIUZtICor_dT-1" target="j2mHoac6HIUZtICor_dT-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="690" y="700" as="sourcePoint" />
+            <mxPoint x="740" y="650" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="535" y="500" />
+              <mxPoint x="190" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="j2mHoac6HIUZtICor_dT-7" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#999999;strokeWidth=2;" edge="1" parent="1" target="j2mHoac6HIUZtICor_dT-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="535" y="410" as="sourcePoint" />
+            <mxPoint x="885" y="580" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="535" y="500" />
+              <mxPoint x="895" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="j2mHoac6HIUZtICor_dT-8" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#999999;strokeWidth=2;" edge="1" parent="1" source="j2mHoac6HIUZtICor_dT-3" target="j2mHoac6HIUZtICor_dT-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="905" y="680" as="sourcePoint" />
+            <mxPoint x="565" y="860" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="895" y="770" />
+              <mxPoint x="605" y="770" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="j2mHoac6HIUZtICor_dT-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#999999;strokeWidth=2;" edge="1" parent="1" source="j2mHoac6HIUZtICor_dT-3" target="j2mHoac6HIUZtICor_dT-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1065" y="690" as="sourcePoint" />
+            <mxPoint x="775" y="850" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="895" y="770" />
+              <mxPoint x="1170" y="770" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="j2mHoac6HIUZtICor_dT-14" value="&lt;div style=&quot;color: rgb(209, 204, 241); background-color: rgb(47, 47, 47); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-weight: normal; font-size: 14px; line-height: 19px;&quot;&gt;&lt;div&gt;&lt;span style=&quot;color: #5ac16c;&quot;&gt;&#39;maintenance&#39;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #dd5555;&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; [&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/span&gt;&lt;span style=&quot;color: #5ac16c;&quot;&gt;&#39;driver&#39;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #dd5555;&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #5ac16c;&quot;&gt;&#39;cache&#39;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt;,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/span&gt;&lt;span style=&quot;color: #5ac16c;&quot;&gt;&#39;store&#39;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #dd5555;&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #5ac16c;&quot;&gt;&#39;databae&#39;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt;,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt;&amp;nbsp; &amp;nbsp; ]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="491" y="923" width="235" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="j2mHoac6HIUZtICor_dT-15" value="&lt;div style=&quot;color: rgb(209, 204, 241); background-color: rgb(47, 47, 47); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-weight: normal; font-size: 14px; line-height: 19px;&quot;&gt;&lt;div&gt;&lt;span style=&quot;color: #5ac16c;&quot;&gt;&#39;maintenance&#39;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #dd5555;&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; [&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/span&gt;&lt;span style=&quot;color: #5ac16c;&quot;&gt;&#39;driver&#39;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #dd5555;&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #5ac16c;&quot;&gt;&#39;cache&#39;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt;,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/span&gt;&lt;span style=&quot;color: #5ac16c;&quot;&gt;&#39;store&#39;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #dd5555;&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #5ac16c;&quot;&gt;&#39;redis&#39;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt;,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt;&amp;nbsp; &amp;nbsp; ]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="923" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="j2mHoac6HIUZtICor_dT-16" value="&lt;div style=&quot;color: rgb(209, 204, 241); background-color: rgb(47, 47, 47); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-weight: normal; font-size: 14px; line-height: 19px;&quot;&gt;&lt;div&gt;&lt;span style=&quot;color: #5ac16c;&quot;&gt;&#39;maintenance&#39;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #dd5555;&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; [&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;/span&gt;&lt;span style=&quot;color: #5ac16c;&quot;&gt;&#39;driver&#39;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #dd5555;&quot;&gt;=&amp;gt;&lt;/span&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #5ac16c;&quot;&gt;&#39;file&#39;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: #d1ccf1;&quot;&gt;&amp;nbsp; &amp;nbsp; ]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="88" y="653" width="220" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

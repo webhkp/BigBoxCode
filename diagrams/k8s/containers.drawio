@@ -1,0 +1,46 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.2.2 Chrome/134.0.6998.178 Electron/35.1.2 Safari/537.36" version="26.2.2">
+  <diagram name="Page-1" id="kvnDIwbCN9ys9lE_B3B3">
+    <mxGraphModel dx="1428" dy="841" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n_8AsyRn544__weGRcWC-3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="260" y="330" width="400" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="n_8AsyRn544__weGRcWC-1" value="Applications" style="rounded=0;whiteSpace=wrap;html=1;fontSize=30;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="310" y="500" width="300" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="n_8AsyRn544__weGRcWC-4" value="Container 1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="340" y="370" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n_8AsyRn544__weGRcWC-5" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="720" y="330" width="400" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="n_8AsyRn544__weGRcWC-6" value="Applications" style="rounded=0;whiteSpace=wrap;html=1;fontSize=30;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="770" y="500" width="300" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="n_8AsyRn544__weGRcWC-7" value="Container 2" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="800" y="370" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n_8AsyRn544__weGRcWC-8" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="330" width="400" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="n_8AsyRn544__weGRcWC-9" value="Applications" style="rounded=0;whiteSpace=wrap;html=1;fontSize=30;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1230" y="500" width="300" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="n_8AsyRn544__weGRcWC-10" value="Container 3" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=40;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="370" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n_8AsyRn544__weGRcWC-11" value="Proxy namespace" style="rounded=0;whiteSpace=wrap;html=1;fontSize=70;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="260" y="690" width="1320" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="n_8AsyRn544__weGRcWC-12" value="Host OS Kernel&lt;div&gt;+&lt;/div&gt;&lt;div&gt;Virtualization Layer&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=56;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="260" y="810" width="1320" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="n_8AsyRn544__weGRcWC-13" value="Hardware" style="rounded=0;whiteSpace=wrap;html=1;fontSize=70;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="260" y="1090" width="1320" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
