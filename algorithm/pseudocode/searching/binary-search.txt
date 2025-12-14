@@ -1,0 +1,122 @@
+// Pseudocode for Binary Search
+
+// Basic Binary Search (Iterative) - Find any occurrence
+procedure BinarySearch(array A, target)
+    // Prerequisite: Array A must be sorted in ascending order
+    
+    left = 0                    // Initialize left pointer
+    right = length(A) - 1       // Initialize right pointer
+
+    // Continue while search space is valid
+    while left <= right do
+        mid = floor((left + right) / 2)  // Calculate middle index
+        
+        if A[mid] == target then         // Check if middle element matches target
+            return mid                   // Return index if found
+        else if A[mid] < target then     // If middle element is less than target
+            left = mid + 1               // Search in right half
+        else                             // If middle element is greater than target
+            right = mid - 1              // Search in left half
+        end if
+    end while
+    
+    return -1                            // Return -1 if element not found
+end procedure
+
+
+// Binary Search (Recursive) - Find any occurrence
+procedure BinarySearchRecursive(array A, target, left, right)
+    // Prerequisite: Array A must be sorted in ascending order
+    
+    // Base case: search space is invalid
+    if left > right then
+        return -1
+    end if
+    
+    mid = floor((left + right) / 2)      // Calculate middle index
+    
+    if A[mid] == target then             // Check if middle element matches target
+        return mid                       // Return index if found
+    else if A[mid] < target then         // If middle element is less than target
+        return BinarySearchRecursive(A, target, mid + 1, right)  // Search right half
+    else                                 // If middle element is greater than target
+        return BinarySearchRecursive(A, target, left, mid - 1)   // Search left half
+    end if
+end procedure
+
+
+// Binary Search - Find first occurrence
+procedure BinarySearchFirst(array A, target)
+    // Prerequisite: Array A must be sorted in ascending order
+    
+    left = 0                    // Initialize left pointer
+    right = length(A) - 1       // Initialize right pointer
+    result = -1                 // Initialize result as not found
+
+    // Continue while search space is valid
+    while left <= right do
+        mid = floor((left + right) / 2)  // Calculate middle index
+        
+        if A[mid] == target then         // Check if middle element matches target
+            result = mid                 // Store current match
+            right = mid - 1              // Continue searching in left half for first occurrence
+        else if A[mid] < target then     // If middle element is less than target
+            left = mid + 1               // Search in right half
+        else                             // If middle element is greater than target
+            right = mid - 1              // Search in left half
+        end if
+    end while
+    
+    return result                        // Return index of first occurrence or -1
+end procedure
+
+
+// Binary Search - Find last occurrence
+procedure BinarySearchLast(array A, target)
+    // Prerequisite: Array A must be sorted in ascending order
+    
+    left = 0                    // Initialize left pointer
+    right = length(A) - 1       // Initialize right pointer
+    result = -1                 // Initialize result as not found
+
+    // Continue while search space is valid
+    while left <= right do
+        mid = floor((left + right) / 2)  // Calculate middle index
+        
+        if A[mid] == target then         // Check if middle element matches target
+            result = mid                 // Store current match
+            left = mid + 1               // Continue searching in right half for last occurrence
+        else if A[mid] < target then     // If middle element is less than target
+            left = mid + 1               // Search in right half
+        else                             // If middle element is greater than target
+            right = mid - 1              // Search in left half
+        end if
+    end while
+    
+    return result                        // Return index of last occurrence or -1
+end procedure
+
+
+// Binary Search - Find all occurrences
+procedure BinarySearchAll(array A, target)
+    // Prerequisite: Array A must be sorted in ascending order
+    
+    indices = []                         // Initialize empty array for indices
+    
+    // Find first occurrence
+    first = BinarySearchFirst(A, target)
+    
+    if first == -1 then                  // If target not found
+        return indices                   // Return empty array
+    end if
+    
+    // Find last occurrence
+    last = BinarySearchLast(A, target)
+    
+    // Collect all indices from first to last
+    for i from first to last do
+        append i to indices
+    end for
+    
+    return indices                       // Return array of all matching indices
+end procedure

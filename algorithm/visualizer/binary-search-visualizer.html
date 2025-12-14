@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Search Visualizer</title>
+    <style>
+        input,
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+
+        #bbc-visualizer-wrapper {
+            border: 1px solid gray;
+            padding: 50px;
+        }
+
+        #bbc-visualizer-container {
+            display: flex;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .bbc-visualizer-block {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #333;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            background-color: #f0f0f0;
+            position: relative;
+            transition: background-color 0.5s ease;
+        }
+
+        .bbc-visualizer-index {
+            position: absolute;
+            bottom: -30px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .bbc-visualizer-current {
+            background-color: #ffeb3b;
+        }
+
+        .bbc-visualizer-found {
+            background-color: #34d399;
+        }
+
+        .bbc-visualizer-not-found {
+            background-color: #f87171;
+        }
+
+        .bbc-visualizer-left-range {
+            background-color: #93c5fd;
+        }
+
+        .bbc-visualizer-right-range {
+            background-color: #fda4af;
+        }
+
+        .bbc-visualizer-excluded {
+            background-color: #cbd5e1;
+            opacity: 0.5;
+        }
+
+        .bbc-visualizer-arrow {
+            position: absolute;
+            top: -25px;
+            font-size: 24px;
+            color: red;
+            transition: left 0.5s ease;
+        }
+
+        .bbc-visualizer-pointer {
+            position: absolute;
+            top: -35px;
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+            transition: left 0.5s ease;
+        }
+
+        .bbc-visualizer-pointer-left {
+            color: #2563eb;
+        }
+
+        .bbc-visualizer-pointer-right {
+            color: #dc2626;
+        }
+
+        .bbc-visualizer-pointer-mid {
+            color: #16a34a;
+        }
+
+        #bbc-visualizer-log {
+            max-height: 150px;
+            overflow-y: auto;
+            width: 100%;
+            margin-top: 30px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 14px;
+            background-color: #f9f9f9;
+        }
+
+        .bbc-visualizer-result {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #e0f2fe;
+            border: 2px solid #0284c7;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #bbc-visualizer-result {
+            margin-top: 20px;
+        }
+
+        .warning-note {
+            background-color: #fef3c7;
+            border: 1px solid #f59e0b;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Binary Search Visualizer</h2>
+
+    <div id="bbc-visualizer-wrapper">
+        <label for="bbc-visualizer-numbers">Enter numbers (comma separated):</label>
+        <input type="text" id="bbc-visualizer-numbers" value="5,12,17,23,28,35,42,48,56,63,71,89">
+        <br>
+        <label for="bbc-visualizer-target">Enter target number to search:</label>
+        <input type="text" id="bbc-visualizer-target" value="42">
+        <div class="warning-note">
+            ⚠️ <strong>Important:</strong> Binary Search requires a <strong>sorted array</strong>. 
+            The input will be automatically sorted in ascending order.
+        </div>
+        <div style="font-size:13px; color:#555; margin-bottom:10px;">
+            Enter integers separated by commas (Example: 5,12,17,23,42,56,71,89).
+            <br />
+            Enter a target number to search for.
+            <br />
+            Click 'Start Search' to visualize binary search (iterative).
+            <br />
+            Click 'Recursive Search' to visualize recursive binary search.
+            <br />
+            Click 'Reset' to clear and re-enter numbers.
+        </div>
+        <button id="bbc-visualizer-startBtn" onclick="toggleSearch()">Start Search</button>
+        <button id="bbc-visualizer-recursiveBtn" onclick="startRecursiveSearch()">Recursive Search</button>
+        <button id="bbc-visualizer-findFirstBtn" onclick="findFirstOccurrence()">Find First</button>
+        <button id="bbc-visualizer-findLastBtn" onclick="findLastOccurrence()">Find Last</button>
+        <button id="bbc-visualizer-resetBtn" onclick="resetSearch()">Reset</button>
+        <div id="bbc-visualizer-container"></div>
+        <div id="bbc-visualizer-result"></div>
+        <div id="bbc-visualizer-log">Binary Search Visualizer Logs...</div>
+    </div>
+</body>
+<script>
+    let blocks = [];
+    let originalArr = [];
+    let arrow = null;
+    let leftPointer = null;
+    let rightPointer = null;
+    let midPointer = null;
+    let stopSearching = false;
+    let isPaused = false;
+    let searchingInProgress = false;
+    
+    function toggleSearch() {
+        const btn = document.getElementById('bbc-visualizer-startBtn');
+        if (!searchingInProgress) {
+            startSearch();
+        } else if (!isPaused) {
+            isPaused = true;
+            btn.textContent = 'Resume Search';
+        } else {
+            isPaused = false;
+            btn.textContent = 'Stop Search';
+        }
+    }
+
+    function createBlocks(arr) {
+        const container = document.getElementById('bbc-visualizer-container');
+        container.innerHTML = '';
+        blocks = arr.map((num, index) => {
+            const block = document.createElement('div');
+            block.classList.add('bbc-visualizer-block');
+            block.textContent = num;
+            
+            const indexLabel = document.createElement('div');
+            indexLabel.classList.add('bbc-visualizer-index');
+            indexLabel.textContent = index;
+            block.appendChild(indexLabel);
+            
+            container.appendChild(block);
+            return block;
+        });
+        
+        arrow = document.createElement('div');
+        arrow.classList.add('bbc-visualizer-arrow');
+        arrow.textContent = '⬇';
+        arrow.style.display = 'none';
+        container.appendChild(arrow);
+
+        leftPointer = document.createElement('div');
+        leftPointer.classList.add('bbc-visualizer-pointer', 'bbc-visualizer-pointer-left');
+        leftPointer.textContent = 'L';
+        leftPointer.style.display = 'none';
+        container.appendChild(leftPointer);
+
+        rightPointer = document.createElement('div');
+        rightPointer.classList.add('bbc-visualizer-pointer', 'bbc-visualizer-pointer-right');
+        rightPointer.textContent = 'R';
+        rightPointer.style.display = 'none';
+        container.appendChild(rightPointer);
+
+        midPointer = document.createElement('div');
+        midPointer.classList.add('bbc-visualizer-pointer', 'bbc-visualizer-pointer-mid');
+        midPointer.textContent = 'M';
+        midPointer.style.display = 'none';
+        container.appendChild(midPointer);
+    }
+
+    function logStep(message) {
+        const logDiv = document.getElementById('bbc-visualizer-log');
+        const p = document.createElement('div');
+        p.textContent = message;
+        logDiv.appendChild(p);
+        logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    function showResult(message, found = false) {
+        const resultDiv = document.getElementById('bbc-visualizer-result');
+        resultDiv.textContent = message;
+        resultDiv.style.backgroundColor = found ? '#d1fae5' : '#fee2e2';
+        resultDiv.style.borderColor = found ? '#10b981' : '#ef4444';
+    }
+
+    async function startSearch() {
+        const btn = document.getElementById('bbc-visualizer-startBtn');
+        btn.textContent = 'Stop Search';
+        btn.disabled = false;
+        stopSearching = false;
+        isPaused = false;
+        searchingInProgress = true;
+
+        const input = document.getElementById('bbc-visualizer-numbers').value;
+        const targetInput = document.getElementById('bbc-visualizer-target').value;
+        let arr = input.split(',').map(x => parseInt(x.trim())).filter(x => !isNaN(x));
+        let target = parseInt(targetInput.trim());
+
+        if (isNaN(target)) {
+            alert('Please enter a valid target number');
+            btn.textContent = 'Start Search';
+            searchingInProgress = false;
+            return;
+        }
+
+        // Sort the array
+        arr.sort((a, b) => a - b);
+
+        originalArr = arr.slice();
+        createBlocks(arr);
+        document.getElementById('bbc-visualizer-log').innerHTML = '';
+        document.getElementById('bbc-visualizer-result').innerHTML = '';
+
+        logStep(`Starting binary search (iterative) for target: ${target}`);
+        logStep(`Sorted array: [${arr.join(', ')}]`);
+
+        const result = await binarySearch(arr, target);
+        
+        if (!stopSearching) {
+            if (result !== -1) {
+                logStep(`✓ Target ${target} found at index ${result}`);
+                showResult(`Success! Found ${target} at index ${result}`, true);
+            } else {
+                logStep(`✗ Target ${target} not found in the array`);
+                showResult(`Target ${target} not found in the array`, false);
+            }
+        }
+
+        btn.textContent = 'Start Search';
+        searchingInProgress = false;
+        isPaused = false;
+    }
+
+    async function startRecursiveSearch() {
+        const btn = document.getElementById('bbc-visualizer-recursiveBtn');
+        btn.disabled = true;
+        stopSearching = false;
+
+        const input = document.getElementById('bbc-visualizer-numbers').value;
+        const targetInput = document.getElementById('bbc-visualizer-target').value;
+        let arr = input.split(',').map(x => parseInt(x.trim())).filter(x => !isNaN(x));
+        let target = parseInt(targetInput.trim());
+
+        if (isNaN(target)) {
+            alert('Please enter a valid target number');
+            btn.disabled = false;
+            return;
+        }
+
+        // Sort the array
+        arr.sort((a, b) => a - b);
+
+        originalArr = arr.slice();
+        createBlocks(arr);
+        document.getElementById('bbc-visualizer-log').innerHTML = '';
+        document.getElementById('bbc-visualizer-result').innerHTML = '';
+
+        logStep(`Starting binary search (recursive) for target: ${target}`);
+        logStep(`Sorted array: [${arr.join(', ')}]`);
+
+        const result = await binarySearchRecursive(arr, target, 0, arr.length - 1, 1);
+        
+        if (!stopSearching) {
+            if (result !== -1) {
+                logStep(`✓ Target ${target} found at index ${result}`);
+                showResult(`Success! Found ${target} at index ${result}`, true);
+            } else {
+                logStep(`✗ Target ${target} not found in the array`);
+                showResult(`Target ${target} not found in the array`, false);
+            }
+        }
+
+        btn.disabled = false;
+    }
+
+    async function findFirstOccurrence() {
+        const btn = document.getElementById('bbc-visualizer-findFirstBtn');
+        btn.disabled = true;
+        stopSearching = false;
+
+        const input = document.getElementById('bbc-visualizer-numbers').value;
+        const targetInput = document.getElementById('bbc-visualizer-target').value;
+        let arr = input.split(',').map(x => parseInt(x.trim())).filter(x => !isNaN(x));
+        let target = parseInt(targetInput.trim());
+
+        if (isNaN(target)) {
+            alert('Please enter a valid target number');
+            btn.disabled = false;
+            return;
+        }
+
+        arr.sort((a, b) => a - b);
+
+        originalArr = arr.slice();
+        createBlocks(arr);
+        document.getElementById('bbc-visualizer-log').innerHTML = '';
+        document.getElementById('bbc-visualizer-result').innerHTML = '';
+
+        logStep(`Finding first occurrence of: ${target}`);
+        logStep(`Sorted array: [${arr.join(', ')}]`);
+
+        const result = await binarySearchFirst(arr, target);
+        
+        if (!stopSearching) {
+            if (result !== -1) {
+                logStep(`✓ First occurrence of ${target} found at index ${result}`);
+                showResult(`First occurrence found at index ${result}`, true);
+            } else {
+                logStep(`✗ Target ${target} not found in the array`);
+                showResult(`Target ${target} not found in the array`, false);
+            }
+        }
+
+        btn.disabled = false;
+    }
+
+    async function findLastOccurrence() {
+        const btn = document.getElementById('bbc-visualizer-findLastBtn');
+        btn.disabled = true;
+        stopSearching = false;
+
+        const input = document.getElementById('bbc-visualizer-numbers').value;
+        const targetInput = document.getElementById('bbc-visualizer-target').value;
+        let arr = input.split(',').map(x => parseInt(x.trim())).filter(x => !isNaN(x));
+        let target = parseInt(targetInput.trim());
+
+        if (isNaN(target)) {
+            alert('Please enter a valid target number');
+            btn.disabled = false;
+            return;
+        }
+
+        arr.sort((a, b) => a - b);
+
+        originalArr = arr.slice();
+        createBlocks(arr);
+        document.getElementById('bbc-visualizer-log').innerHTML = '';
+        document.getElementById('bbc-visualizer-result').innerHTML = '';
+
+        logStep(`Finding last occurrence of: ${target}`);
+        logStep(`Sorted array: [${arr.join(', ')}]`);
+
+        const result = await binarySearchLast(arr, target);
+        
+        if (!stopSearching) {
+            if (result !== -1) {
+                logStep(`✓ Last occurrence of ${target} found at index ${result}`);
+                showResult(`Last occurrence found at index ${result}`, true);
+            } else {
+                logStep(`✗ Target ${target} not found in the array`);
+                showResult(`Target ${target} not found in the array`, false);
+            }
+        }
+
+        btn.disabled = false;
+    }
+
+    function resetSearch() {
+        stopSearching = true;
+        isPaused = false;
+        searchingInProgress = false;
+        const btn = document.getElementById('bbc-visualizer-startBtn');
+        btn.textContent = 'Start Search';
+        btn.disabled = false;
+        createBlocks(originalArr);
+        document.getElementById('bbc-visualizer-log').innerHTML = '';
+        document.getElementById('bbc-visualizer-result').innerHTML = '';
+    }
+
+    async function binarySearch(arr, target) {
+        let left = 0;
+        let right = arr.length - 1;
+        let step = 1;
+
+        leftPointer.style.display = 'block';
+        rightPointer.style.display = 'block';
+        midPointer.style.display = 'block';
+
+        while (left <= right) {
+            if (stopSearching) return -1;
+            
+            while (isPaused) {
+                await sleep(200);
+                if (stopSearching) return -1;
+            }
+
+            const mid = Math.floor((left + right) / 2);
+
+            // Reset all blocks
+            blocks.forEach((block, idx) => {
+                block.className = 'bbc-visualizer-block';
+                if (idx < left || idx > right) {
+                    block.classList.add('bbc-visualizer-excluded');
+                }
+            });
+
+            // Position pointers
+            positionPointer(leftPointer, left);
+            positionPointer(rightPointer, right);
+            positionPointer(midPointer, mid);
+
+            // Highlight current range
+            for (let i = left; i <= right; i++) {
+                if (i < mid) {
+                    blocks[i].classList.add('bbc-visualizer-left-range');
+                } else if (i > mid) {
+                    blocks[i].classList.add('bbc-visualizer-right-range');
+                }
+            }
+
+            blocks[mid].classList.add('bbc-visualizer-current');
+            logStep(`Step ${step}: left=${left}, right=${right}, mid=${mid}`);
+            logStep(`  → Checking arr[${mid}] = ${arr[mid]} vs target = ${target}`);
+            await sleep(1200);
+
+            if (stopSearching) return -1;
+
+            if (arr[mid] === target) {
+                blocks[mid].classList.remove('bbc-visualizer-current');
+                blocks[mid].classList.add('bbc-visualizer-found');
+                logStep(`  ✓ Match found! arr[${mid}] = ${arr[mid]} === ${target}`);
+                await sleep(1000);
+                return mid;
+            } else if (arr[mid] < target) {
+                logStep(`  → arr[${mid}] (${arr[mid]}) < ${target}, search right half`);
+                left = mid + 1;
+                await sleep(800);
+            } else {
+                logStep(`  → arr[${mid}] (${arr[mid]}) > ${target}, search left half`);
+                right = mid - 1;
+                await sleep(800);
+            }
+
+            step++;
+        }
+
+        // Mark remaining blocks as not found
+        blocks.forEach(block => {
+            if (!block.classList.contains('bbc-visualizer-excluded')) {
+                block.classList.add('bbc-visualizer-not-found');
+            }
+        });
+
+        return -1;
+    }
+
+    async function binarySearchRecursive(arr, target, left, right, step) {
+        if (left > right) {
+            blocks.forEach(block => {
+                if (!block.classList.contains('bbc-visualizer-excluded')) {
+                    block.classList.add('bbc-visualizer-not-found');
+                }
+            });
+            return -1;
+        }
+
+        if (stopSearching) return -1;
+
+        leftPointer.style.display = 'block';
+        rightPointer.style.display = 'block';
+        midPointer.style.display = 'block';
+
+        const mid = Math.floor((left + right) / 2);
+
+        // Reset all blocks
+        blocks.forEach((block, idx) => {
+            block.className = 'bbc-visualizer-block';
+            if (idx < left || idx > right) {
+                block.classList.add('bbc-visualizer-excluded');
+            }
+        });
+
+        // Position pointers
+        positionPointer(leftPointer, left);
+        positionPointer(rightPointer, right);
+        positionPointer(midPointer, mid);
+
+        // Highlight current range
+        for (let i = left; i <= right; i++) {
+            if (i < mid) {
+                blocks[i].classList.add('bbc-visualizer-left-range');
+            } else if (i > mid) {
+                blocks[i].classList.add('bbc-visualizer-right-range');
+            }
+        }
+
+        blocks[mid].classList.add('bbc-visualizer-current');
+        logStep(`Step ${step}: left=${left}, right=${right}, mid=${mid}`);
+        logStep(`  → Checking arr[${mid}] = ${arr[mid]} vs target = ${target}`);
+        await sleep(1200);
+
+        if (stopSearching) return -1;
+
+        if (arr[mid] === target) {
+            blocks[mid].classList.remove('bbc-visualizer-current');
+            blocks[mid].classList.add('bbc-visualizer-found');
+            logStep(`  ✓ Match found! arr[${mid}] = ${arr[mid]} === ${target}`);
+            await sleep(1000);
+            return mid;
+        } else if (arr[mid] < target) {
+            logStep(`  → arr[${mid}] (${arr[mid]}) < ${target}, recurse right half`);
+            await sleep(800);
+            return await binarySearchRecursive(arr, target, mid + 1, right, step + 1);
+        } else {
+            logStep(`  → arr[${mid}] (${arr[mid]}) > ${target}, recurse left half`);
+            await sleep(800);
+            return await binarySearchRecursive(arr, target, left, mid - 1, step + 1);
+        }
+    }
+
+    async function binarySearchFirst(arr, target) {
+        let left = 0;
+        let right = arr.length - 1;
+        let result = -1;
+        let step = 1;
+
+        leftPointer.style.display = 'block';
+        rightPointer.style.display = 'block';
+        midPointer.style.display = 'block';
+
+        while (left <= right) {
+            if (stopSearching) return -1;
+
+            const mid = Math.floor((left + right) / 2);
+
+            // Reset all blocks
+            blocks.forEach((block, idx) => {
+                block.className = 'bbc-visualizer-block';
+                if (idx < left || idx > right) {
+                    block.classList.add('bbc-visualizer-excluded');
+                }
+            });
+
+            // Position pointers
+            positionPointer(leftPointer, left);
+            positionPointer(rightPointer, right);
+            positionPointer(midPointer, mid);
+
+            // Highlight current range
+            for (let i = left; i <= right; i++) {
+                if (i < mid) {
+                    blocks[i].classList.add('bbc-visualizer-left-range');
+                } else if (i > mid) {
+                    blocks[i].classList.add('bbc-visualizer-right-range');
+                }
+            }
+
+            blocks[mid].classList.add('bbc-visualizer-current');
+            logStep(`Step ${step}: left=${left}, right=${right}, mid=${mid}`);
+            logStep(`  → Checking arr[${mid}] = ${arr[mid]} vs target = ${target}`);
+            await sleep(1200);
+
+            if (stopSearching) return -1;
+
+            if (arr[mid] === target) {
+                result = mid;
+                blocks[mid].classList.remove('bbc-visualizer-current');
+                blocks[mid].classList.add('bbc-visualizer-found');
+                logStep(`  ✓ Found ${target} at ${mid}, searching left for first occurrence`);
+                right = mid - 1;
+                await sleep(800);
+            } else if (arr[mid] < target) {
+                logStep(`  → arr[${mid}] (${arr[mid]}) < ${target}, search right half`);
+                left = mid + 1;
+                await sleep(800);
+            } else {
+                logStep(`  → arr[${mid}] (${arr[mid]}) > ${target}, search left half`);
+                right = mid - 1;
+                await sleep(800);
+            }
+
+            step++;
+        }
+
+        if (result !== -1) {
+            blocks[result].classList.add('bbc-visualizer-found');
+        }
+
+        return result;
+    }
+
+    async function binarySearchLast(arr, target) {
+        let left = 0;
+        let right = arr.length - 1;
+        let result = -1;
+        let step = 1;
+
+        leftPointer.style.display = 'block';
+        rightPointer.style.display = 'block';
+        midPointer.style.display = 'block';
+
+        while (left <= right) {
+            if (stopSearching) return -1;
+
+            const mid = Math.floor((left + right) / 2);
+
+            // Reset all blocks
+            blocks.forEach((block, idx) => {
+                block.className = 'bbc-visualizer-block';
+                if (idx < left || idx > right) {
+                    block.classList.add('bbc-visualizer-excluded');
+                }
+            });
+
+            // Position pointers
+            positionPointer(leftPointer, left);
+            positionPointer(rightPointer, right);
+            positionPointer(midPointer, mid);
+
+            // Highlight current range
+            for (let i = left; i <= right; i++) {
+                if (i < mid) {
+                    blocks[i].classList.add('bbc-visualizer-left-range');
+                } else if (i > mid) {
+                    blocks[i].classList.add('bbc-visualizer-right-range');
+                }
+            }
+
+            blocks[mid].classList.add('bbc-visualizer-current');
+            logStep(`Step ${step}: left=${left}, right=${right}, mid=${mid}`);
+            logStep(`  → Checking arr[${mid}] = ${arr[mid]} vs target = ${target}`);
+            await sleep(1200);
+
+            if (stopSearching) return -1;
+
+            if (arr[mid] === target) {
+                result = mid;
+                blocks[mid].classList.remove('bbc-visualizer-current');
+                blocks[mid].classList.add('bbc-visualizer-found');
+                logStep(`  ✓ Found ${target} at ${mid}, searching right for last occurrence`);
+                left = mid + 1;
+                await sleep(800);
+            } else if (arr[mid] < target) {
+                logStep(`  → arr[${mid}] (${arr[mid]}) < ${target}, search right half`);
+                left = mid + 1;
+                await sleep(800);
+            } else {
+                logStep(`  → arr[${mid}] (${arr[mid]}) > ${target}, search left half`);
+                right = mid - 1;
+                await sleep(800);
+            }
+
+            step++;
+        }
+
+        if (result !== -1) {
+            blocks[result].classList.add('bbc-visualizer-found');
+        }
+
+        return result;
+    }
+
+    function positionPointer(pointer, i) {
+        const rect = blocks[i].getBoundingClientRect();
+        const containerRect = document.getElementById('bbc-visualizer-container').getBoundingClientRect();
+        pointer.style.left = (rect.left - containerRect.left + rect.width / 2 - 6) + 'px';
+    }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    // Initialize on load
+    window.onload = function() {
+        const input = document.getElementById('bbc-visualizer-numbers').value;
+        let arr = input.split(',').map(x => parseInt(x.trim())).filter(x => !isNaN(x));
+        arr.sort((a, b) => a - b);
+        originalArr = arr.slice();
+        createBlocks(arr);
+    };
+</script>
+
+</html>
